@@ -1,0 +1,23 @@
+package digui.one;
+
+public class Digui {
+	//递归方法
+	//递归的定义：方法自己调用自己就是递归
+	
+	public static void a()
+	{
+		a(); //这样就是递归方法
+	}
+	
+	public static void tellStory(int i )
+	{
+		System.out.println(i + "从前有个庙...");
+		i++;
+		tellStory(i);
+	}
+	
+	public static void main(String[] args)
+	{
+		tellStory();
+	}
+}

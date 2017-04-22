@@ -1,0 +1,25 @@
+package digui.one;
+
+public class Prepare {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	
+	//递归准备知识点
+	
+	//1  代码执行顺序
+	public static void a()
+	{
+		System.out.println("a");
+		b();
+		System.out.println("c");
+	}
+	public static void b()
+	{
+		System.out.println("b");
+	}
+
+}

@@ -1,0 +1,26 @@
+package digui.one;
+
+public class Prepare {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		a();
+	}
+	
+	//递归准备知识点
+	
+	//1  代码执行顺序
+	//当main方法调用a方法时，程序进入到a方法，执行a方法的代码
+	public static void a()
+	{
+		System.out.println("a");
+		b();
+		System.out.println("c");
+	}
+	public static void b()
+	{
+		System.out.println("b");
+	}
+
+}

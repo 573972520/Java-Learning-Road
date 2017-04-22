@@ -1,0 +1,29 @@
+package digui.one;
+
+public class Digui {
+	//递归方法
+	//递归的定义：方法自己调用自己就是递归
+	
+	public static void a()
+	{
+		a(); //这样就是递归方法
+	}
+	//如果递归方法不叫限制（方法没有返回的时候），程序最终肯定会抛出StackOverflowError
+	//递归重要特点：要有合理的返回条件
+	public static void tellStory(int i )
+	{
+		System.out.println(i + "从前有个庙...");
+		if(i == 3)
+		{
+			return;//不讲了，休息
+		}
+		i++;
+		tellStory(i);
+		i++;
+	}
+	
+	public static void main(String[] args)
+	{
+		tellStory(1);
+	}
+}
