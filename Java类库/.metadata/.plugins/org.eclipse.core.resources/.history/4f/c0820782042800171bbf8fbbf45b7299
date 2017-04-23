@@ -1,0 +1,21 @@
+package ascii;
+
+public class ASCII {
+	/*
+	什么是字符
+	答：显示在屏幕上的文字、字母、数字、标点符号、特殊字符和那些看不带到的符号，但是字符
+	        一个字符对应一个整数，一个字符对应的整数称为字符的编码，把所有的字符和它们的编码排列在一起形成的表，叫字符编码表
+	        
+	什么是字符编码表
+	答：一个字符对应的整数称为字符的编码，把所有的字符和它们的编码排列在一起形成的表
+	ASCII编码表
+	
+	*/
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		char ch = 'a';
+		//char ch1 = "a"; //要使用单引号
+		//char ch2 = 'ad';//不能有两个字符
+	}
+
+}

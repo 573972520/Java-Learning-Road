@@ -1,0 +1,14 @@
+package chaishu;
+
+public class ChaiShuTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//拆数:把一个数每个位上的数字依次取出来，就是拆数
+		
+		 num = 345;
+		 //取得个位上的数字
+		 int getGe = num%10;
+	}
+
+}

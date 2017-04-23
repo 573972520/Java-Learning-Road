@@ -1,0 +1,28 @@
+package digui.one;
+
+public class Fib {
+
+	//斐波那契数列:0、1、1、2、3、5、8、13、21、...( 这个数列是已经确定的)
+	//斐波那契数定义为:F(0) = 0, F(1) = 1, F(4) = F(3)+F(2)(n >= 2)
+	//f(n) = f(n-1) + f(n-2) (n >= 2)
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(fib(5));
+	}
+	
+	//求第n(n >= 0)个fib数
+	
+	//递推条件:
+	//返回条件:
+	public static int fib(int n)
+	{
+		if(n == 2)
+		{
+			return 0;
+		}
+		int fibN = 0;
+		fibN = fib(n-1)+fib(n-2);
+		return fibN;
+	}
+
+}

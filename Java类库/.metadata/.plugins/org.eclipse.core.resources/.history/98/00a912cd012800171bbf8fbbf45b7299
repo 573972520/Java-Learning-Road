@@ -1,0 +1,45 @@
+package constantPool;
+
+public class ConstantPoolTest {
+	//常量池
+	
+	//1.存放类文件的信息：类名、包名、字段名称类型、方法名...
+	//2.存放static final 字段
+	//3.存放常量字符串
+	//4.存放基本类型包装类的对象
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		/*常量字符串
+		//在编译时期就可以确定的数据，会被放入到常量池中
+		String s1 = "abc";
+		String s2 = "abc";
+		
+		System.out.println(s1 == s2);//结果是true 因为s1和s2都指向同一内存地址 
+		
+		String s3 = "ab";
+		String s4 = "a";
+		String s5 = "s4+b";//在编译时期就不能确定的数据，不会被放入到常量池中
+		
+		System.out.println(s3 == s5);//结果是false
+		
+		//编译器会对代码进行优化
+		String s6 = "ab";
+		String s7 = "a"+"b";//优化成String s7 = "ab";
+		System.out.println(s6 == s7);//结果是true
+		
+		String s8 = new String("ab");
+		String s9 = "ab";
+		System.out.println(s8 == s9);//结果是false
+		*/
+		
+		Integer i1 = 1;
+		Integer i2 = 1;
+		System.out.println(i1 == i2);//结果是true
+		
+		Integer i3 = 100;
+		Integer i4 = 100;
+		System.out.println(i3 == i4);//结果是false
+	}
+
+}

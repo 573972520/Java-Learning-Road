@@ -1,0 +1,18 @@
+package ascii;
+
+public class ASCII {
+	/*
+	什么是字符
+	答：显示在屏幕上的文字、字母、数字、标点符号、特殊字符和那些看不带到的符号，但是字符
+	
+	什么是字符编码表
+	
+	ASCII编码表
+	
+	*/
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		char ch = 'a';
+	}
+
+}

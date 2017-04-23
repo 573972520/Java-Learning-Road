@@ -1,0 +1,27 @@
+package chaishu;
+
+public class ChaiShuTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//拆数:把一个数每个位上的数字依次取出来，就是拆数
+		
+		int num = 345;
+		//取得个位上的数字
+		int getGe = num%10;
+		System.out.println(getGe);
+		//取得个位上的数字
+		//思路:把十位上的数字移动到最右边
+		num = num/10;
+		int getShi = num%10;
+		System.out.println(getShi);
+		System.out.println(num);
+		//取得个位上的数字
+		//思路:把十位上的数字移动到最右边
+		num = num/10; //这里的num已经变成了34了
+		int getBai = num%10;
+		System.out.println(getBai);
+		
+	}
+
+}
