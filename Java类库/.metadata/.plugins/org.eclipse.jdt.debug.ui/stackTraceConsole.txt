@@ -1,0 +1,5 @@
+//取得个位上的数字
+		//思路:把十位上的数字移动到最右边
+		num = num/10;
+		int getShi = num%10;
+		System.out.println(getShi);
