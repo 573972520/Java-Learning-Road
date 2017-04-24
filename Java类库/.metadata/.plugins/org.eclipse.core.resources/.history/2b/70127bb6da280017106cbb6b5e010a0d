@@ -1,0 +1,13 @@
+package string成员方法;
+
+public class StringTest3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s = "aBcD123";
+		s.toLowerCase();
+		System.out.println(s);
+		
+	}
+
+}

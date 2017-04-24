@@ -1,0 +1,13 @@
+package string成员方法;
+
+public class StringTest3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s = "aBcD123";
+		s.toLowerCase();
+		System.out.println(s); //结果还是和先前定义的字符串一样，因为字符串一旦声明之后就不能改变了
+		System.out.println(s.toLowerCase());
+	}
+
+}

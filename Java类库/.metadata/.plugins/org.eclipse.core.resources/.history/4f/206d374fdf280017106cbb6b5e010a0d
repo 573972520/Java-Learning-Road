@@ -1,0 +1,17 @@
+package string成员方法;
+
+public class StringBufferTest4 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//问题提出:String s = "111"+"222"+"444";这个字符串s会被编译器优化成String s = "111222444";
+		//但是对于String s4= s1+s2+s3;来说，每次+就会生成一个新的String对象，当对象比较多的时候会产生临时字符串对象,所以会对性能产生影响
+		String s1 = "aaa";
+		String s2 = "bbb";
+		String s3 = "ccc";
+		String s4= s1+s2+s3;
+		System.out.println(s4);
+		
+	}
+
+}

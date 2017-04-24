@@ -48,7 +48,7 @@ public class StringTest2 {
 		System.out.println(lastDotIndex);
 		System.out.println(s.substring(0, lastDotIndex));
 		System.out.println(s.substring(lastDotIndex+1));
-		*/
+		*/ 
 	}
 
 }

@@ -1,0 +1,29 @@
+package wrapper;
+
+public class WrapperTest2 {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		
+		/*
+		Integer i1 = new Integer(4); //装箱
+		test(i1);
+		
+		//int i = null;//通过包装类可以使之等于null
+		Integer i2 = null;
+		*/
+		
+		Integer i = 3;
+		
+	}
+	
+	public static void test(Object obj)
+	{
+		if(obj instanceof Integer)
+		{
+			Integer i = (Integer)obj;
+			System.out.println(i.intValue()); //相对于WrapperTest1中的getValue方法（拆箱）
+		}
+	}
+}

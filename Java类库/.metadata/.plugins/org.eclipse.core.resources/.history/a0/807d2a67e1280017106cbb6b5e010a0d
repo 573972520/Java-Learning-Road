@@ -1,0 +1,10 @@
+package string成员方法;
+
+public class StringBufferPersonTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

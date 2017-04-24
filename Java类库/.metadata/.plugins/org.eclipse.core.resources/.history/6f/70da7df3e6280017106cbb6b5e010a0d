@@ -1,0 +1,36 @@
+package wrapper;
+
+public class WrapperTest1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		test("aaa");
+		test(4); //
+		
+		
+		IntWrapper i = new IntWrapper(4);
+		test(i);
+	}
+	
+	static void test(Object obj)
+	{
+		if(obj instanceof IntWrapper)//判断obj变量指向的对象是否是IntWrapper类型的
+		{
+			IntWrapper i = (IntWrapper)obj;
+			System.out.println(i);
+		}
+	}
+}
+
+class IntWrapper
+{
+	private int value;
+	public IntWrapper(int value)
+	{
+		this.value = value;
+	}
+	public int getValue()
+	{
+		return this.value;
+	}
+}

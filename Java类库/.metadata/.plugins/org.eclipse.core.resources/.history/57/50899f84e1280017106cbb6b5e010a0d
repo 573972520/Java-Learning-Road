@@ -1,0 +1,23 @@
+package string成员方法;
+
+public class StringBufferPersonTest {
+
+	public Person speak()
+	{
+		System.out.println("hi");
+	}
+	public Person eat()
+	{
+		System.out.println("eat");
+	}
+	public Person sleep()
+	{
+		System.out.println("huhuhu");
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Person p1 = new Person();
+		p1.speak().sleep().eat();
+	}
+
+}
