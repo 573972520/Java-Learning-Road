@@ -1,0 +1,29 @@
+package date;
+import java.util.Calendar;
+import java.util.Date;
+
+public class DateTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Date now = new Date();
+		System.out.println(now);
+		
+		int year = now.getYear();//不推荐使用
+		System.out.println(year);
+		int hour = now.getHours();
+		System.out.println(hour);
+		
+		Calendar c1 = Calendar.getInstance(); 
+		System.out.println(c1);//c1指向的对象的实际类型
+		c1.setTime(now);//下面帮我解析now
+		
+		int year1 = c1.get(Calendar.YEAR);
+		System.out.println(year1);
+		
+		int minute = c1.get(Calendar.MINUTE);
+		System.out.println(minute);
+		}
+	
+
+}

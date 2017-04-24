@@ -1,0 +1,42 @@
+package date;
+import java.util.Calendar;
+import java.util.Date;
+
+public class DateTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		/*
+		Date now = new Date();
+		System.out.println(now);
+		
+		int year = now.getYear();//不推荐使用
+		System.out.println(year);
+		int hour = now.getHours();
+		System.out.println(hour);
+		
+		Calendar c1 = Calendar.getInstance(); //GregorianCalendar
+		System.out.println(c1);//c1指向的对象的实际类型
+		c1.setTime(now);//下面帮我解析now
+		
+		int year1 = c1.get(Calendar.YEAR);//获得日期的“年”部分
+		System.out.println(year1);
+		
+		int minute = c1.get(Calendar.MINUTE);//获得日期的“分钟”部分
+		System.out.println(minute);
+		
+		System.out.println(c1.get(Calendar.WEEK_OF_MONTH)); //月的第几周
+		System.out.println(c1.get(Calendar.DAY_OF_MONTH));//月的第几天
+		System.out.println(c1.get(Calendar.DAY_OF_YEAR));//年的第几天
+		System.out.println(c1.get(Calendar.HOUR));//12小时制的小时
+		System.out.println(c1.get(Calendar.HOUR_OF_DAY));//24小时制的小时
+		System.out.println(c1.get(Calendar.MINUTE));//分钟
+		System.out.println(c1.get(Calendar.SECOND));//秒
+		*/
+		
+		Date d1 = new Date(;)
+		}
+	
+
+}
