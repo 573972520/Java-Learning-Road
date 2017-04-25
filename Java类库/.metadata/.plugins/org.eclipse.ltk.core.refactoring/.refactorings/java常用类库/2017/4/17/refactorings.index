@@ -2,3 +2,7 @@
 1493038585962	Rename package 'data'
 1493086503202	Rename type 'DateTest'
 1493091445087	Delete element
+1493098615589	Move compilation unit
+1493098629523	Copy package
+1493098638716	Delete element
+1493098921773	Rename type 'UserDefinedExceptionTest2'

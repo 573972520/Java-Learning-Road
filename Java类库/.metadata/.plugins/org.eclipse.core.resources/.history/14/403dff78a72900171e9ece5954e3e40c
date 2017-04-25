@@ -1,0 +1,14 @@
+package file文件处理;
+
+import java.io.File;
+
+public class FileTest2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		File f1 = new File("d:\\Code");
+		Sreing[] files = f1.list();
+		
+	}
+
+}

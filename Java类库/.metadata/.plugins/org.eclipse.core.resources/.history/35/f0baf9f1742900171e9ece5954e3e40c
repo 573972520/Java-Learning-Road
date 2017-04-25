@@ -1,0 +1,33 @@
+package 异常;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+public class TwoException1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try
+		{
+			if(true)
+			{
+				//throw new RuntimeException("asdas"); //不会报错，因为RuntimeException为非检查异常
+				//throw new Exception("asdas");//会报错,因为其他Exception子类都是检查异常
+				throw new IOException("asdas");//会报错,因为其他Exception子类都是检查异常
+			}
+			if(true)
+			{
+				throw new SQLException("asdas");
+			}
+		}
+		catch(IOException ex) //解决其他Exception子类都是检查异常报错的问题
+		{
+			System.out.println("IOException");
+		}
+		catch(SQLException ex) //解决其他Exception子类都是检查异常报错的问题
+		{
+			System.out.println("sql异常");
+		}
+	}
+
+}

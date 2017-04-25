@@ -1,0 +1,22 @@
+package 异常.UserDefinedException;
+
+public class UserDefinedExceptionTest1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		test(1);
+	}
+	static void test(int i)
+	{
+		if(i < 10)
+		{
+			//throw new IllegalArgumentException("i错误");
+			throw new UserDefinedExceptionTest2("有点错误")
+		}
+		else
+		{
+			System.out.println("i大于等于10");
+		}
+		
+	}
+}

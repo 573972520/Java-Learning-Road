@@ -1,0 +1,14 @@
+package file文件处理;
+
+import java.io.FileOutputStream;
+
+public class StreamTest1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		FileOutputStream fos = new FileOutputStream("");
+		
+		OutputStream
+	}
+
+}

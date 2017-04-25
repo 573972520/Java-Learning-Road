@@ -1,0 +1,24 @@
+package “Ï≥£;
+
+import java.io.IOException;
+
+public class TwoException1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try
+		{
+			if(true)
+			{
+				throw new RuntimeException("asdas"); //
+				throw new Exception("asdas");
+				throw new IOException("asdas");
+			}
+		}
+		catch(IOException ex)
+		{
+			System.out.println("IOException");
+		}
+	}
+
+}

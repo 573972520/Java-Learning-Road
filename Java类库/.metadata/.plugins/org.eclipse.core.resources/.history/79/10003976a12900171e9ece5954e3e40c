@@ -1,0 +1,43 @@
+package file文件处理;
+
+import java.io.File;
+
+public class FileTest1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		File f1 = new File("D:\\Code");
+		File f2 = new File("d:\\1.txt");
+		File f3 = new File("d:\\","icon.png");
+		
+		if(f1.isFile())
+		{
+			System.out.println("是文件");
+		}
+		else if(f1.isDirectory())
+		{
+			System.out.println("是文件夹");
+		}
+		
+		if(f2.exists())
+		{
+			if(f2.isFile())
+			{
+				System.out.println("是文件");
+			}
+			else if(f2.isDirectory())
+			{
+				System.out.println("是文件夹");
+			}
+		}
+		else
+		{
+			System.out.println(f2+"不存在");
+		}
+		
+		File f4 = new File("d:\\w");
+		File f4 = new File("d:\\a\\b");
+		f4.mkdir();
+	}
+
+}

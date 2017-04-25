@@ -1,0 +1,5 @@
+package “Ï≥£.UserDefinedException;
+
+public class My2Exception extends Exception {
+
+}
