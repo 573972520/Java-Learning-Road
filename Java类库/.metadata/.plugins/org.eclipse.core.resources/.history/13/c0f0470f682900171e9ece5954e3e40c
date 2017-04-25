@@ -1,0 +1,22 @@
+package 异常;
+
+public class T {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try //将可能会发生异常的代码用try包起来
+		{
+			if(true)
+			{
+				throw new RuntimeException("我FUCk了");
+			}
+
+		}
+
+		catch(RuntimeException e)
+		{
+			System.out.println("错误,"+e.getMessage());
+		}
+	}
+
+}

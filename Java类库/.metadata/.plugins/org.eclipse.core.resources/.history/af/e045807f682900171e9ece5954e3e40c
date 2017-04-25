@@ -1,0 +1,22 @@
+package 异常;
+
+public class T {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try 
+		{
+			if(true)
+			{
+				throw new RuntimeException("我FUCk了");
+			}
+
+		}
+
+		catch(RuntimeException e)
+		{
+			e.printStackTrace();//哥们，出错了，出错信息是...(只是告诉你出错信息，没有处理异常)，所以这个不是一个好的异常处理方法
+		}
+	}
+
+}

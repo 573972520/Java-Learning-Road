@@ -1,0 +1,12 @@
+package date;
+
+public class DateTest2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Date now = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyÄêMMÈÕDDÈÕ HH:mm:ss");
+		
+	}
+
+}
