@@ -1,0 +1,27 @@
+package file文件处理;
+
+import java.io.InputStream;
+
+public class FileInputStreamTest1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		InputStream fis = null;
+		try
+		{
+			
+		}
+		finally
+		{
+			if(fis != null)
+			{
+				fis.close();
+			}
+			catch(IOException e)
+			{
+				
+			}
+		}
+	}
+
+}

@@ -1,0 +1,11 @@
+package file文件处理.下载图片;
+
+import java.io.OutputStream;
+
+public class CopyMethod
+{
+	public static void copy(InputStream inStream, OutputStream outStream, int bufferSize)
+	{
+		
+	}
+}

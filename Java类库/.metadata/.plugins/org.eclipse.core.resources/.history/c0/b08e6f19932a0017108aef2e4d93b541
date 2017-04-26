@@ -1,0 +1,24 @@
+package file文件处理.下载图片;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class URLTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		try
+		{
+			URL url = new URL("http://www.baidu.com");
+		} catch (MalformedURLException e)
+		{
+			// TODO Auto-generated catch block
+			System.out.println("网址格式不正确");
+			e.printStackTrace();
+		}
+		
+	}
+
+}

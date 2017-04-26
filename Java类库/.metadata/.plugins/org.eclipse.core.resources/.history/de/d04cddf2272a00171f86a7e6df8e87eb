@@ -1,0 +1,17 @@
+package file文件处理;
+
+public class IOUtils
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void closeQuietly(InputStream inStream)
+	{
+		
+	}
+
+}

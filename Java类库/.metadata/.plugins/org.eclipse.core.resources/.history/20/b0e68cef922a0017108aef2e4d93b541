@@ -1,0 +1,12 @@
+package file文件处理.下载图片;
+
+public class URLTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+}

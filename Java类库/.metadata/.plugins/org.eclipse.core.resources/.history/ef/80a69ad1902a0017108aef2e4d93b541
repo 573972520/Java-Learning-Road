@@ -1,0 +1,20 @@
+package file文件处理.下载图片;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class CopyMethod
+{
+	public static void copy(InputStream inStream, OutputStream outStream, int bufferSize) throws IOException //buffer：缓冲区 size：大小
+	{
+		byte[] buffer = new byte[bufferSize];
+		int len;
+		//在这里不用catch异常，因为你不知道怎么处理，让调用者处理
+		while((len = inStream.read(buffer)) > 0)
+		{
+			outStream.write(buffer,0,len);
+			
+		}
+	}
+}

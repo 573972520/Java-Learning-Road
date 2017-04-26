@@ -1,0 +1,17 @@
+package file文件处理.下载图片;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class CopyMethod
+{
+	public static void copy(InputStream inStream, OutputStream outStream, int bufferSize) //buffer：缓冲区 size：大小
+	{
+		byte[] buffer = new byte[bufferSize];
+		int len;
+		while(len = inStream.read(buffer) > 0)
+		{
+			
+		}
+	}
+}

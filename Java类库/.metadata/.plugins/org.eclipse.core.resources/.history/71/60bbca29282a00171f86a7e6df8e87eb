@@ -1,0 +1,47 @@
+package file文件处理;
+
+import java.io.IOException;
+import java.io.OutputStream;
+
+import org.omg.CORBA.portable.InputStream;
+
+public class IOUtils
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void closeQuietly(InputStream inStream)
+	{
+		if(inStream != null)
+		{
+			try
+			{
+				inStream.close();
+			} 
+			catch (IOException e)
+			{
+				//do nothing
+			}
+		}
+	}
+
+	
+	public static void closeQuietly(OutputStream outStream)
+	{
+		if(outStream != null)
+		{
+			try
+			{
+				outStream.close();
+			} 
+			catch (IOException e)
+			{
+				//do nothing
+			}
+		}
+	}
+}
