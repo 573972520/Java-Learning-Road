@@ -1,0 +1,28 @@
+package file文件处理;
+
+import java.io.BufferedWriter;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+
+public class BufferedTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		OutputStream fos = null;
+		OutputStreamWriter writer = null;
+		BufferedWriter buffWreiter = null;
+		try
+		{
+			
+		}
+		finally
+		{
+			IOUtils.closeQuietly(fos);
+			IOUtils.closeQuietly(writer);
+			IOUtils.closeQuietly(buffWreiter);
+		}
+	}
+
+}

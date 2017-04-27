@@ -1,0 +1,14 @@
+package file文件处理.IO练习.downloadString;
+
+import java.net.URL;
+
+public class DownloadStringTest1
+{
+
+	public static String downloadString(URL url)
+	{
+		
+	}
+	
+
+}

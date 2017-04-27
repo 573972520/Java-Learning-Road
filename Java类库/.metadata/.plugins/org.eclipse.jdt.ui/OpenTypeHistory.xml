@@ -3,4 +3,6 @@
 <typeInfo handle="=java常用类库/D:\/eclipse\/jre\/lib\/rt.jar&lt;javax.print(DocFlavor$READER.class[READER" modifiers="9" timestamp="1491562307005"/>
 <typeInfo handle="=java常用类库/D:\/eclipse\/jre\/lib\/rt.jar&lt;com.sun.imageio.plugins.common(ReaderUtil.class[ReaderUtil" modifiers="33" timestamp="1491562307005"/>
 <typeInfo handle="=java常用类库/D:\/eclipse\/jre\/lib\/rt.jar&lt;com.sun.xml.internal.ws(Closeable.class[Closeable" modifiers="1537" timestamp="1491562307005"/>
+<typeInfo handle="=java常用类库/D:\/eclipse\/jre\/lib\/rt.jar&lt;java.net(HttpURLConnection.class[HttpURLConnection" modifiers="1057" timestamp="1491562307005"/>
+<typeInfo handle="=java常用类库/D:\/eclipse\/jre\/lib\/rt.jar&lt;java.io(FileInputStream.class[FileInputStream" modifiers="33" timestamp="1491562307005"/>
 </typeInfoHistroy>

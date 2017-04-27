@@ -1,0 +1,20 @@
+package file文件处理;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+public class ReaderWriterTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		InputStream inStream = null;
+		try
+		{
+			inStream = new FileInputStream("d:\\1.txt");
+		}
+		catch()
+	}
+
+}

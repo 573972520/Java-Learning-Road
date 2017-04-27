@@ -1,0 +1,18 @@
+package src;
+
+public class AccessResource
+{
+
+	public static void main(String[] args)
+	{
+		//如何访问项目src下的资源文件？
+		//实际执行时，就是如何访问bin目录下的资源文件
+		//bin---java的类加载的根路径
+		
+		资源路径
+		File
+		Reader
+		
+	}
+
+}

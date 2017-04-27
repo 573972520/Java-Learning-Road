@@ -1,0 +1,55 @@
+package file文件处理;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+
+public class BufferedWriterTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		OutputStream fos = null;
+		Writer writer = null;               //使用父类类型的变量
+		//OutputStreamWriter writer = null; //使用父类类型的变量
+		BufferedWriter buffWriter = null;
+		try
+		{
+			fos = new FileOutputStream("d:\\5.txt");
+			writer = new OutputStreamWriter(fos);
+			buffWriter = new BufferedWriter(writer);
+			buffWriter.write("我是一个人!"); //会进行缓存一会。不是立即就写入的
+			buffWriter.newLine();//写入换行
+			buffWriter.write("你呢？");
+			//buffWriter.flush(); //这里才是写入硬盘
+		} catch (FileNotFoundException e)
+		{
+			System.out.println("写入错误");
+		} catch (IOException e)
+		{
+			System.out.println("写入错误");
+		}
+		finally
+		{
+			/*
+			IOUtils.closeQuietly(fos);
+			IOUtils.closeQuietly(writer);
+			IOUtils.closeQuietly(buffWriter);
+			*/
+			IOUtils.closeQuietly(buffWriter);
+			IOUtils.closeQuietly(writer);
+			IOUtils.closeQuietly(fos);
+			
+			//注意关闭的顺序，如果先关闭Stream，那么Writer就可能还没有把缓冲的数据写入，那只能强制writer.flush
+			//应该先关闭Writer（关闭之前把没有写入的自动flush写入）。这样就不需要手动flush了
+			//Stream关闭之后就不能写入东西了
+		}
+	}
+
+}
+

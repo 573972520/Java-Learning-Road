@@ -1,0 +1,31 @@
+package file文件处理;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.Reader;
+
+public class BufferedReaderTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		InputStream inStream = null; 
+		Reader reader = null;
+		BufferedReader buffReader = null;
+		try
+		{
+			inStream = new FileInputStream("d:\\5.txt");
+			reader = new InputStreamReader(inStream);
+		}
+		finally
+		{
+			IOUtils.closeQuietly(buffReader);
+			IOUtils.closeQuietly(reader);
+			IOUtils.closeQuietly(inStream);
+		}
+		
+	}
+
+}

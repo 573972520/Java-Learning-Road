@@ -1,0 +1,22 @@
+package properties配置文件;
+
+import java.io.InputStream;
+import java.util.Properties;
+
+public class PropertiesTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		InputStream inStream = null;
+		try
+		{
+			inStream = new FileInputStream("Z:\\JavaDay\\Java类库\\java常用类库\\src\\properties配置文件\\p.properties");
+			Properties prop = new Properties();
+			prop.load(inStream);
+			
+		}
+	}
+
+}

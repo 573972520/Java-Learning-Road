@@ -1,0 +1,29 @@
+package file文件处理;
+
+import java.io.IOException;
+
+public class ReaderWriterTest2
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		OutputStream fos = null;
+		OutputStreamWriter writer = null;
+		try
+		{
+			fos = new FileOutputStream("d:\\2.txt");\
+			
+		}
+		catch(IOException e)
+		{
+			System.out.println(""+e.getMessage());
+		}
+		finally
+		{
+			IOUtils.closeQuietly(fos);
+			IOUtils.closeQuietly(writer);
+		}
+	}
+
+}

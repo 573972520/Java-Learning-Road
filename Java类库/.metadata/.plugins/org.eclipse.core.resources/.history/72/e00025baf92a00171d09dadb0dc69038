@@ -1,0 +1,48 @@
+package file文件处理;
+
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+
+public class BufferedTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		OutputStream fos = null;
+		OutputStreamWriter writer = null;
+		BufferedWriter buffWriter = null;
+		try
+		{
+			fos = new FileOutputStream("d:\\5.txt");
+			writer = new OutputStreamWriter(fos);
+			buffWriter = new BufferedWriter(writer);
+			buffWriter.write("我是一个人!");
+			buffWriter.newLine();//写入换行
+			buffWriter.write("你呢？");
+			buffWriter.flush();
+		} catch (FileNotFoundException e)
+		{
+			System.out.println("写入错误");
+		} catch (IOException e)
+		{
+			System.out.println("写入错误");
+		}
+		finally
+		{
+			/*
+			IOUtils.closeQuietly(fos);
+			IOUtils.closeQuietly(writer);
+			IOUtils.closeQuietly(buffWriter);
+			*/
+			IOUtils.closeQuietly(buffWriter);
+			IOUtils.closeQuietly(writer);
+			IOUtils.closeQuietly(fos);
+		}
+	}
+
+}

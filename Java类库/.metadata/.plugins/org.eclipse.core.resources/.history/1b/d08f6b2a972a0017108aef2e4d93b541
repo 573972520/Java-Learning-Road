@@ -1,0 +1,41 @@
+package file文件处理;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+public class ReaderWriterTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		InputStream inStream = null;
+		try
+		{
+			inStream = new FileInputStream("d:\\1.txt");
+		}
+		catch(FileNotFoundException e)
+		{
+			System.out.println("文件未找到"+e.getMessage());
+		}
+		finally
+		{
+			if(inStream != null)
+			{
+				IOUtils.closeQuietly(inStream);
+				/*
+				try
+				{
+					inStream.close();
+				} catch (IOException e)
+				{
+					
+				}
+				*/
+			}
+		}
+	}
+
+}
