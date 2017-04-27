@@ -1,0 +1,25 @@
+package file文件处理.IO练习.ReadTxtFile;
+
+public class ReadTxtFileTest1
+{
+
+	
+	public static String readTxtFile(String file,String charsetName)
+	{
+		if(url == null) //检查参数合法性
+		{
+			throw new IllegalArgumentException("文件名不能为空");
+		}
+		if(charsetName == null)
+		{
+			downloadString(url,"UTF-8"); //如果charsetName为空，则使用默认的UTF-8编码
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+}

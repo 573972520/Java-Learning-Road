@@ -1,0 +1,86 @@
+package file文件处理.IO练习.downloadString;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import file文件处理.IOUtils;
+import file文件处理.下载图片.CopyMethod;
+
+public class DownloadStringTest1
+{
+
+	public static void downloadString(URL url)
+	{
+		InputStream inStream = null; 
+		Reader reader = null;             //使用父类类型的变量
+		BufferedReader buffReader = null;
+		OutputStream fos = null;
+		Writer writer = null;               //使用父类类型的变量
+		BufferedWriter buffWriter = null;
+		try
+		{
+			URL urlAdd = new URL("url");
+			inStream = url.openStream();
+			inStream = new FileInputStream("d:\\5.txt");
+			reader = new InputStreamReader(inStream);
+			buffReader = new BufferedReader(reader);
+			String line;
+			while((line = buffReader.readLine()) != null)
+			{
+				System.out.println(line+"!");
+			}
+		} 
+		catch (FileNotFoundException e)
+		{
+			System.out.println("文件没有找到");
+		} 
+		catch (IOException e)
+		{
+			System.out.println("读取错误");
+		}
+		finally
+		{
+			IOUtils.closeQuietly(buffReader);
+			IOUtils.closeQuietly(reader);
+			IOUtils.closeQuietly(inStream);
+		}
+		
+		
+		
+		try
+		{
+			fos = new FileOutputStream("d:\\5.txt");
+			writer = new OutputStreamWriter(fos);
+			buffWriter = new BufferedWriter(writer);
+			buffWriter.write("我是一个人!"); //会进行缓存一会。不是立即就写入的
+			buffWriter.newLine();//写入换行
+			buffWriter.write("你呢？");
+		} catch (FileNotFoundException e)
+		{
+			System.out.println("写入错误");
+		} catch (IOException e)
+		{
+			System.out.println("写入错误");
+		}
+		finally
+		{
+			IOUtils.closeQuietly(buffWriter);
+			IOUtils.closeQuietly(writer);
+			IOUtils.closeQuietly(fos);
+		}
+	}
+	
+
+}

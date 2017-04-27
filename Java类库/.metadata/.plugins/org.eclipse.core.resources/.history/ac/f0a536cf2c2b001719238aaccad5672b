@@ -1,0 +1,63 @@
+package file文件处理.IO练习.downloadString;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import file文件处理.IOUtils;
+import file文件处理.下载图片.CopyMethod;
+
+public class DownloadStringTest1
+{
+
+	public static void downloadString(URL url)
+	{
+		// TODO Auto-generated method stub
+		InputStream inStream = null;
+		OutputStream outStream = null;
+		try
+		{
+			URL urlAddress = new URL("url");
+			inStream = urlAddress.openStream();
+			outStream = FileOutputStream("d:\\10.txt");
+		
+			// byte[] bytes = new byte[10];//缓冲区，用来暂存数据 用时：72732ms
+			byte[] bytes = new byte[1024 * 1024];// 编译器会优化1024*1024 用时：146ms
+			int len;
+			while ((len = fis.read(bytes)) > 0) // 常见的写法
+			{
+				// fos.write(bytes);//len = 30, 应该只写入bytes前30个有用的数据
+				fos.write(bytes, 0, len);// 把bytes的前len个写入
+			}
+		} catch (FileNotFoundException e)
+		{
+			System.out.print("文件未找到" + e.getMessage());
+		} catch (IOException e)
+		{
+			System.out.print("拷贝文件错误" + e.getMessage());
+		} finally
+		{
+			IOUtils.closeQuietly(fis); // 封装安静关闭方法
+			IOUtils.closeQuietly(fos);
+			/*
+			 * if (fis != null) { try { fis.close(); } catch (IOException e) {
+			 * // do nothing(在这里要安静的关闭，然后不是安静的关闭，抛出异常，那么下面的关闭就不能执行了) } } if (fos
+			 * != null) { try { fos.close(); } catch (IOException e) { // do
+			 * nothing } }
+			 */
+		}
+	}
+	
+
+}

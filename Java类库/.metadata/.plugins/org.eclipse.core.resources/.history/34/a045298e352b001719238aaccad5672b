@@ -1,0 +1,64 @@
+package file文件处理.IO练习.downloadString;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import file文件处理.IOUtils;
+import file文件处理.下载图片.CopyMethod;
+
+public class DownloadStringTest1
+{
+
+	public static String downloadString(URL url)
+	{
+		// TODO Auto-generated method stub
+		if(url == null)
+		{
+			throw new IllegalArgumentException("url不能为空");
+		}
+		String s = "";
+		InputStream inStream = null;
+		try
+		{
+			URL urlAddress = new URL("url");
+			inStream = urlAddress.openStream();
+			byte[] bytes = new byte[1024 * 1024];
+			int len;
+			while ((len = inStream.read(bytes)) > 0) 
+			{
+				s = new String(bytes);
+			}
+		} 
+		catch (FileNotFoundException e)
+		{
+			System.out.print("文件未找到" + e.getMessage());
+		} catch (IOException e)
+		{
+			System.out.print("拷贝文件错误" + e.getMessage());
+		} finally
+		{
+			IOUtils.closeQuietly(inStream);
+		}
+		return s;
+	}
+	
+	public static void main(String[] args)
+	{
+		downloadString(https://www.baidu.com/);
+			
+	}
+	
+
+}
