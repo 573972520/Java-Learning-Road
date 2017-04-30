@@ -28,9 +28,7 @@ public class JDBCTest5_Æ´½ÓSQLÊµÏÖµÇÂ½ {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/study1?seUnicode=true&characterEncode=UTF-8","root","root");
 			/*
 			String sql = "select count(*) c from t_users where Username = '"+username+"' and Password = '"+password+"'";
-			System.out.println(sql); v 
-			 
-			  
+			System.out.println(sql); 
 			ps = conn.prepareStatement(sql);
 			*/
 			String sql = "select count(*) c from t_users where Username = ? and Password = ?";
