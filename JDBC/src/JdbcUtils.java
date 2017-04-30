@@ -242,4 +242,13 @@ public class JdbcUtils {
 		Connection conn = createConnection();
 		return executeQuery(conn,sql,parameters);
 	}
+	
+	public static void rollback(Connection conn)
+	{
+		try {
+			conn.rollback();
+		} catch (SQLException e) {
+			// do nothing
+		}
+	}
 }
