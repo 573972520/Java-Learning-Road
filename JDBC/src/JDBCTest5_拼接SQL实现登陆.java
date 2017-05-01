@@ -26,16 +26,17 @@ public class JDBCTest5_Æ´½ÓSQLÊµÏÖµÇÂ½ {
 		ResultSet resultSet = null;
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/study1?seUnicode=true&characterEncode=UTF-8","root","root");
-			/*
+			
 			String sql = "select count(*) c from t_users where Username = '"+username+"' and Password = '"+password+"'";
 			System.out.println(sql); 
 			ps = conn.prepareStatement(sql);
-			*/
+			/*
 			String sql = "select count(*) c from t_users where Username = ? and Password = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ps.setString(2, password);
 			System.out.println(sql);
+			*/
 			resultSet = ps.executeQuery();
 			resultSet.next();
 			int c = resultSet.getInt("c");
