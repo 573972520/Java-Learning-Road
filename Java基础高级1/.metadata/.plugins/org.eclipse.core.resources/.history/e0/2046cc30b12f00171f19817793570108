@@ -1,0 +1,27 @@
+
+public class java_collection_Test4_hashCode方法
+{
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+
+		/*Object obj1 = new Object();
+		System.out.println(obj1.hashCode());
+		
+		Object obj2 = new Object();
+		System.out.println(obj2.hashCode());
+		
+		String str = "abc";
+		System.out.println(str.hashCode());*/
+		//同一个对象只要对象状态没有改变（成员变量等），多次调用应该返回相同的hashCode
+		Person p1 = new Person(8, "carl", 130);
+		System.out.println(p1.hashCode());// 结果为366712642
+		//但是对象状态改变了，那么返回的hashCode就不相同了
+		p1.setName("33");
+		System.out.println(p1.hashCode());
+		Person p2 = new Person(8, "carl", 130);
+		System.out.println(p2.hashCode());// 结果为333
+
+	}
+}
+

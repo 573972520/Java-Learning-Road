@@ -1,0 +1,6 @@
+
+public class MyLinkedListNode
+{
+	private Object data; //这个节点上放的数据
+	private MyLinkedListNode next; //下一个节点
+}

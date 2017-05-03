@@ -1,0 +1,39 @@
+public class Test
+{
+
+	public static void main(String[] args)
+	{
+
+		/*
+		 * asd asd aa 
+		 * s sdas
+		 * dklhas or
+		 * asnd 
+		 * hello word
+		 */
+		// TODO Auto-generated method stub
+		/*	String s = "zbc";
+			char c = s.charAt(2);
+			System.out.print(c);*/
+
+		/*	File file = new File("Z:\\aa\\bb\\1.txt");
+			try
+			{
+				FileOutputStream outputStream = new FileOutputStream(file);
+		
+				outputStream.write(56);
+		
+			} catch (Exception e)
+			{
+				//e.printStackTrace();
+				throw new RuntimeException(e);
+			}*/
+
+		int a = 1;
+		int b = 1;
+		int c = 2;
+		int d = c / (a + b);
+		System.out.println(d);
+	}
+
+}

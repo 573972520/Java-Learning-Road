@@ -1,0 +1,15 @@
+
+public class MyLinkedList
+{
+	private MyLinkedListNode firstNode = null;//头节点
+
+
+	public void add(Object obj)
+	{
+		if (firstNode == null)//如果头节点为空
+		{
+			firstNode = new MyLinkedListNode();//创建一个节点
+			firstNode.setData(obj);//将创建的节点赋值
+		}
+	}
+}

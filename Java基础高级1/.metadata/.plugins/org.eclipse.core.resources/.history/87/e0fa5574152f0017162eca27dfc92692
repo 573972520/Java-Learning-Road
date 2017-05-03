@@ -1,0 +1,10 @@
+
+public class java_collection_Test1_自己动手写MyArrayList
+{
+	private Object[] data;
+	private int currentSize = 0;
+	public MyArrayList()
+	{
+		this.data = new Object[5];
+	}
+}

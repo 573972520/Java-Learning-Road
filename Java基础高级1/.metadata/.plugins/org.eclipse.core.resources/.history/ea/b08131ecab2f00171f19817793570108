@@ -1,0 +1,26 @@
+
+public class java_collection_Test4_hashCode方法
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Object obj1 = new Object();
+		System.out.println(obj1.hashCode());
+
+		Object obj2 = new Object();
+		System.out.println(obj2.hashCode());
+
+		String str = "abc";
+		System.out.println(str.hashCode());
+	}
+
+}
+
+public class Person
+{
+	private int age;
+	private String name;
+	private int height;
+	
+}

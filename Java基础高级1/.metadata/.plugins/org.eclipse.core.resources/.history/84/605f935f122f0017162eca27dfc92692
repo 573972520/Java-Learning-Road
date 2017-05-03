@@ -1,0 +1,45 @@
+
+public class 为什么需要长度动态增加的List
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		String[] str1 = new String[5];
+		String[] str2 = { "abc", "123", "aaa" };
+		str2 = new String[88]; //str2只是指向了一个新的数组对象，旧的数组对象长度还没有变
+		int[] nums = { 3, 6, 5, 98, 5, 21 };
+		int[] nums2 = getDate(nums);
+		for (int i = 0; i < nums2.length; i++)
+		{
+			System.out.println(nums2[i]);
+		}
+
+	}
+
+	private static int[] getDate(int[] nums)//获取数组中可以整除3的元素
+	{
+		//编写思路:由于不知道传递进来的这个int类型的数组的元素有多少个，所以需要一个int类型的中间值进行传递数组的长度，注意十分麻烦
+		int count = 0;
+		for (int i = 0; i < nums.length; i++)
+		{
+			if (nums[i] % 3 == 0)
+			{
+				count++;
+			}
+		}
+		int[] result = new int[count];
+		int counter = 0;
+		for (int i = 0; i < nums.length; i++)
+		{
+			if (nums[i] % 3 == 0)
+			{
+				result[counter] = nums[i];
+				counter++;
+			}
+		}
+		return result;
+
+
+	}
+}

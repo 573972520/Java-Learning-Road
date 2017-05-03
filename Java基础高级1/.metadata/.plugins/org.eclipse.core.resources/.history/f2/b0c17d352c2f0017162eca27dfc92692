@@ -1,0 +1,28 @@
+
+public class MyLinkedList
+{
+	private MyLinkedListNode firstNode = null;//头节点
+
+
+	public void add(Object obj)
+	{
+		if (firstNode == null)//如果头节点为null
+		{
+			firstNode = new MyLinkedListNode();//创建一个节点
+			firstNode.setData(obj);//将创建的节点赋值
+		}
+		else
+		{
+			MyLinkedListNode currentNode = firstNode;
+			while (currentNode.getNext() != null)
+			//移动到最后一个节点
+			{
+				currentNode = currentNode.getNext();
+			}
+			//走到这里currentNode就是指向最后一个元素
+			//创建一个新节点
+			MyLinkedListNode newNode = new MyLinkedListNode();
+
+		}
+	}
+}

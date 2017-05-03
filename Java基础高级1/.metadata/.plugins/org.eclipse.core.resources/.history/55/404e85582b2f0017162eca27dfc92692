@@ -1,0 +1,13 @@
+
+public class MyLinkedList
+{
+	private MyLinkedListNode firstNode = null;
+
+	public void add(Object obj)
+	{
+		if(firstNode == null)
+		{
+			firstNode = new MyLinkedListNode();
+			firstNode.setData(obj);
+		}
+}

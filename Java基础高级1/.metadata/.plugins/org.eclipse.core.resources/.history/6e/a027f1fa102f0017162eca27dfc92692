@@ -1,0 +1,44 @@
+
+public class 为什么需要长度动态增加的List
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		String[] str1 = new String[5];
+		String[] str2 = { "abc", "123", "aaa" };
+		str2 = new String[88]; //str2只是指向了一个新的数组对象，旧的数组对象长度还没有变
+		int[] nums = { 3, 6, 5, 98, 5, 21 };
+		//int[] nums2 = getDate(nums);
+		for (int i = 0; i < nums.length; i++)
+		{
+			int[] nums2 = getDate(nums);
+			System.out.print(nums2);
+		}
+
+	}
+
+	private static int[] nums2(int[] nums)
+	{
+		//int[] result = new int[nums.length];
+		int count = 0;
+		for (int i = 0; i < nums.length; i++)
+		{
+			if (nums[i] % 3 == 0)
+			{
+				count++;
+			}
+		}
+		int[] result = new int[count];
+		int counter = 0;
+		for (int i = 0; i < nums.length; i++)
+		{
+			if (nums[i] % 3 == 0)
+			{
+				result[counter] = nums[i];
+				counter++;
+			}
+		}
+		return result;
+	}
+}

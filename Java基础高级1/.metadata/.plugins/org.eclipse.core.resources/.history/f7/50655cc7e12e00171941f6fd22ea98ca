@@ -1,0 +1,68 @@
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class Test2
+{
+
+	public static void main(String[] args)
+	{
+
+		/*
+		 * asd asd aa 
+		 * s sdas
+		 * dklhas or
+		 * asnd 
+		 * hello word
+		 */
+		// TODO Auto-generated method stub
+		/*	String s = "zbc";
+			char c = s.charAt(2);
+			System.out.print(c);*/
+
+		/*	File file = new File("Z:\\aa\\bb\\1.txt");
+			try
+			{
+				FileOutputStream outputStream = new FileOutputStream(file);
+		
+				outputStream.write(56);
+		
+			} catch (Exception e)
+			{
+				//e.printStackTrace();
+				throw new RuntimeException(e);
+			}*/
+		String s = "abc";
+		char ch = s.charAt(0);
+		System.out.println(ch);
+		int a = 1;
+		int b = 1;
+		int c = 2;
+		int d = c / (a + b);
+		System.out.println(d);
+
+	}
+
+	@After
+	public void init()
+	{
+		System.out.println("11");
+	}
+
+	@Test
+	public void test10()
+	{
+		System.out.println("heelo");
+	}
+
+	@Test
+	public void test11()
+	{
+		int i = 1 / 1;
+		int a = 2;
+		int b = 4;
+//		assert a==b;
+		Assert.assertEquals(a,b);
+		System.out.println(i);
+	}
+}

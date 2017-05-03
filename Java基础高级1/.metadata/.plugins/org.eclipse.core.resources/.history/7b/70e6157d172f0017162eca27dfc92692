@@ -1,0 +1,27 @@
+
+public class java_collection_Test2_自己动手写MyArrayList
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		MyArrayList l1 = new MyArrayList();
+		l1.add("fuck");
+		l1.add("shit");
+		l1.add("carl");
+		l1.add("fuck");
+		l1.add("shit");
+		l1.add("carl");
+		l1.add("fuck");
+		l1.add("shit");
+		l1.add("carl");
+		l1.add("fuck");
+		l1.add("shit");
+		l1.add("carl");
+		System.out.println(l1.size());
+		System.out.println(l1.get(2));
+
+
+	}
+
+}
