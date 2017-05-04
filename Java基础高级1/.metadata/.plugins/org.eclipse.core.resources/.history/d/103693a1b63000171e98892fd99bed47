@@ -1,0 +1,13 @@
+
+public class MyClass1<K, V>
+{
+	public void add(K obj)
+	{
+
+	}
+
+	public void hello(K obj1, V obj2)
+	{
+
+	}
+}

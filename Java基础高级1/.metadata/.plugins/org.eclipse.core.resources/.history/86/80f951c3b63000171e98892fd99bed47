@@ -1,0 +1,15 @@
+
+public class java_collection_Test6_泛型Test2
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		MyClass1<String, Integer> m1 = new MyClass1<String, Integer>();
+		m1.hello("wdf3", 22);
+		m1.hello("23sd", "23s");
+		m1.m2(231);
+		
+	}
+
+}

@@ -1,0 +1,8 @@
+
+public class MyClass1
+{
+	public void add(Object obj)
+	{
+		
+	}
+}

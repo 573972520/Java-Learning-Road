@@ -1,0 +1,17 @@
+import java.util.HashMap;
+
+public class java_collection_Test6_泛型Test1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("cc", 12);
+
+		HashMap<String, Integer> map1 = new HashMap();
+		map1.put("cc", 12);
+
+	}
+
+}

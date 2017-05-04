@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+
+public class java_collection_Test6_泛型Test
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(12);
+		//list.add("23");//会报错，因为参数类型必须是Integer类型
+
+		ArrayList<String> list1 = new ArrayList<String>();
+		//list1.add(12);//会报错，因为参数类型必须是String类型
+		list1.add("23");
+	}
+
+	public int sum(ArrayList obj)
+	{
+		int rusult = 0;
+		for (int i = 0; i < obj.size(); i++)
+		{
+			int result = (Integer)obj[i];
+		}
+	}
+
+}

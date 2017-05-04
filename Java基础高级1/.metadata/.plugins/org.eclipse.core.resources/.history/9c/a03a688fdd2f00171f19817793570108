@@ -1,0 +1,12 @@
+
+public class java_collection_Test5_hashMap方法
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		hashMap map1 = new hashMap();
+		
+	}
+
+}

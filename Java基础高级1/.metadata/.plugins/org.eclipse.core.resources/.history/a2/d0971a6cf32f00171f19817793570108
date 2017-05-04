@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+public class java_collection_Test6_泛型Test
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+	}
+
+}
