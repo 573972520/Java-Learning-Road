@@ -8,15 +8,7 @@ public class java_collection_Test8_队列QueueTest1
 	{
 		// TODO Auto-generated method stub
 		Queue<String> q1 = new LinkedList<String>();
-		q1.offer("aa");
-		q1.offer("bbb");
-		q1.offer("fas");
-		q1.offer("ccc");
-		while (!q1.isEmpty())
-		{
-			String s = q1.poll();
-			System.out.println(s);
-		}
+
 	}
 
 }

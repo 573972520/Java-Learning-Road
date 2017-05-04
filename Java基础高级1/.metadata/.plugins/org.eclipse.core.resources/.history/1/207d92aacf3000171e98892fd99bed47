@@ -15,7 +15,7 @@ public class java_collection_Test8_队列QueueTest1
 		while (!q1.isEmpty())
 		{
 			String s = q1.poll();
-			System.out.println(s);
+
 		}
 	}
 

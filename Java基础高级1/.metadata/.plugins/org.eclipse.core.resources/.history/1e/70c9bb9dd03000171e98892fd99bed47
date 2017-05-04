@@ -1,0 +1,13 @@
+
+public class java_collection_Test8_SetTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Set<String> set1 = new Set<String>();
+		
+		
+	}
+
+}

@@ -12,10 +12,10 @@ public class java_collection_Test8_队列QueueTest1
 		q1.offer("bbb");
 		q1.offer("fas");
 		q1.offer("ccc");
-		while (!q1.isEmpty())
+		while(!q1.isEmpty())
 		{
 			String s = q1.poll();
-			System.out.println(s);
+			
 		}
 	}
 
