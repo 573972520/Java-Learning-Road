@@ -1,0 +1,10 @@
+package setPractice;
+
+public class java_collection_Test13_SetPractice
+{
+	int[] nums = {3,34,3,545,32,4,32,9};
+	for(int i:nums)
+	{
+
+	}
+}
