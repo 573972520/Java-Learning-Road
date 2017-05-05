@@ -1,0 +1,27 @@
+package listPractice;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class addTest
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		List<Person> list = new ArrayList<Person>();
+		String line = "姚明 34 18247839384";
+		String[] strs = line.split(" ");
+		String name = strs[0];
+		int age = Integer.parseInt(strs[1]);
+		String phoneNum = strs[2];
+		Person p = new Person();
+		p.setAge(age);
+		p.setName(name);
+		p.setPhoneNum(phoneNum);
+		list.add(p); //
+		System.out.println(list.get(0));
+		System.out.println(list.get(1));//报错：
+	}
+
+}

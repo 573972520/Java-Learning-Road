@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+public class java_collection_Test10_Iterable和增强for循环
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		ArrayList<Integer> list1 = new ArrayList<Integer>();
+		list1.add(2);
+		list1.add(43);
+		list1.add(34);
+
+		Iterable<Integer> it1 = list1;
+
+	}
+
+}

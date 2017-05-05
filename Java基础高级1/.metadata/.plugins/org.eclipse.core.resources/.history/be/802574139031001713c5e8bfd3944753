@@ -1,0 +1,73 @@
+package hashMapPractice;
+
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+
+public class JianToFan
+{
+	private HashMap<Character, Character> data = new HashMap<Character, Character>();
+
+	public JianToFan() throws IOException
+	{
+		FileInputStream fis = null;
+		InputStreamReader reader = null;
+		BufferedReader buffReader = null;
+		try
+		{
+			fis = new FileInputStream("d:\\9.txt");
+			reader = new InputStreamReader(fis);
+			buffReader = new BufferedReader(reader);
+			String line;
+			while ((line = buffReader.readLine()) != null)
+			{
+				char chJian = line.charAt(0);
+				char chFan = line.charAt(2);
+				data.put(chJian, chFan);
+
+			}
+		} finally
+		{
+			closeQuietly(buffReader);
+			closeQuietly(reader);
+			closeQuietly(fis);
+		}
+	}
+
+	public void closeQuietly(Closeable e)
+	{
+		if (e != null)
+		{
+			try
+			{
+				e.close();
+			} catch (IOException ex)
+			{
+				//do nothing
+			}
+		}
+	}
+
+	public String convert(String s)
+	{
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < s.length(); i++)
+		{
+			char jian = s.charAt(i);
+			if (data.containsKey(jian))
+			{
+				char fan = data.get(jian);
+				sb.append(fan);
+			}
+			else
+			{
+				sb.append(jian);
+			}
+		}
+		return sb.toString();
+	}
+
+}
