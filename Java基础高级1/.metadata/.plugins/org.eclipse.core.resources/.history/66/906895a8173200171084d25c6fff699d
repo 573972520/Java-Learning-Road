@@ -1,0 +1,49 @@
+package 反射;
+
+public class ReflectTest2
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Class clz = Person.class;//Class指向的对象:就是类
+		try
+		{
+			Object obj = clz.newInstance();//调用clz指向的Class对象对应的类的无参构造函数，并且返回创建的对象
+			//Object obj = new Person();等价于Object obj = clz.newInstance();
+			System.out.println(obj); // 运行报错：没有找到无参的构造函数（因为在Person类中写了一个有参的构造函数）
+			//其他方法
+
+			//isArray:是否为数组
+			System.out.println(clz.isArray());
+			//isPrimitive:判断是否为原始类型，
+			System.out.println(int.class.isPrimitive()); //int是原始类型
+			System.out.println(Integer.class.isPrimitive()); //Integer不是原始类型
+			//isInterface:判断是否为接口
+			Class clz2 = Comparable.class;
+			System.out.println(clz2.isInterface());//true
+			//getName()得到类名（包含包名）
+			System.out.println(clz.getName());
+			//getSuperclass() 得到父类的Class。
+			Class clzParent = clz.getSuperclass();
+			System.out.println(clzParent);//class java.lang.Object
+			Class clzObjectParent = clzParent.getSuperclass();
+			System.out.println(clzObjectParent);//null
+			//
+			Person p1 = new Person();
+			String s = "hello";
+			Integer i = 5;
+
+		} catch (InstantiationException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

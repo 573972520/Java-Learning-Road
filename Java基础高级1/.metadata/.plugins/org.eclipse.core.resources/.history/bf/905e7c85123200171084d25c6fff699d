@@ -1,0 +1,17 @@
+package 反射;
+
+public class ReflectTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Class clz1 = Person.class;//获得Person类对应的Class类的对象
+		//定义一个Class类型的变量，指向Person类的描述对象
+		Person p1 = new Person();
+		Class clz2 = p1.getClass();//根据类的对象，获取类的描述对象
+		
+
+	}
+
+}

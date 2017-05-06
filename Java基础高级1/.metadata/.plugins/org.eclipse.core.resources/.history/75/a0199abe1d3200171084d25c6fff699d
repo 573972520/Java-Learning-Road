@@ -1,0 +1,9 @@
+package 反射;
+
+public class Chinese extends Person
+{
+	public Chinese()
+	{
+
+	}
+}

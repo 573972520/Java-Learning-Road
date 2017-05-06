@@ -1,8 +1,0 @@
-package hashMapPractice;
-
-public class JianToFan
-{
-	private HashMap<Character,Character> data = new HashMap<Character,Character>;
-	public 
-
-}

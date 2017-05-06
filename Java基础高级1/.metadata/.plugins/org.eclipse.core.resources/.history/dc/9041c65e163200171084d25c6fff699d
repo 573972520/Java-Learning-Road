@@ -1,0 +1,27 @@
+package 反射;
+
+public class ReflectTest2
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Class clz = Person.class;//Class指向的对象:就是类
+		try
+		{
+			Object obj = clz.newInstance();//调用clz指向的Class对象对应的类的无参构造函数，并且返回创建的对象
+			//Object obj = new Person();等价于Object obj = clz.newInstance();
+			System.out.println(obj); // 运行报错：没有找到无参的构造函数（因为在Person类中写了一个有参的构造函数）
+		} catch (InstantiationException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}

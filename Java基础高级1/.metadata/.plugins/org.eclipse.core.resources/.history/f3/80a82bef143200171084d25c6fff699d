@@ -1,0 +1,14 @@
+package 反射;
+
+public class ReflectTest2
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Class clz = Person.class;
+		Object obj = clz.newInstance();
+		
+	}
+
+}

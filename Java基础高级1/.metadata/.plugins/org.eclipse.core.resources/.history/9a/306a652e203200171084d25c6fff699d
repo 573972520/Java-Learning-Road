@@ -1,0 +1,18 @@
+package 反射;
+
+import java.lang.reflect.Field;
+
+public class ReflectTest4
+{
+
+	public static void main(String[] args) throws NoSuchFieldException, SecurityException
+	{
+		// TODO Auto-generated method stub
+		Class clz = Chinese.class;
+		/*Field fa = clz.getField("aa");//NoSuchFieldException没有这么一个字段（成员变量）
+		System.out.println(fa);*/
+		Field fa1 = clz.getField("Count");
+		System.out.println(fa1);
+	}
+
+}
