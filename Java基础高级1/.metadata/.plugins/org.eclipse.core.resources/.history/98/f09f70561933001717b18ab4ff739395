@@ -1,0 +1,50 @@
+package 内省;
+
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class IntrospectorTest4
+{
+
+	public static void readToFile(String file) 
+	{
+		try
+		{
+			FileInputStream fis = null;
+			InputStreamReader reader = null;
+			BufferedReader buffReader = null;
+			fis = new FileInputStream(file);
+			reader = new InputStreamReader(fis);
+			buffReader = new BufferedReader(reader);
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		} finally
+		{
+
+		}
+		
+		
+	}
+	
+
+
+	public static void closeQueitly(Closeable c)
+	{
+		if (c != null)
+		{
+			try
+			{
+				c.close();
+			} catch (IOException e)
+			{
+
+			}
+		}
+	}
+
+}

@@ -1,0 +1,53 @@
+package 内省;
+
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+
+public class IntrospectorTest3
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+ 
+	}
+
+	/**
+	 * 把obj指向的对象保存到file中
+	 * @param obj
+	 * @param file
+	 */
+	public static void writeToFile(Object obj, String file)
+	{
+		FileInputStream fis = null;
+		InputStreamReader reader = null;
+		BufferedReader buffReader = null;
+
+		try
+		{
+			fis = new FileInputStream("file");
+			
+		} 
+		finally
+		{
+			
+		}
+		catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void closeQuietly(Closeable c)
+	{
+		if (c != null)
+		{
+			c.close();
+		}
+	}
+}

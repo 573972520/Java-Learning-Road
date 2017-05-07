@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Person.java&apos; to &apos;反射、内省、注解/src/注解&apos;&#x0D;&#x0A;- Original project: &apos;反射、内省、注解&apos;&#x0D;&#x0A;- Destination element: &apos;反射、内省、注解/src/注解&apos;&#x0D;&#x0A;- Original element: &apos;反射.Person.java&apos;" description="Copy compilation unit" destination="/src&lt;注解" element1="/src&lt;反射{Person.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1494163245457" units="1" version="1.0"/>
+</session>

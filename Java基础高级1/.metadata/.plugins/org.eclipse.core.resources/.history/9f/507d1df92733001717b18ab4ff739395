@@ -1,0 +1,12 @@
+package 注解;
+
+public class AnnotationTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+}

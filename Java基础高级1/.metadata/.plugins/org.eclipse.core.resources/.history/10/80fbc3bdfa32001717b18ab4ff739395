@@ -1,0 +1,29 @@
+package 内省;
+
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+
+import 反射.Chinese;
+
+public class IntrospectorTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Chinese c1 = new Chinese();
+		c1.setAge(34);
+		c1.setName("carl");
+		c1.setPhoneNum("1987458585");
+
+		BeanInfo beanInfo = Introspector.getBeanInfo(Chinese.class);
+		PropertyDescriptor[] props = beanInfo.getPropertyDescriptors();
+		for (PropertyDescriptor prop : props)
+		{
+			System.out.println("属性名"+prop.getName()+",属性类型:"+prop.getPropertyType());
+			System.out.println("--------------------");
+		}
+	}
+
+}

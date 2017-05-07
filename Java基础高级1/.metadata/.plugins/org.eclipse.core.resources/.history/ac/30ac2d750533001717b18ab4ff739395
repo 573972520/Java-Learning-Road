@@ -1,0 +1,116 @@
+package 内省;
+
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.io.BufferedWriter;
+import java.io.Closeable;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.InvocationTargetException;
+
+public class IntrospectorTest3
+{
+
+	public static void main(String[] args)
+	{
+		Dog dog= new Dog();
+		
+	}
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+ 
+	}
+
+	/**
+	 * 把obj指向的对象保存到file中
+	 * @param obj
+	 * @param file
+	 * @throws FileNotFoundException 
+	 */
+	public static void writeToFile(Object obj, String file) throws FileNotFoundException
+	{
+
+		FileOutputStream fos = null;
+		OutputStreamWriter osWriter = null;
+		BufferedWriter bf = null;
+
+		/*FileInputStream fis = null;
+		InputStreamReader reader = null;
+		BufferedReader buffReader = null;*/
+
+		try
+		{
+
+			fos = new FileOutputStream("file");
+			osWriter = new OutputStreamWriter(fos);
+			bf = new BufferedWriter(osWriter);
+			Class clz = obj.getClass();
+			bf.append(clz.getName()).append("\r\n");//第一行是类名
+			BeanInfo beanInfo = Introspector.getBeanInfo(clz);
+			
+			PropertyDescriptor[] props = beanInfo.getPropertyDescriptors();
+			for (PropertyDescriptor prop : props)
+			{
+				//必须可读可写的属性才能保存到文件里
+				if (prop.getReadMethod() == null && prop.getWriteMethod() == null)
+				{
+					continue;
+				}
+				String propName = prop.getName();
+				//属性名 = 值  写入文件
+				Object propValue = prop.getReadMethod().invoke(obj);//获取obj对象的propName属性的值
+				bf.append(propName + "=" + propValue).append("\r\n");
+
+			}
+			//			osWriter = new OutputStreamReader(fos);
+			//			buffReader = new BufferedReader(reader);
+			//			String line;
+			//			while ((line = buffReader.readLine()) != null)
+			//			{
+			//				
+			//			}
+		} catch (IOException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IntrospectionException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalAccessException e)
+		{
+			throw new RuntimeException(e);
+		} catch (IllegalArgumentException e)
+		{
+			throw new RuntimeException(e);
+		} catch (InvocationTargetException e)
+		{
+			throw new RuntimeException(e);
+		}
+		finally
+		{
+			closeQueitly(bf);
+			closeQueitly(osWriter);
+			closeQueitly(fos);
+		}
+
+	}
+
+	public static void closeQueitly(Closeable c)
+	{
+		if (c != null)
+		{
+			try
+			{
+				c.close();
+			} catch (IOException e)
+			{
+
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+package 内省;
+
+public class IntrospectorTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		Chinese c1 = new Chinese();
+		
+	}
+
+}

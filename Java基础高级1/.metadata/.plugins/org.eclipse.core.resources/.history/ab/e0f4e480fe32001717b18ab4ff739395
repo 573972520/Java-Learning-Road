@@ -1,0 +1,15 @@
+package 内省;
+
+public class IntrospectorTest2_BaseBean
+{
+	@Override
+	public String toString()
+	{
+		Class clz = this.getClass();
+		try
+		{
+			BeanInfo beanInfo = Introspector.getBeanInfo(clz);
+			
+		}
+	}
+}

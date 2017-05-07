@@ -1,0 +1,8 @@
+package 内省;
+
+import IntrospectorTest2_BaseBean;
+
+public class Dog extends IntrospectorTest2_BaseBean
+{
+
+}
