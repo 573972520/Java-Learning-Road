@@ -20,6 +20,10 @@ public class Chinese extends Person
 		setName(name);
 	}
 
+	public void hello(String s)
+	{
+		System.out.print("hello" + s);
+	}
 	public void hello()
 	{
 		System.out.print("hello");

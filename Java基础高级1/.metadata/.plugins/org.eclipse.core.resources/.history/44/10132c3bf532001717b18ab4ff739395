@@ -1,0 +1,9 @@
+package 反射案例;
+
+public class ReflectCase
+{
+	public static Object getValue(Object obj, String propName)
+	{
+		Class clz = obj.getClass();
+	}
+}

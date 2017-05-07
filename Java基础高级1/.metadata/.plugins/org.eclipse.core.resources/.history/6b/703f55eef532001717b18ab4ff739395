@@ -1,0 +1,18 @@
+package 反射案例;
+
+public class ReflectCase
+{
+	public static Object getValue(Object obj, String propName)
+	{
+		Class clz = obj.getClass();
+
+		String getMethodName = "get" + capitalize(propName);
+
+	}
+
+	public static String capitalize(String s)
+	{
+		char firstChar = s.charAt(0);
+		return Character.toUpperCase(firstChar) + s.substring(1);
+	}
+}
