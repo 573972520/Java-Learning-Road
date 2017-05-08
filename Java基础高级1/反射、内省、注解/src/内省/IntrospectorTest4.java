@@ -65,7 +65,6 @@ public class IntrospectorTest4
 					//setId("3")
 					//prop.getWriteMethod().invoke(obj, propValue);//调用set***方法给属性赋值
 					prop.getWriteMethod().invoke(obj, objVlaue);
-
 				}
 
 			}

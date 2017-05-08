@@ -1,0 +1,25 @@
+package 正则表达式;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class RegexTest5
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		String regex = "ab"; //要求str的子字符串substr="ab"
+		String str = "xabxxabmmabx";
+
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(str);
+
+		boolean find = matcher.find();//查找str中是否有下一个匹配regex的子字符串(第一个ab)
+		boolean find2 = matcher.find();//查找str中是否有下一个匹配regex的子字符串(第二个ab)
+		System.out.println(find);//ture
+		String group = matcher.group();
+		System.out.println(group);//ab(第二个ab)
+	}
+
+}

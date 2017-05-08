@@ -24,28 +24,28 @@ public class IntrospectorTest3
 		dog.setId(5);
 		dog.setName("陈泽明");
 		
-		//		try
-		//		{
-		//			writeToFile(dog, "z:\\dog.txt");
-		//		} catch (FileNotFoundException e)
-		//		{
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		}
-
 		try
 		{
-			Dog d = (Dog) readFormFile("z:\\dog.txt");
-			System.out.println(d);
-		} catch (ClassNotFoundException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e)
+			writeToFile(dog, "z:\\dog.txt");
+		} catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		//		try
+		//		{
+		//			Dog d = (Dog) readFormFile("z:\\dog.txt");
+		//			System.out.println(d);
+		//		} catch (ClassNotFoundException e)
+		//		{
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		} catch (IOException e)
+		//		{
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		}
 	}
 
 

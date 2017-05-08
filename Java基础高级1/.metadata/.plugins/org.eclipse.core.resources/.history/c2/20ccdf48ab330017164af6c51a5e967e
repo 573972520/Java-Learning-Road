@@ -1,0 +1,18 @@
+package 正则表达式;
+
+import java.util.regex.Pattern;
+
+public class RegexTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		String regex = "abc";
+		CharSequence input = "abc";
+
+		boolean match = Pattern.matches(regex, input);
+
+	}
+
+}

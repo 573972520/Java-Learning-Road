@@ -1,0 +1,12 @@
+package 正则表达式;
+
+public class RegexTest7
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+}

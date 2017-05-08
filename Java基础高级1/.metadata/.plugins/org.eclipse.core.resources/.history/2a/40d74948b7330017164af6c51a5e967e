@@ -1,0 +1,20 @@
+package 正则表达式;
+
+import java.util.regex.Pattern;
+
+public class RegexTest2_重复匹配
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+
+		String regex1 = "a{5}"; //要求a连续出现3次 
+		String str1 = "aaaaa";
+		boolean match1 = Pattern.matches(regex1, str1);
+		System.out.println(match1);//true
+		
+		
+	}
+
+}

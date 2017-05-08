@@ -1,0 +1,13 @@
+package 正则表达式;
+
+import java.util.regex.Pattern;
+
+public class RegexTest4_字符类
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		System.out.println(Pattern.matches("[abc]", "d"));//true true  匹配a或者b或者c
+	}	
+}

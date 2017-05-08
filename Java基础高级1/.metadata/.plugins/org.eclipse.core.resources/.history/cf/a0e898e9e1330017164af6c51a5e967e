@@ -1,0 +1,15 @@
+package 正则表达式;
+
+public class RegexTest6
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		String str = "ty455465jk34";
+		String newStr = str.replaceAll("[0-9]", "8");
+		System.out.println(newStr);
+
+	}
+
+}

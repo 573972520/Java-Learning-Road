@@ -1,0 +1,15 @@
+package 正则表达式;
+
+import java.util.regex.Pattern;
+
+public class RegexTest4_字符类
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		System.out.println(Pattern.matches("hello[abc]", "helloc"));//true true  匹配helloa或者hellob或者helloc
+		System.out.println(Pattern.matches("helloa|b|c", "b")); //true  匹配helloa或者b或者c  （hellob和helloc不会匹配）
+		System.out.println(Pattern.matches("[^abc]", "f"));
+	}
+}
