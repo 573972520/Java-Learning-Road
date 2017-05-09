@@ -1,0 +1,44 @@
+package 多线程编程;
+
+public class WaitNotifyTest7
+{
+
+	public static void main(String[] args)
+	{
+		Object lockObject = new Object();
+		Thread thread1 = new Thread(new Runnable()
+		{
+
+			@Override
+			public void run()
+			{
+				synchronized (lockObject)
+				{
+
+					try
+					{
+						System.out.println("线程1等待");
+						thread1.wait();
+						System.out.println("");
+					} catch (InterruptedException e)
+					{
+						e.printStackTrace();
+					}
+
+				}
+			}
+		});
+		
+		Thread thread2 = new Thread(new Runnable()
+		{
+			
+			@Override
+			public void run()
+			{
+				thread2.notify();
+			}
+		});
+		
+	}
+
+}
