@@ -1,0 +1,12 @@
+package 多线程编程;
+
+public class RunnableTest1
+{
+	public static void main(String[] args)
+	{
+		Thread thread = new Thread(new Runnable()
+		{
+			
+		});
+	}
+}
