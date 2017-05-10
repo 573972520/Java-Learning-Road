@@ -1,0 +1,21 @@
+package 多线程编程;
+
+import java.util.List;
+
+public class ProducerConsumerTest8
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		List<Integer> buffer = new List<Integer>();
+		int maxSize = 0;
+
+	}
+}
+
+class Producer
+{
+	private List<Integer> buffer;
+	private int maxSize;
+}

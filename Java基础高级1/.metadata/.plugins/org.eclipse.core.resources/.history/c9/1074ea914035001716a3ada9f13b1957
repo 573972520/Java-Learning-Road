@@ -1,0 +1,64 @@
+package 多线程编程;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class ProducerConsumerTest8
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		List<Integer> buffer = new LinkedList<Integer>(); //需要频繁的添加删除元素所以使用LinkedList
+		int maxSize = 0;
+		
+		Thread thread = new Thread(new Runnable()
+		{
+			
+			@Override
+			public void run()
+			{
+				synchronized (buffer)
+				{
+					
+				}
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+	}
+}
+
+class Producer extends Thread
+{
+	private List<Integer> buffer;
+	private int maxSize;
+
+	@Override
+	public void run(List<Integer> buffer, int maxSize)
+	{
+		while(true)
+		{
+			synchronized (buffer)
+			{
+				
+				this.buffer = buffer;
+				this.maxSize = maxSize;
+			}
+		}
+		
+	}
+
+}
+
+class Consumer extends Thread
+{
+	private int maxSize;
+	@Override
+	public void run(int maxSize)
+	{
+		// TODO Auto-generated method stub
+		super.run();
+	}
+}

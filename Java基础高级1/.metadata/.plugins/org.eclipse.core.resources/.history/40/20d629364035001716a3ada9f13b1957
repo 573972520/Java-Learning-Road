@@ -1,0 +1,45 @@
+package 多线程编程;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class ProducerConsumerTest8
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		List<Integer> buffer = new LinkedList<Integer>();
+		int maxSize = 0;
+		
+		Thread thread = new Thread(new Runnable()
+		{
+			
+			@Override
+			public void run()
+			{
+				synchronized (buffer)
+				{
+					
+				}
+				// TODO Auto-generated method stub
+				
+			}
+		})
+
+	}
+}
+
+class Producer extends Thread
+{
+	private List<Integer> buffer;
+	private int maxSize;
+
+	public Producer(List<Integer> buffer, int maxSize)
+	{
+		// TODO Auto-generated constructor stub
+		this.buffer = buffer;
+		this.maxSize = maxSize;
+	}
+
+}

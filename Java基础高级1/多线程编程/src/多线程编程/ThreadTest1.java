@@ -8,7 +8,6 @@ public class ThreadTest1
 		// TODO Auto-generated method stub
 		MyThread myThread = new MyThread();
 		myThread.start();//把myThread加入到就绪队列里面
-
 	}
 
 }
