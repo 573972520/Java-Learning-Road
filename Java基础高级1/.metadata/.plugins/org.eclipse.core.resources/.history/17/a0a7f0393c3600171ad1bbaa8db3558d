@@ -1,0 +1,14 @@
+package 网络编程;
+
+import java.net.ServerSocket;
+
+public class Server1
+{
+
+	public static void main(String[] args)
+	{
+		ServerSocket scoket = new SreverSocket();
+
+	}
+
+}

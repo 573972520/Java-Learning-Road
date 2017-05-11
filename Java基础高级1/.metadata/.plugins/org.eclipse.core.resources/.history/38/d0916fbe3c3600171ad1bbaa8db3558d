@@ -1,0 +1,23 @@
+package 网络编程;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.ServerSocket;
+
+public class Server1
+{
+
+	public static void main(String[] args) throws IOException
+	{
+		ServerSocket scoket = new ServerSocket();
+		
+		
+		InputStream input = new InputStream()
+		OutputStream ouput = new FileOutputStream();
+		
+
+	}
+
+}

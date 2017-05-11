@@ -1,0 +1,22 @@
+package 多线程编程;
+
+public class h
+{
+
+import java.math.*;
+
+public class second
+{
+	public static void main(String[] args)
+	{
+		System.out.println(change("3", 10, 2));
+	}
+
+	//num 要转换的数 from源数的进制 to要转换成的进制
+	private static String change(String num, int from, int to)
+	{
+		return new java.math.BigInteger(num, from).toString(to);
+	}
+
+}
+}
