@@ -16,7 +16,7 @@ public class Server1
 		InputStream input = socket.getInputStream();
 		OutputStream output = socket.getOutputStream();
 		byte[] info = "hello".getBytes();//将hello转成字节流传给字节数组info
-		output.write(info); //写入字节流的数据到output中
+		output.write(info); //写入字节流的数据到output中（往客户端写数据）
 		server.close(); //记得关闭，Socket中包含I/O流的关闭
 	}
 

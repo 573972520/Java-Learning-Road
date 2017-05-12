@@ -1,0 +1,19 @@
+package 网络编程;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+public class Receive1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		DatagramSocket socket = new DatagramSocket(10008);
+		byte[] buff = "hello".getBytes();
+		int len = buff.length;
+		DatagramPacket packet = new DatagramPacket(buff, len, InetAddress.getLocalHost(), 10008);
+	}
+
+}

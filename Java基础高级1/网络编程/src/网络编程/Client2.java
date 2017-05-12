@@ -18,18 +18,18 @@ public class Client2
 		Scanner scanner = null;
 		try
 		{
-			socket = new Socket("localhost", 11011);
+			socket = new Socket("localhost", 10013);
 			BufferedReader buffReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			BufferedWriter buffWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-			scanner = new Scanner(System.in);
+			scanner = new Scanner(System.in);//获取console输入的数据
 			String line = null;
 			while ((line = scanner.nextLine()) != null)
 			{
-				buffWriter.write(line);
+				buffWriter.write(line); //写入从console获取的数据
 				buffWriter.newLine();
 				buffWriter.flush();
 
-				line = buffReader.readLine();
+				line = buffReader.readLine(); //不太明白这行代码的意义
 				if (line == null)
 				{
 					break;

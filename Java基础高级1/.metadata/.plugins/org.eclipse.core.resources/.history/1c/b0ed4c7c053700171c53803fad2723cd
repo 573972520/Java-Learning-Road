@@ -1,0 +1,24 @@
+package 网络编程;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+public class Send1
+{
+
+	public static void main(String[] args) throws IOException
+	{
+		// TODO Auto-generated method stub
+		DatagramSocket socket = new DatagramSocket();
+
+		byte[] buff = "hello".getBytes();
+		int len = buff.length;
+		DatagramPacket packet = new DatagramPacket(buff, len, InetAddress.getLocalHost(), 10008);
+		
+		
+
+	}
+
+}

@@ -1,0 +1,20 @@
+package 网络编程;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+public class Receive1
+{
+
+	public static void main(String[] args) throws IOException
+	{
+		// TODO Auto-generated method stub
+		DatagramSocket socket = new DatagramSocket(10009);
+		byte[] receive = new byte[1024];
+		DatagramPacket packet = new DatagramPacket(receive, receive.length);
+		socket.receive(packet);
+		System.out.println(new String(receive));
+	}
+
+}
