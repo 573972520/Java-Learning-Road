@@ -1,0 +1,14 @@
+import java.net.URL;
+
+public class 访问类路径下的资源Test5
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		URL url = 访问类路径下的资源Test5.class.getClassLoader().getResource("text1.txt");//在bin目录下一级中
+		URL url = 访问类路径下的资源Test5.class.getClassLoader().getResource("load/text2.txt");
+
+	}
+
+}

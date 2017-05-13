@@ -1,0 +1,49 @@
+
+public class ExampleTest1//被加载的类的信息存储在方法区中，包括类声明、字段、方法等信息
+{
+
+	public static void main(String[] args) //栈内存用来存储方法执行时创建的局部变量
+	//方法每执行一次，就会在栈内存中开辟一块内存空间，称为栈帧，方法执行结束后，这个栈帧随即被销毁回收
+
+	{
+		// TODO Auto-generated method stub
+		int age1 = 116; //
+		Dog dog1 = new Dog(); //使用new关键字创建出来的对象都存储在堆内存中
+		User user1 = new User();//使用new关键字创建出来的对象都存储在堆内存中
+		user1.setAge(age1);
+		user1.setDog(dog1);
+	}
+
+}
+
+class Dog//被加载的类的信息存储在方法区中，包括类声明、字段、方法等信息
+{
+
+}
+
+class User//被加载的类的信息存储在方法区中，包括类声明、字段、方法等信息
+{
+	private int age;
+	private Dog dog;
+
+	public int getAge()
+	{
+		return age;
+	}
+
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+
+	public Dog getDog()
+	{
+		return dog;
+	}
+
+	public void setDog(Dog dog)
+	{
+		this.dog = dog;
+	}
+
+}

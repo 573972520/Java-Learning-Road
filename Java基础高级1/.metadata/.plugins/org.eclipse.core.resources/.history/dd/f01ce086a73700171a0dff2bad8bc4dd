@@ -1,0 +1,22 @@
+
+public class ExampleTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+
+class User
+{
+	private int age;
+	private Dog dog;
+	public User(int age,Dog dog)
+	{
+		this.dog = dog;
+		
+	}
+}

@@ -1,0 +1,58 @@
+
+public class ExampleTest1
+{
+
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		int age1 = 116;
+		Dog dog1 = new Dog();
+		User user1 = new User();
+		user1.setAge(age1);
+		user1.setDog(dog1);
+	}
+
+}
+
+class Dog
+{
+
+}
+
+class User
+{
+	private int age;
+	private Dog dog;
+
+	public User(int age, Dog dog)
+	{
+		this.age = age;
+		this.dog = dog;
+	}
+
+	public User()
+	{
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getAge()
+	{
+		return age;
+	}
+
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+
+	public Dog getDog()
+	{
+		return dog;
+	}
+
+	public void setDog(Dog dog)
+	{
+		this.dog = dog;
+	}
+
+}

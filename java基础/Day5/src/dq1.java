@@ -6,7 +6,6 @@ public class dq1 implements Runnable
 	@Override
 	public void run()
 	{
-		// TODO Auto-generated method stub	
 		GameCore.alert("234");
 		GameCore.loadBgView("1.jpg");
 		GameCore.playSound("1.mp3", false);

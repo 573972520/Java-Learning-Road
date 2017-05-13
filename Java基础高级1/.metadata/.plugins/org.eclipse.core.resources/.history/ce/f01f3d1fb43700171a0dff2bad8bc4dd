@@ -1,0 +1,13 @@
+
+public class 子类不能抛出父类没有声明的检查异常Test6
+{
+	public static void main(String[] args)
+	{
+		
+	}
+}
+
+public static void show() throws IOException 
+{
+	
+}

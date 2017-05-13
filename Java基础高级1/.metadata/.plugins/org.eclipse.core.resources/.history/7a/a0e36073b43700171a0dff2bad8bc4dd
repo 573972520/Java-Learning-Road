@@ -1,0 +1,15 @@
+import java.io.IOException;
+
+public class 子类不能抛出父类没有声明的检查异常Test6
+{
+	public static void main(String[] args)
+	{
+		show(); //有两种处理异常的方式，第一是try/catch住   第二是throws出去（不知道怎么处理）
+	}
+
+	public static void show() throws IOException
+	{
+
+	}
+}
+
