@@ -1,8 +1,0 @@
-package 内省;
-
-import BaseBean;
-
-public class Dog extends BaseBean
-{
-
-}
