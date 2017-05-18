@@ -1,0 +1,67 @@
+public class MatrixChainOrder
+{
+	int[] p; //保存矩阵的信息,比如:int p[] = {30,35,35,15,15,5,5,10,10,20,20,25};表示有六个矩阵,第一个是30*35,以此类推
+	int[][] m; //保存计算过程中所得的最小乘法次数,比如m[0][3]表示从第一个矩阵连乘到第4个矩阵的最少乘法次数,(注意数组的开始index为0)
+	int length;
+
+	public MatrixChainOrder(int[] p, int[][] m)
+	{
+		this.p = p;
+		this.length = p.length / 2;
+		this.m = m;
+
+		init();
+		clac();
+		printM();
+	}
+
+	public void init()
+	{
+		for (int i = 0; i < length; i++)
+		{
+            m[i][i] = 0;
+        }
+
+	}
+
+	public void clac() //计算最优值
+	{
+		for (int i = 1; i < length; i++)//length = 6
+		{
+			for (int j = 0; j < length - i; j++)
+			{
+				int r = j + i;//5+6=11
+				int t = Integer.MAX_VALUE;
+				for (int k = j; k < r; k++)
+				{
+					int temp = m[j][k] + m[k + 1][r] + p[j * 2] * p[k * 2 + 1] * p[r * 2 + 1];
+					if (t > temp)
+					{
+						t = temp;
+						m[j][r] = temp;
+					}
+				}
+			}
+		}
+	}
+
+	public void printM()
+	{
+		for (int i = 0; i < length; i++)
+		{
+			for (int j = 0; j < length; j++)
+			{
+				System.out.print(m[i][j] + "\t");
+			}
+			System.out.println();
+		}
+	}
+
+	public static void main(String args[])
+	{
+		int p[] = { 30, 35, 35, 15, 15, 5, 5, 10, 10, 20, 20, 25 };
+		int length = 6;
+		int[][] m = new int[6][6];
+		new MatrixChainOrder(p, m);
+	}
+}

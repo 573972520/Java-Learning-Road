@@ -1,0 +1,9 @@
+
+public class Matrix
+{
+	//
+	public void matrixChain(int[] p, int[][] m, int[][] s)
+	{
+		int n = p.length - 1;
+	}
+}

@@ -1,0 +1,39 @@
+
+public class MatrixChain
+{
+
+	public static void main(String[] args)
+	{
+		 int p[] = {30,35,35,15,15,5,5,10,10,20,20,25};
+		int length = 6;
+		int[][] m = new int[6][6];
+		int[][] s = new int[6][6];
+		new MatrixChainOrder(p, m, s);
+	}
+
+	public class MatrixChainOrder 
+	{
+	    int[] p;
+	    int[][] m;
+	    int[][] s;
+	    int length;
+	    public MatrixChainOrder(int[] p,int[][] m,int[][] s){
+	        this.p = p;
+	        this.length = p.length/2;
+	        this.m = m;
+	        this.s = s;
+	        
+	        init();
+	        clac();
+	        printM();
+	 }
+	 public void init()
+	 {
+        for (int i=0;i<length;i++)
+        {
+            m[i][i] = 0;
+        }
+     }
+	 
+
+}

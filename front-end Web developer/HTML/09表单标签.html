@@ -5,9 +5,37 @@
     <title></title>
 </head>
 <body>
-    <form>
-        <input type="text"  name="account" id="account" /> <br/>
-        <input type="password" name="password"/>
+    <form enctype="application/x-www-form-urlencoded" method="get">
+        <label for="accountId">账号：</label><input value="abc" type="text"  name="account" id="accountId" /> <br/>
+        <label for="passwordId">密码：</label><input type="password" name="password" id="passwordId"/><br/>
+
+        <label>性别：</label>
+        <input type="radio" name="gender" id="male" checked="checked" value="male"/><label for="male">男</label>
+        <input type="radio" name="gender" id="female"/><label for="female" value="female">女</label><br/>
+
+        <label>爱好：</label>
+        <input type="checkbox" name="hobby" id="music" checked="checked" value="music"/><label for="music">音乐</label>
+        <input type="checkbox" name="hobby" id="football" value="football" /><label for="football">足球</label>
+        <input type="checkbox" name="hobby" id="swimming" value="swimming" /><label for="swimming">游泳</label>
+        <input type="checkbox" name="hobby" id="boxing" value="boxing" /><label for="boxing">拳击</label><br/>
+        <label>学历：</label>
+        <select name="education">
+            <option value="benke">本科</option>
+            <option value="zhuanke">专科</option>
+            <option value="gaozhong">高中</option>
+            <option value="chuzhong">初中</option>
+        </select>
+        <br/>
+        <label for="inputText">理想：</label>
+        <textarea  rows="6" cols="40" id="inputText" name="hope"></textarea><br/>
+        <!--<input type="file" />-->
+        <input type="hidden" name="hindden" id="hiddenId"/>
+        <input type="button" id="commit" value="提交" />
+        <input type="submit" value="注册" />
+        <input type="reset" value="重置" />
+        <br/>
+
     </form>
+    <button>按钮</button>
 </body>
 </html>
