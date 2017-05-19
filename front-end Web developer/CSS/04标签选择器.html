@@ -5,24 +5,76 @@
     <title></title>
     <style type="text/css">
 
-        p{
-            color:blue;
-            font-weight: bolder;
-            text-indent: 30px;
-            letter-spacing: 3px;
-            text-align: center;
+        body {
+            margin:0;
+            padding:0
         }
-        h2{
-            color: blue;
-            text-align: center;
-        }
+        /*#p09{*/
+            /*color: darkslategrey;*/
+        /*}*/
+        /*p{*/
+            /*color:blue;*/
+            /*font-weight: bolder;*/
+            /*text-indent: 30px;*/
+            /*letter-spacing: 3px;*/
+            /*text-align: center;*/
+        /*}*/
 
+        /*h2{*/
+            /*color: blue;*/
+            /*text-align: center;*/
+        /*}*/
+        /*.p08{*/
+            /*color: aqua;*/
+        /*}*/
+
+
+        /*[class]*/
+        /*{*/
+            /*color: blue;*/
+        /*}*/
+        /*[class = p00]*/
+        /*{*/
+            /*color: red;*/
+        /*}*/
+        /*[class^=p]*/
+        /*{*/
+            /*color: blueviolet;*/
+        /*}*/
+        /*[class$=x0]*/
+        /*{*/
+            /*color: chocolate;*/
+        /*}*/
+        /*[class*=x]*/
+        /*{*/
+            /*color: darkolivegreen;*/
+        /*}*/
+        /*[name*=a]*/
+        /*{*/
+            /*color: lightgrey;*/
+        /*}*/
+        /*[xxx]{*/
+            /*color: pink;*/
+        /*}*/
+
+        :link{
+            color: pink;
+        }
+        :visited{
+           color:yellowgreen;
+        }
+        :hover{
+            color: cornflowerblue;
+        }
     </style>
 </head>
 <body>
-<h2>《九张机》</h2>
 
-    <p>宋 无名氏</p>
+<h2>《九张机》</h2>
+<a name="00a00b" href="01简单语法.html" xxx = "xx">超链接</a>
+<a name="00a00b" href="#" xxx = "xx">超链接</a>
+
+    <p class="p0x0">宋 无名氏</p>
 
     <p>一掷梭心一缕丝，连连织就九张机，从来巧思知多少，苦恨春风久不归。</p>
 
@@ -40,9 +92,9 @@
 
     <p>七张机，春蚕吐尽一生丝。莫教容易裁罗绮，无端剪破，仙鸾彩凤，分作两般衣。</p>
 
-    <p>八张机，纤纤玉手住无时。蜀江濯尽春波媚。香遗囊麝，花房绣被，归去意迟迟。</p>
+    <p class="p08">八张机，纤纤玉手住无时。蜀江濯尽春波媚。香遗囊麝，花房绣被，归去意迟迟。</p>
 
-    <p>九张机，一心长在百花枝。百花共作红推被，都将春色，藏头裹面，不怕睡多时。</p>
+    <p id="p09">九张机，一心长在百花枝。百花共作红推被，都将春色，藏头裹面，不怕睡多时。</p>
 
 </body>
 </html>
