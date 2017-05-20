@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+         div{
+             height: 189px;
+             width: 300px;
+             border: 1px solid;
+             background-color: gray;
+         }
+         #div01
+         {
+             z-index: 999; /*  z-index只对进行了定位的元素有效*/
+         }
+         #div02{
+             border: red solid;
+             position: fixed;
+             top: 30px;
+             left: 30px;
+             background-color: red;
+             z-index: 99;
+         }
+         #div03
+         {
+             position: absolute;
+             top: 40px;
+             left: 40px;
+         }
+     </style>
+</head>
+<body>
+    <div id="div01">1</div>
+    <div id="div02">2</div>
+    <div id="div03">3</div>
+    <div id="div04">4</div>
+</body>
+</html>

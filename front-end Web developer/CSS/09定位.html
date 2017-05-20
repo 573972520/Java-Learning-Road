@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            height: 189px;
+            width: auto;
+            border: 1px solid;
+        }
+
+        #div02{
+            width: 9px;
+            border: red solid;
+            /*position: relative; *//*  相对定位的元素不会脱离文档流 也就说后面的元素还认为此元素在原来的位置，所以会排列在此元素原本位置的后面（但会造成覆盖）*/
+            position: absolute; /*  绝对定位的元素会脱离文档流  也就说后面元素认为此元素不存在，所以会占据此元素原来的位置（但会造成覆盖，脱离文档流后就不具有块级元素独占一行的性质了）*/
+            top: 30px;
+            left: 30px; /* 不设置top和left的值，那么div2会在原来的位置，并且将div3覆盖了 */
+            display: block; /*  该元素已经脱离了文档流，所以使用display: block;无效 */
+        }
+        #div2{
+            position: absolute; /*  以最近的已经定位的祖先元素为基准进行偏移 */
+        }
+        #div04
+        {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div id="div2">
+        <div id="div02">2</div>
+    </div>
+    <div>3</div>
+    <div id="div04">4</div>
+    <br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/>
+</body>
+</html>
