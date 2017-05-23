@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+        var s = "abcabcabc";
+       /* for(var i = 0;i < s.length;i++)
+        {
+            var temp = s.charAt(i); //获取指定索引位置的字符串
+            alert(temp);
+        }*/
+
+        /*var s1 = "defdefdef";
+        var result = s1.concat(s);//拼接字符串
+        alert(result);
+
+        //返回指定字符串在此字符串中首次出现的索引位置
+        var i = 0;
+        i = s.indexOf("c");
+        alert(i);
+        //返回指定字符串在此字符串中最后出现的索引位置
+        var i1 = 0;
+        i1 = s.lastIndexOf("c");
+        alert(i1);
+
+        //替换所有的字符串
+        var temp = s.replace("ab","tt"); //replace方法只能替换一次
+        while(true)
+        {
+            var numStr = temp.indexOf("bc");
+            if(numStr == -1)
+            {
+                break;
+            }
+            temp = temp.replace("ab","tt");
+        }
+        alert(temp);
+
+        var c = s.substring(2,5); //取出2到5（不包括5）索引范围的子字符串
+        alert(c);
+        var c1 = s.substring(2);//取出索引2（包括2）之后的所有子字符串
+        alert(c1);
+
+        //split(string)   使用指定字符串切分此字符串，返回切分后的字符串数组
+        var s1 = "cabcabcabc"; //注意c的位置
+        var e = s1.split("c");
+        for(var i = 0;i< e.length;i++)
+        {
+            var result = e[i];
+            alert(result); //结果为 空字符串 ab ab ab 空字符串
+        }*/
+
+        //trim()   剪去两端的空白字符
+        var s2 = "  ca  bcabca  bc  ";
+        var temp = s2.trim();
+        alert(temp);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

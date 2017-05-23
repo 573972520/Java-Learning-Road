@@ -4,7 +4,86 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title></title>
     <script type="text/javascript">
+
         var i =  5;
+
+       /* alert(name);//输出的结果为js预先定义了一些全局变量，比如说name
+        alert(typeof name);//输出结果为string
+
+        //js引擎在执行代码之前，会把所有的全局变量声明放在顶部，赋值语句位置不变
+        alert(a); //undefined
+        var a = 34;
+
+        //if以及循环中的局部变量无论是否执行都会被提升为全局变量，只是如果没有执行，变量值为undefined
+        if(true)
+        {
+            var s = 9;
+        }
+        alert(s); //9
+
+        //变量可重复声明并会发生覆盖，使用变量时值为前面最后一次声明的值
+        var m = 1;
+        var m = 4;
+        alert(m);//4
+        var m = 67;*/
+
+        /*//在函数内定义的变量是局部变量，局部变量不会提升为全局变量，所以外面不可访问
+        function xxx()
+        {
+            function n()
+            {
+                alert("内部函数" +m);
+                var x = 66;
+            }
+            var m = 5;//在调用嵌套函数n之前声明，输出结果为——内部函数5
+            n();//在两个嵌套的函数中，外层函数定义的变量对内层函数有效，反之无效
+            //var m = 5;//在调用嵌套函数n之后声明，输出结果为——内部函数undefined
+            alert(x);
+        }
+
+        xxx();
+        //n();//不能调用xxx函数里面的函数n*/
+
+
+       /* //在两个不是嵌套关系的函数中定义的变量对彼此都无效
+        function xx()
+        {
+            var m = 3;
+        }
+        function xxx()
+        {
+            var n = 34;
+            alert(m);
+        }
+        xxx();*/
+
+        /*//注意嵌套函数内变量的使用
+        function a()
+        {
+            var i = 0;
+            var b = function () {
+                //函数声明时函数体中的代码不会执行
+                var m = i;
+                alert(m);
+            }
+            i = 10;
+            b();//函数执行时，函数体的代码 var m = i;才会执行，但此时i为10
+        }
+        a(); //结果为10*/
+
+        //为了使上述代码中的m能及时的在i改变之前保存下这个值，可以使用下面的方法
+        function a()
+        {
+            var i = 0;
+            var b = function()
+            {
+                alert(b.i);
+            }
+            b.i = i; //在i改变之前保存下这个值,把i的值保存在某个地方
+            i = 10;
+            b();
+        }
+        a();
     </script>
 </head>
 <body>
@@ -13,5 +92,5 @@
 </html>
 
     <script type="text/javascript">
-        alert(i);
+        alert(i);//在<script>标签内直接定义的变量是全局变量，对整个页面的所有js代码都有效
     </script>
