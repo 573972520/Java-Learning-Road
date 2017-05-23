@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+        /*//var result =sum(1,4);//这种方式也被称为匿名函数，js引擎并不会事先就解析管理匿名函数，所以匿名函数不可提前调用，也不存在覆盖的情况
+        var sum = function(n1,n2)
+        {
+            return n1+n2;
+        };
+
+        var s = sum(1,2);
+        alert(s); //3
+
+        sum = function() //不会覆盖上面的匿名函数，而是创建了一个新的对象
+        {
+            return 10;
+        };
+
+        var result =sum(1,4);
+        alert(result);//10*/
+
+        /*var s = (function(n1,n2){return n1+n2;})(1,2);//一次性的，只能被调用一次
+        alert(s);*/
+
+        /*function fun1()
+        {
+            return function()
+            {
+                alert("hello");
+            }
+        }
+
+        *//*var xx = fun1();
+        xx();*//*
+
+        fun1()();//fun1()是一个函数对象，然后在这个函数对象后面再加一个括号又调用函数*/
+
+        /*var sum = new Function("n1","n2","return n1+n2;");
+        var s = sum(1,2);
+        alert(s);*/
+
+        //函数是个Function类的对象，那么函数不仅可以赋值给一个变量，
+        //而且可以赋值给另一个对象的属性
+        function sum(n1,n2)
+        {
+            return n1+n2;
+        }
+
+        var obj = {};
+        obj.xxx = sum;
+        obj.xxx1 = function (n1,n2)
+        {
+            return n1+n2;
+        };
+        //var s = obj.xxx;
+        var s = obj.xxx(1,2);
+        alert(s);
+        alert(typeof s);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
