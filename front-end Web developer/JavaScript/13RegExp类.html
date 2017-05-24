@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+
+        /*//创建正则表达式的两种方法
+        //(1)使用new
+        var reg1 = new RegExp("bc");
+        //加上正则表达式的属性
+        var reg11 = new RegExp("bc",g);//g表示全局匹配
+        var reg12 = new RegExp("bc",i);//i表示忽略大小写匹配
+        var reg13 = new RegExp("bc",m);//m表示多行匹配
+        //（2）使用//
+        var reg2 = /bc/;
+        var reg21 = /bc/g;
+        var reg22 = /bc/i;
+        var reg23 = /bc/m;*/
+        /*
+        var reg = /bc/;
+        var str = "abcabcabcabc";
+
+        var result = reg.test(str);
+        alert(result);//true
+
+        var arr = reg.exec(str);
+        alert(arr); //bc*/
+
+        /*//匹配符合条件的字符串
+        var reg1 = /bc/g;
+        var str1 = "abcabcabcabc";
+        var arrReg;
+        while(arrReg = reg1.exec(str1))
+        {
+            alert(arrReg.index +"---"+arrReg[0]);
+        }*/
+
+        //替换全部的字符串
+        var reg2 = /bc/g;
+        var str2 = "abcabcabcabc";
+        var s = str2.replace(reg2,"mm");
+        alert(s);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
