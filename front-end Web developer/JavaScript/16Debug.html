@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+        var a;
+        var a1 = 0;
+        var a2 = 'hello';
+
+        var sum = 0;
+
+        for(var i=0; i<10; i++){
+           sum += i;
+        }
+
+        var date = new Date();
+
+        var obj = {"name":"蛋蛋" , "age":16 ,"show":function(){alert('你好')} };
+
+        for(var key in obj){
+            var value = obj[key];
+            if(value instanceof Function){
+                value();
+            }else{
+                alert(key+" --- "+value);
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+</head>
+<body>
+    <input id="input01" name="age" value="16" class="xxx" xxxx = "x01" disabled="disabled"/>
+    <input id="ch01" type="checkbox" checked="checked" />
+    <script type="text/javascript">
+        /*
+        //获取页面中id属性值为input01的元素的name属性的值
+        //1、根据id的值input01来获取元素对象
+        var input01 = document.getElementById("input01");
+
+        //2、使用元素对象获取name属性的值
+        var value = input01.name;
+        //alert(value);
+        var v = input01.value;
+        //alert(v);
+
+        //3、把value属性的值改成18
+        alert("a");
+        input01.value = 18; //页面中输入框的值从16变成18
+        input01.id = "input02";
+        //input01.class 错误写法
+        alert(input01.className);//使用className
+        alert(input01.xxxx); //自定义的属性不能使用这一方式进行访问
+        */
+
+        /*
+        var ch01 = document.getElementById("ch01");
+        var ch = ch01.checked;
+        alert(ch); //true
+        ch01.checked = false; //取消选中
+        *//*在js中，操作checkbox、radio的checked属性，select的selected属性值时，使用true或false , 表单元素的disabled属性也是如此*//*
+        */
+
+        var input01 = document.getElementById("input01");
+        var value = input01.getAttribute("xxxx");
+        alert(value);
+        var remove = input01.removeAttribute("name");
+        alert(input01.name);
+        var add = input01.setAttribute("name","age1");
+        alert(input01.name);
+
+
+    </script>
+</body>
+</html>

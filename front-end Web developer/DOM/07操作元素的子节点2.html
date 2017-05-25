@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="div01">
+        <p id="p01">p1</p>
+    </div>
+
+    <div id="div02"></div>
+<script type="text/javascript">
+
+    //在div内的p1之前再插入一个新的p元素
+
+    //1、获取到div元素
+    var div01 = document.getElementById("div01");
+    //2、获取到p元素
+    var p01 = document.getElementById("p01");
+    //3、创建出新的p元素
+    var pNew = document.createElement("p");
+    pNew.innerHTML = "hello";
+    //4、向div里面、p元素之前插入新的p元素
+    div01.insertBefore(pNew,p01);
+
+    //appendChild会先把元素从原来的父元素删除，
+    //再追加到新的父元素中
+
+    //获取到div02
+    var div02 = document.getElementById("div02");
+    //在div02最后追加子节点p01
+    div02.appendChild(p01);
+
+    //获取元素的父元素
+    var divx = p01.parentNode;
+    //alert(divx.innerHTML);
+
+    div02.removeChild(p01);
+</script>
+</body>
+</html>

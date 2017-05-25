@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="div01">
+        <a>a1</a>
+        <p>1</p>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    //1.创建出新元素
+    var divElement = document.createElement("div");
+    alert(divElement);
+    var inputElement = document.createElement("input");
+    alert(inputElement);
+    //2.获取元素
+    var div01 = document.getElementById("div01");
+    //3.把新创建的元素添加到div01里面
+    div01.appendChild(divElement);
+    div01.appendChild(inputElement);
+</script>
