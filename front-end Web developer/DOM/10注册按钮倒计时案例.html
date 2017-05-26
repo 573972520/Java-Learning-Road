@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        #div01{
+            width: 600px;
+            height: 312px;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="div01">服务条款</div>
+    <br/>
+    <input type="submit" id="input" value="请阅读服务条例(10)" disabled="disabled"/>
+<script type="text/javascript">
+    //1、获取需要操作的元素
+    var inputElement = document.getElementById("input");
+    //设定一个定时器每隔一秒刷新
+    var countTime = 10;
+    var intervalId = setInterval(function(){
+        countTime--;
+        //判断剩余时间，若剩余时间大于0，则继续倒计时，否则，取消倒计时
+            if(countTime > 0)
+            {
+                inputElement.value = "请阅读服务条例("+countTime+")";
+            }
+            else
+            {
+                clearInterval(intervalId);
+                inputElement.disabled = false;
+                inputElement.value = "注册";
+            }
+    },1000);
+
+
+</script>
+</body>
+</html>

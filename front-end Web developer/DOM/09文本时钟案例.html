@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+</head>
+<body>
+    <div id="div01"></div>
+<script type="text/javascript">
+    //在页面上以文本形式显示当前时间 yyyy-MM-dd HH:mm:ss 每秒钟刷新一次
+
+    //以 yyyy-MM-dd HH:mm:ss这种新式，获得当前时间的日期字符串
+    function getDataString ()
+    {
+        var now = new Date();
+        var str = ""; //需要给该变量赋一个初始值，不然str += now.getFullYear();会有变量未初始化错误
+
+        str += now.getFullYear();
+        str += "-";
+        var month = now.getMonth();
+        if(month < 10)
+        {
+            str += "0";
+        }
+        str += now.getMonth()+1;
+        str += "-";
+        str += now.getDate();
+        str += " ";
+        str += now.getHours();
+        str += ":";
+        str += now.getMinutes();
+        str += ":";
+        str += now.getSeconds();
+
+//        str += now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate() + " " + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();; //自己拼接的日期
+        return str;
+    }
+
+
+    //将当前时间的文本显示在页面上，并且每秒刷新
+    setInterval(function(){
+        var div01 = document.getElementById("div01");
+        div01.innerHTML = getDataString();
+    },1000);
+</script>
+</body>
+</html>

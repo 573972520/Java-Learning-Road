@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        #div01{
+            width: 300px;
+            height: 123px;
+            background-color: lightgray;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            /*var divElement = document.getElementById("div01");
+            //alert(divElement);
+            divElement.onclick = function()
+            {
+                alert(event.button);//点击的哪个鼠标按键（0、1、2）
+                alert(event.altKey);//点击时是否同时按下键盘的alt键
+                alert(event.screenX + "," + event.screenY);//鼠标指针的屏幕坐标(基于电脑屏幕窗口的坐标显示)
+                alert(event.clientX + "," + event.clientY);//鼠标指针的窗口坐标(基于浏览器窗口的坐标显示)
+            };*/
+            /*divElement.ondblclick = function () {
+                alert("双击666！");
+            }*/
+
+
+            /*var p01 = document.getElementById("p01");
+            p01.onclick = function()
+            {
+                alert(this.innerHTML);//this指带p01对象
+            }*/
+
+            //鼠标事件
+            var divElement = document.getElementById("div01");
+           /* divElement.onmouseover = function(){ //只显示一次鼠标的坐标
+                var x = event.clientX;
+                var y = event.clientY;
+                divElement.innerHTML = x + "," + y;
+            };
+
+            divElement.onmouseout = function(){
+                alert("别走呀！再玩会儿~~~");
+            };*/
+
+            /*divElement.onmousemove = function(){  //持续显示鼠标的坐标
+                var x = event.clientX;
+                var y = event.clientY;
+                divElement.innerHTML = x + "," + y;
+            };*/
+
+            divElement.onmousedown = function(){
+                divElement.style.backgroundColor = "lightblue";
+            };
+
+            divElement.onmouseup = function(){
+                divElement.style.backgroundColor = "lightgray";
+            };
+        }
+    </script>
+</head>
+<body>
+    <div id="div01">div01</div>
+    <button id="btn1">按钮1</button>
+    <input id="btn02" type="button" value="按钮2" />
+    <input id="btn03" type="submit" value="按钮3" />
+    <p id="p01">ppppp</p>
+</body>
+</html>
