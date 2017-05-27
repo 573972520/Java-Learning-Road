@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        #div01{
+            width: 500px;
+            height: 380px;
+            background-color: lightgray;
+        }
+    </style>
+    <script type="text/javascript">
+
+        window.onload = function()
+        {
+            var body = document.body; //获取body元素
+            var btn = document.getElementById("btn");
+
+            btn.onclick = function()
+            {
+                if(this.innerHTML == "关灯")
+                {
+                    body.style.backgroundColor = "black";
+                    this.innerHTML = "开灯";
+                }
+                else
+                {
+                    body.style.backgroundColor =null ;
+                    this.innerHTML = "关灯";
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <button id="btn">关灯</button>
+    <div id="div01">模拟网页视频播放器...</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        td{
+            border-bottom: 1px solid lightgray;
+            width: 100px;
+            height: 25px;
+        }
+        .firstTd{
+            width: 30px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            var table = document.getElementById("mailtable");
+            var trs = table.getElementsByTagName("tr");
+            for(var i = 1;i<trs.length;i++)
+            {
+                var tr = trs.item(i);
+                tr.onmousemove = function()
+                {
+                    this.style.backgroundColor = "lightgray";
+                }
+                tr.onmouseout = function()
+                {
+                    this.style.backgroundColor = null;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <table id="mailtable" border="0" cellspacing="0" cellpadding="0" style="width:600px" >
+        <tr><td class="firstTd"></td><td>收件人</td><td>主题</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+        <tr><td class="firstTd"><input type="checkbox" name="mail"></td><td>蛋蛋</td><td>...</td></tr>
+    </table>
+</body>
+</html>

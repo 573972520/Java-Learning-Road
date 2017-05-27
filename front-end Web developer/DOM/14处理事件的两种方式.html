@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+        function fun1()
+        {
+            alert("哈哈，成功啦");
+        }
+        window.onload = function()
+        {
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                //alert("注册成功"); //通过DOM方法把事件处理函数赋值给事件属性的优先级比在在HTML元素标签的事件属性上写要执行的代码的优先级要高
+                fun1();
+            };
+            var btn02 = document.getElementById("btn02");
+            btn02.onclick = fun1; //注意这里没有加上括号 —— 是将函数对象整个赋值给属性
+
+            /*
+            //如果加上小括号
+            btn02.onclick = fun1();
+            //先执行代码右边的fun1()这个函数（相对于函数调用），但是这个函数没有return语句，所以会返回undefined
+            //所以代码变成了这样：btn02.onclick = undefined;
+            */
+        }
+    </script>
+</head>
+<body>
+    <input type="button" id="btn01" value="注册" onclick="alert('注册成功啦！')"/> <!--优先级低-->
+    <input type="button" id="btn02" value="提交(HTML标签的属性没有onclick)" />
+    <input type="button" id="btn03" value="提交(HTML标签的属性有onclick)" onclick="fun1()"/>
+</body>
+</html>
