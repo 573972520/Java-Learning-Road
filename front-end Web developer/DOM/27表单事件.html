@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            var input = document.getElementById("input01");
+            input.onselect = function()
+            {
+                /*
+                alert(this.selectionEnd); //取出的值是选中字符串的索引位加1
+                alert(this.selectionStart); //取出的值是选中字符串的索引位(没有加1)
+                */
+                var selectedText = this.value.substring(this.selectionStart , this.selectionEnd);  //取值范围是 [selectionStart , selectionEnd)
+                alert(selectedText);
+            };
+
+            /*input.onchange = function()
+            {
+                alert("onchange触发");
+            };*/
+
+
+            /*var text = document.getElementById("text01");
+            text.onselect = function()
+            {
+               *//*
+               alert(this.selectionEnd); //取出的值是选中字符串的索引位加1
+               alert(this.selectionStart); //取出的值是选中字符串的索引位(没有加1)
+               *//*
+               var selectedText = this.value.substring(this.selectionStart , this.selectionEnd);  //取值范围是 [selectionStart , selectionEnd)
+               alert(selectedText);
+            };*/
+
+           var form = document.getElementById("from01");
+           form.onsubmit = function()
+           {
+               alert("1234");
+           }
+s
+        }
+    </script>
+</head>
+<body>
+    <form id="from01">
+        <input id="input01" type="text" name="account" />
+        <input type="submit" value="注册" />
+        <br/>
+        <br/>
+        <!--<textarea rows="10" cols="30" id="text01">123</textarea>-->
+    </form>
+</body>
+</html>

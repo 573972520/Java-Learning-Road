@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            var input = document.getElementById("input01");
+            input.onfocus = function()
+            {
+                alert("获取焦点！");
+            };
+            input.onblur = function () {
+                alert("失去焦点！");
+            }
+        }
+    </script>
+</head>
+<body>
+    <label for="input01">账号：</label><input type="text" id="input01" />
+</body>
+</html>

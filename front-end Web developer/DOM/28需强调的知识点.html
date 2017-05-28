@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        #div01{
+            width: 300px;
+            height: 185px;
+            background-color: lightgray;
+    
+            position: absolute;
+            top: 50px;
+            left: 100px;
+        }
+        
+        #div02{
+            width: 100px;
+            height: 62px;
+            background-color: blue;
+            border: 1px red solid;
+            position: absolute;
+            top: 30px;
+            left: 20px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            var div01 = document.getElementById("div01");
+
+
+            var div02 = document.getElementById("div02");
+
+           /* alert(div02.offsetHeight);
+            alert(div02.offsetWidth);
+            alert(div02.offsetLeft);
+            alert(div02.offsetTop);
+            alert(div02.offsetParent.id);*/
+            //获取div02元素的左上角顶点坐标
+            /*var x = div02.offsetLeft + div01.offsetLeft;
+            var y = div02.offsetTop + div01.offsetTop;
+            alert(x+","+y);*/
+
+            //获取无论嵌套多少层的元素的左上角顶点坐标
+            var x = div02.offsetLeft;
+            var y = div02.offsetTop;
+
+            var parent = div02.offsetParent;
+
+            while(parent) //使用while循环来获取外层元素的Top和Left值
+            {
+                x += parent.offsetLeft;
+                y += parent.offsetTop;
+                parent = parent.offsetParent;
+            }
+            alert(x+","+y);
+
+
+        }
+    </script>
+</head>
+<body>
+<div id="div01">
+    <div id="div02"></div>
+</div>
+</body>
+</html>

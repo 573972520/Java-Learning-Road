@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            var input = document.getElementById("input01");
+            var div01 = document.getElementById("div01");
+            input.onkeydown = function()
+            {
+                alert("键盘被按下了！按下的键的整数编码是：" + event.keyCode);
+            };
+            /*input.onkeyup = function()
+            {
+                alert("键盘弹起了！");
+            }
+            */
+           /* document.onkeydown = function()
+            {
+                alert("键盘被按下了！");
+            };*/
+
+            div01.onkeydown = function()
+            {
+                alert("键盘被按下了"); //div元素没有键盘事件，因为没有光标
+            };
+        }
+    </script>
+</head>
+<body>
+    <input id="input01" type="text" />
+    <div id="div01" style="width: 300px;height: 300px;background-color: lightblue"></div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        .graytext{
+            color: gray;
+        }
+        #table td{
+            width: 40px;
+            height: 19px;
+            background-color: #f3f3f3;
+            border: 1px solid #D0D0D0;
+            color: #BBBBBB;
+            line-height: 9px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var accountElement;
+        var passwordElement;
+        var ageElement;
+        var formElement;
+
+        // 检查value是否符合邮箱格式
+        function checkAccount (value)
+        {
+            return /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(value);
+        }
+        //检查密码强度
+        function checkPassword (value)
+        {
+            if(!value.length)
+            {
+                return 1;
+            }
+            if(value.length <= 6)
+            {
+                return 1;
+            }
+            if(value.length > 7 && /[0-9]/.test(value) && /[a-z]/.test(value) && /[A-Z]/.test(value))
+            {
+                return 3;
+            }
+            return 2;
+
+        }
+        //检查年龄范围
+        function checkAge (value)
+        {
+            if(!value)
+            {
+                return false;
+            }
+            var age = parseInt(value);
+            if(age >= 0 && age <= 150)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        window.onload = function()
+        {
+            //1 默认灰色提示文字
+            accountElement = document.getElementById("account");
+            accountElement.onfocus =function()
+            {
+                if(this.className == "graytext")
+                this.value = "";
+                this.className = null;
+            };
+            accountElement.onblur = function()
+            {
+                if(!this.value)
+                {
+                    this.value = "请使用邮箱注册";
+                    this.className = "graytext";
+                }
+                if(!checkAccount(this.value))
+                {
+                    this.style.backgroundColor = "coral";
+                }
+                else
+                {
+                    this.style.backgroundColor = "lightgreen";
+                }
+            };
+
+
+            //2 检查密码强度
+            passwordElement = document.getElementById("password");
+            passwordElement.onkeyup = function()
+            {
+                var value = checkPassword(passwordElement.value);
+                switch (value)
+                {
+                    case 1:
+                    {
+                        document.getElementById("td1").style.backgroundColor = "coral";
+                        document.getElementById("td2").style.backgroundColor = null;
+                        document.getElementById("td3").style.backgroundColor = null;
+                        break;
+                    }
+                    case 2:
+                    {
+                        document.getElementById("td1").style.backgroundColor = "lightgreen";
+                        document.getElementById("td2").style.backgroundColor = "lightgreen";
+                        document.getElementById("td3").style.backgroundColor = null;
+                        break;
+                    }
+                    case 3:
+                    {
+                        document.getElementById("td1").style.backgroundColor = "green";
+                        document.getElementById("td2").style.backgroundColor = "green";
+                        document.getElementById("td3").style.backgroundColor = "green";
+                        break;
+                    }
+                }
+            };
+
+            //3 检查年龄
+            ageElement = document.getElementById("age");
+
+
+            ageElement.onkeydown = function()
+            {
+//                alert(event.keyCode);  //  注意对于这个键盘的按键要使用event
+                if(event.keyCode <48 || event.keyCode > 57)  //  注意对于这个键盘的按键要使用event
+                {
+                    if(event.keyCode == 8)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            };
+            ageElement.onkeyup = function()
+            {
+                var result = checkAge(this.value);
+                if(result)
+                {
+                    this.style.backgroundColor = "lightgreen";
+                }
+                else{
+                    this.style.backgroundColor = "coral";
+                }
+            };
+
+            // 4 表单检查
+            formElement = document.getElementById("form");
+            formElement.onsubmit = function()
+            {
+                var message = "";
+                //检查邮箱
+                if(!checkAccount(accountElement.value))
+                {
+                    message += "邮箱格式错误"+"\n";
+                }
+                //检查密码
+                if(checkPassword(passwordElement.value) == 1)
+                {
+                    message += "密码强度太弱"+"\n";
+                }
+                //检查年龄
+                if(!checkAge(ageElement.value))
+                {
+                    message += "年龄不在0-150之间"
+                }
+
+                if(message)
+                {
+                    alert(message);
+                    return false;
+                }
+            };
+
+        }
+    </script>
+</head>
+<body>
+<form id="form" action="register">
+    <label for="account">账号：</label>
+    <input id="account" class="graytext" type="text" name="account" value="请使用邮箱注册" /><br/>
+
+    <label for="password">密码：</label>
+    <input id="password" type="password" name="password" />
+    <table id="table" border="0" cellpadding="0" cellspacing="0" style="display: inline-table">
+        <tr align="center">
+            <td id="td1">弱</td>
+            <td id="td2">中</td>
+            <td id="td3">强</td>
+        </tr>
+    </table>
+    <br/>
+
+    <label for="age">年龄：</label>
+    <input type="text" id="age" name="age" /> <br/>
+
+    <label>性别</label>
+    <input type="radio" name="gender" checked="checked" value="男" />男
+    <input type="radio" name="gender" value="女" />女<br/>
+
+    <label>爱好</label>
+    <input type="checkbox" name="hobbies" value="读书">读书
+    <input type="checkbox" name="hobbies" value="音乐">音乐
+    <input type="checkbox" name="hobbies" value="跑步">跑步
+    <input type="checkbox" name="hobbies" value="旅行">旅行<br/>
+
+    <label>学历</label>
+    <select name="degree">
+        <option value="本科">本科</option>
+        <option value="中学">中学</option>
+        <option value="大专">大专</option>
+        <option value="研究生">研究生</option>
+    </select>
+    <br/>
+    <input type="reset" value="重置" />
+    <input type="submit" value="注册" />
+</form>
+</body>
+</html>

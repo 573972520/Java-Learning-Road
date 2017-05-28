@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            var input = document.getElementById("input01");
+            input.onkeydown = function()
+            {
+                var inputKey = event.keyCode;
+                if(inputKey < 48 || inputKey >57)
+                {
+                    return false;
+//                    event.preventDefault();
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <label for="input01">手机号：</label> <input id="input01" type="text">
+</body>
+</html>

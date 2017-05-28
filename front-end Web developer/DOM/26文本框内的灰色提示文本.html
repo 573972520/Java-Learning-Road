@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        .gray-text
+        {
+            color: lightgray;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function()
+        {
+            //1 输入框内有默认的灰色提示文本：“请输入邮箱”
+            //2 当输入框获取焦点的时候，清空提示文本，此时输入的文本是黑色的
+            //3 当输入框里用户输入了文本时，如果失去焦点，则什么也不做
+            //4 当用户什么都没有输入的时候，如果失去焦点，输入框中重新出现灰色的提示文本
+            var input = document.getElementById("input01");
+            input.onfocus = function()
+            {
+                if(this.className == "gray-text")
+                {
+                    this.value = "";
+                    this.className = null;
+                }
+            };
+            input.onblur = function ()
+            {
+                if(!this.value)
+                {
+                    this.value = "请输入邮箱";
+                    this.className = "gray-text";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <label for="input01">账号：</label><input type="text" class="gray-text" id="input01" value="请输入邮箱"/>
+</body>
+</html>

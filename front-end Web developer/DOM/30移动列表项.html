@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        #moveDiv p{
+            margin: 2px;
+            padding: 0px;
+        }
+        .left-div{
+            width: 185px;
+            height: 300px;
+            border: 1px solid lightgray;
+            float: left;
+        }
+        .middle-div{
+            width: 60px;
+            height: 300px;
+            float: left;
+            text-align: center;
+        }
+        .middle-div button{
+            margin-top: 30px;
+        }
+        .right-div{
+            width: 185px;
+            height: 300px;
+            border: 1px solid lightgray;
+            float: left;
+        }
+        .selected {
+            background-color: blue;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+            var moveDiv = document.getElementById("moveDiv");
+            var pElements = moveDiv.getElementsByTagName("p");
+            var leftDiv = document.getElementById("leftDiv");
+            var rightDiv = document.getElementById("rightDiv");
+            for (var i = 0; i < pElements.length; i++) {
+                var pElement = pElements.item(i);
+                //1 鼠标经过背景色为浅灰色
+                pElement.onmousemove = function () {
+                    this.style.backgroundColor = "lightgray";
+                };
+                pElement.onmouseout = function () {
+                    this.style.backgroundColor = null;
+                };
+                //2 双击背景色变成蓝色
+                pElement.onclick = function () {
+                    if (this.className == "selected") {
+                        this.className = null;
+                    }
+                    else {
+                        this.className = "selected";
+                    }
+                };
+                //3 双击移动选项在另外一栏中
+                pElement.ondblclick = function () {
+                    if (this.parentNode == leftDiv) {
+                        rightDiv.appendChild(this);
+                    }
+                    else {
+                        leftDiv.appendChild(this);
+                    }
+                }
+            }
+
+            //4 点击按钮>>使选中的元素从左移动到右，并且移动完成之后取消选中状态的背景色效果
+            var moveBtn = document.getElementById("moveBtn");
+            moveBtn.onclick = function () {
+                var leftPElements = leftDiv.getElementsByTagName("p");
+                for (i = 0; leftPElements.length; i++) {
+                    var leftPElement = leftPElements.item(i);
+                    if (leftPElement.className == "selected") {
+                        rightDiv.appendChild(leftPElement);
+                        leftPElement.className = null;
+                        i--;  //因为NodeList是动态改变的，所以当移动完第一个元素的时候，leftPElements.length的长度就会减1，但是i还是会增1，所以这里添加“i--”来达到平衡
+                    }
+                }
+            };
+
+            //5 击按钮<<使选中的元素从右移动到左，并且移动完成之后取消选中状态的背景色效果
+            var backBtn = document.getElementById("backBtn");
+            backBtn.onclick = function()
+            {
+                var rightPElements = rightDiv.getElementsByTagName("p");
+                for(i = 0;rightPElements.length;i++)
+                {
+                    var rightPElement = rightPElements.item(i);
+                    if(rightPElement.className == "selected")
+                    {
+                        leftDiv.appendChild(rightPElement);
+                        rightPElement.className = null;
+                        i--;  //因为NodeList是动态改变的，所以当移动完第一个元素的时候，leftPElements.length的长度就会减1，但是i还是会增1，所以这里添加“i--”来达到平衡                  }
+                    }
+                }
+            };
+
+            //6 >>>全部移动
+            var moveAllbtn = document.getElementById("moveAllbtn");
+            moveAllbtn.onclick = function () {
+            var leftPElements = leftDiv.getElementsByTagName("p");
+            //方法一
+            /*for (i = 0; leftPElements.length; i++) {
+                var leftPElement = leftPElements.item(i);
+                rightDiv.appendChild(leftPElement);
+                leftPElement.className = null;
+                i--;  //因为NodeList是动态改变的，所以当移动完第一个元素的时候，leftPElements.length的长度就会减1，但是i还是会增1，所以这里添加“i--”来达到平衡
+                }
+            };*/
+
+            //方法二
+            while(leftPElements.length > 0)
+                {
+                    var leftPElement = leftPElements.item(0);
+                    rightDiv.appendChild(leftPElement);
+                    leftPElement.className = null;
+                }
+            };
+
+
+            //7 <<<全部移动
+            var backAllBtn = document.getElementById("backAllBtn");
+            backAllBtn.onclick = function () {
+            var rightPElements = rightDiv.getElementsByTagName("p");
+            while(rightPElements.length > 0)
+                {
+                    var rightPElement = rightPElements.item(0);
+                    leftDiv.appendChild(rightPElement);
+                    rightPElement.className = null;
+                }
+            };
+
+    }
+    </script>
+
+</head>
+<body>
+<div id="moveDiv">
+    <div id="leftDiv" class="left-div">
+        <p>蛋蛋</p>
+        <p>建国</p>
+        <p>赖包</p>
+        <p>浇水</p>
+    </div>
+    <div id="middleDiv" class="middle-div">
+        <button id="moveBtn">&gt;&gt;</button>
+        <button id="moveAllbtn">&gt;&gt;&gt;</button>
+        <button id="backBtn">&lt;&lt;</button>
+        <button id="backAllBtn">&lt;&lt;&lt;</button>
+    </div>
+    <div id="rightDiv" class="right-div"></div>
+    <div style="clear: both;"></div>
+</div>
+</body>
+</html>
