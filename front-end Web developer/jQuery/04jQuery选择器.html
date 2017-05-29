@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width:100px;
+            height: 100px;
+            margin: 30px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //标签选择器
+         /*   var divs = $("div");
+            alert(divs);
+            divs.css("backgroundColor","lightgray");
+            var div01 = $("#div01"); //id选择器
+            div01.css("backgroundColor","red");
+            var div02 = $(".div2"); //类选择器
+            div02.css("backgroundColor","blue")*/
+
+           /* $("div").each(function (index,domElement) {
+//                alert(index + domElement.id);
+                if(index == 0)
+                {
+                    domElement.style.backgroundColor = "lightgray";
+                }
+                else if(index == 1)
+                {
+                    domElement.style.backgroundColor = "lightblue";
+                }
+                else if(index == 2)
+                {
+                    domElement.style.backgroundColor = "red";
+                }
+                else
+                {
+                    domElement.style.backgroundColor = "black";
+                }
+            });*/
+              //属性选择器
+//            $("[id]").css("backgroundColor","lightblue"); //选择有id属性的元素
+//            $("[id=div01]").css("backgroundColor","lightblue");//选择有id属性为div01的元素
+//            $("[id^=di]").css("backgroundColor","lightblue");//选择有id属性以di开头的元素
+//            $("[id$=03]").css("backgroundColor","lightblue");//选择有id属性以03结尾的元素
+//            $("[id*=v]").css("backgroundColor","lightblue");//选择有id属性包含v的元素
+
+            //伪类选择器
+//            $("div:first").css("backgroundColor","lightblue"); //第一个元素
+//            $("div:last").css("backgroundColor","lightblue"); //最后一个元素
+//            $("div:even").css("backgroundColor","lightblue");//第偶数个
+//            $("div:odd").css("backgroundColor","lightblue");//第奇数个
+//            $("div:eq(2)").css("backgroundColor","lightblue");//第index个
+//            $("div:gt(1)").css("backgroundColor","lightblue");//第index之后的
+//            $("div:lt(2)").css("backgroundColor","lightblue");//第index之前的
+//            $("div:not(:first)").css("backgroundColor","lightblue");//对括号里面的选择器取反
+
+            //复合选择器
+//            $("div p").css("backgroundColor","lightblue");
+//            $("div>p").css("backgroundColor","lightblue");//在1选中的元素中，使用2筛选其子元素
+//            $("#div01~.div2").css("backgroundColor","lightblue");//在使用#div01的这个条件选中的元素中，使用类名为div2的条件来筛选其id为div01的后续兄弟元素（后续兄弟元素有3个）
+//            $("#div01+#div02").css("backgroundColor","lightblue");//在1选中的元素中，使用2筛选其后续紧邻的兄弟元素
+//            $("#div01,#div02").css("backgroundColor","lightblue");//各个选择器的并集
+        });
+
+
+    </script>
+</head>
+<body>
+    <div id="div01">
+        <p>hello</p>
+    </div>
+    <div id="div02" class="div2"></div>
+    <div id="div03"></div>
+    <div id="div04"></div>
+</body>
+</html>

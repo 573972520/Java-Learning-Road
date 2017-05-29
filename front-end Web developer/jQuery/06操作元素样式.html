@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width:100px;
+            height: 100px;
+            background-color: lightgray;
+            margin: 30px;
+        }
+        .c1{
+            border:1px solid red;
+        }
+        .hello{
+            width: 300px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            /*var value = $("div").css("width");
+            alert(value);
+
+            //css(propName,value)不会造成覆盖上面的属性
+            $("div").css("width","300px");
+            $("div").css("height","300px");
+            $("div").css("height","200px"); //但对于设定相同属性的值，则会造成覆盖效果
+
+            //对于attr(propName,value)不论设置的属性是否相同，都会发生覆盖
+            $("div").attr("style","width:200px"); //被覆盖
+            $("div").attr("style","height:500px");
+            */
+
+            $("div").addClass("c1");
+//            $("div").removeClass("hello");
+            $("div").toggleClass("hello");//切换class（如果存在就删除，如果不存在就添加）
+
+
+        });
+    </script>
+</head>
+<body>
+    <div id="div01"></div>
+    <div id="div02" class="hello"></div>
+    <div id="div03"></div>
+    <div id="div04"></div>
+</body>
+</html>

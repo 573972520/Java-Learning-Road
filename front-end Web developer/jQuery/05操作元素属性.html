@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width:100px;
+            height: 100px;
+            margin: 30px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+           /* var value = $("div").attr("id"); //获取第一个元素的该属性的值
+            alert(value);*/
+
+            $("div").attr("name","c1");//设置所有元素的该属性的值
+
+            $("div").attr("classxx", function (index,value) {  //设置所有元素的该属性的值，值由函数的返回值决定，index表示元素索引，value表示该属性的原值
+//                alert(index + "--" + value);                 //并且对于自定义的属性也有效果
+              return "c"+index;
+            });
+
+            //atrr()函数无论对HTML元素固有的属性还是我们自定义的属性都有效，但对于类似复选框的checked属性，以及元素的那5个只读属性（offsetXxx），
+            // 大家要使用jQuery对象的prop()函数来操作，但prop()函数对自定义属性无效。
+            var inputCheckedValue = $("input").attr("checked");
+            var inputOffsetValue = $("input").attr("offsetWidth");
+            alert(inputCheckedValue); //结果为checked，不是true
+            alert(inputOffsetValue); //结果为undefined
+
+            var inputCheckedPropValue = $("input").prop("checked");
+            alert(inputCheckedPropValue);//结果为true
+            var inputOffsetPropValue = $("input").prop("offsetWidth");
+            alert(inputOffsetPropValue);//结果为13
+
+            $("input").prop("checkedxx","xx"); //对自定义属性无效
+
+        });
+    </script>
+</head>
+<body>
+    <div id="div01"></div>
+    <div id="div02" class="div2"></div>
+    <div id="div03"></div>
+    <div id="div04"></div>
+    <input id="input" checked="checked" type="checkbox">
+</body>
+</html>
