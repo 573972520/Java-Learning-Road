@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+       #table td{
+           width: 40px;
+           height: 19px;
+           background-color: #f3f3f3;
+           border: 1px solid #D0D0D0;
+           color: #BBBBBB;
+           line-height: 9px;
+           color: khaki;
+       }
+   </style>
+    <script type="text/javascript" src="tools.js"></script>
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#password").keyup(function () {
+                var value = this.value;
+                var level = checkPasswordLevel(value);
+                switch (level)
+                {
+                    case 1:
+                    {
+                        $("#td1").css("backgroundColor","red");
+                        $("#td2").css("backgroundColor",""); //这里不能使用null，如果使用null那么当删除密码强度的时候。颜色不会改变
+                        $("#td3").css("backgroundColor","");
+                        break;
+                    }
+                    case 2:
+                    {
+                        $("#td1").css("backgroundColor","lightgreen");
+                        $("#td2").css("backgroundColor","lightgreen");
+                        $("#td3").css("backgroundColor","");
+                        break;
+                    }
+                    case 3:
+                    {
+                        $("#td1").css("backgroundColor","green");
+                        $("#td2").css("backgroundColor","green");
+                        $("#td3").css("backgroundColor","green");
+                        break;
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <label for="password">密码：</label>
+    <input id="password" type="password" name="password" />
+    <table id="table" border="0" cellpadding="0" cellspacing="0" style="display: inline-table">
+        <tr align="center">
+            <td id="td1">弱</td>
+            <td id="td2">中</td>
+            <td id="td3">强</td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

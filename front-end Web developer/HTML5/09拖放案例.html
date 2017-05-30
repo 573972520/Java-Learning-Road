@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .section{
+            width: 185px;
+            height: 300px;
+            background-color: lightgray;
+            margin-left: 10px;
+            margin-top: 50px;
+            float: left;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            //draggstart
+            var nodeList = document.getElementById("selectDiv").children;
+            for(var i = 0;i<nodeList.length;i++)
+            {
+                nodeList.item(i).ondragstart = function () {
+                    //存储并传递被拖拽元素的id属性值
+                    event.dataTransfer.setData("draggedId",this.id);
+                }
+            }
+
+            //dragover
+            var formSection = document.getElementById("formSection");
+            var imgSection = document.getElementById("imgSection");
+            var aSection = document.getElementById("aSection");
+            formSection.ondragover = function () {
+                return false;
+            };
+            imgSection.ondragover = function () {
+                return false;
+            };
+            aSection.ondragover = function () {
+                return false;
+            };
+             //drop
+            formSection.ondrop = function () {
+                var draggedId = event.dataTransfer.getData("draggedId");
+                //判断元素的类型
+                var draggedElement = document.getElementById(draggedId);
+//                alert(draggedElement);
+                if(draggedElement instanceof HTMLInputElement)
+                {
+                    this.appendChild(draggedElement);
+                }
+            };
+            imgSection.ondrop = function () {
+                var draggedId = event.dataTransfer.getData("draggedId");
+                //判断元素的类型
+                var draggedElement = document.getElementById(draggedId);
+//                alert(draggedElement);
+                if(draggedElement instanceof HTMLImageElement)
+                {
+                    this.appendChild(draggedElement);
+                }
+            };
+            aSection.ondrop = function () {
+                var draggedId = event.dataTransfer.getData("draggedId");
+                //判断元素的类型
+                var draggedElement = document.getElementById(draggedId);
+//                alert(draggedElement);
+                if(draggedElement instanceof HTMLAnchorElement)
+                {
+                    this.appendChild(draggedElement);
+                }
+            };
+
+
+        }
+    </script>
+</head>
+<body>
+<div id="selectDiv">
+    <img src="1.png" id="img01" />
+    <img src="2.png" id="img02" />
+    <img src="3.png" id="img03" />
+    <img src="4.png" id="img04" />
+    <input id="input01" type="text" draggable="true" />
+    <input id="input02" type="button" draggable="true" value="按钮"/>
+    <input id="input03" type="color" draggable="true" />
+    <a id="a01" href="http://www.baidu.com">百度一下</a>
+    <a id="a02" href="http://www.rupeng.com">如鹏两下</a>
+</div>
+
+<div id="formSection" class="section">
+    <h3>可拖放表单元素</h3>
+</div>
+<div id="imgSection" class="section">
+    <h3>可拖放图片元素</h3>
+</div>
+<div id="aSection" class="section">
+    <h3>可拖放超链接元素</h3>
+</div>
+
+</body>
+</html>

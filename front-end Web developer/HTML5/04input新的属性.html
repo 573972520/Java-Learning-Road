@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<!--
+placeholder  输入框的输入提示信息
+required  必填
+pattern  用于验证用户输入
+form  指定控件所属的表单，这样控件就不必一定要在<form>标签内了
+autofocus  自动获得焦点,如果有多个表单控件设置了autofocus属性，那么第一个设置这个属性的表单先获得焦点
+multiple  指定文件上传时是否可选中多个文件
+accept  指定上传文件时允许的MIME类型（文件类型），如 image/*
+-->
+
+     <form id="form01">
+         <input type="text" autofocus="true" />
+         <input type="text" placeholder="请输入数字"
+                name="text"
+                required="required"
+                pattern="[0-9]*"
+                form="form01"
+                autofocus="true"
+                 /> <br/>
+         <input type="file"
+                multiple="true"
+                accept="image/*"
+                 />
+         <input type="submit" value="提交" />
+     </form>
+</body>
+</html>

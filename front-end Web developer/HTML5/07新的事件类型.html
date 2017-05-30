@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        /*window.onbeforeunload = function () {
+            alert("hello");//此代码无效
+            return "此页面精彩";
+        };*/
+        window.onscroll = function () {
+            alert("页面滚动了");
+        };
+        window.onresize = function()
+        {
+            alert("页面大小改变了");
+        }
+        window.onmousewheel = function () {
+            alert("鼠标滚动了");
+        }
+    </script>
+</head>
+<body>
+    <div style="height: 3007px"></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width:100px;
+            height: 200px;
+            background-color: lightgray;
+            margin: 30px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $p = $("<p>hello</p>" + "<p>jQuery</p>");
+            var $a = $("<a href='#'>link</a>");
+
+            var $before = $("<p>before</p>");
+            //alert($p.html());
+            $("div").append($p).append($a);
+
+            $("#div01").before($before);
+
+            $("#div01").remove();
+
+        })
+    </script>
+</head>
+<body>
+    <div id="div01">xx</div>
+    <div>xx</div>
+    <div>xx</div>
+</body>
+</html>

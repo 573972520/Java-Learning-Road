@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div01{
+            width:100px;
+            height: 62px;
+            background-color: lightgray;
+        }
+
+        #div02
+        {
+            width: 200px;
+            height: 124px;
+            background-color: lightblue;
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("div01").ondragstart = function () {
+                this.innerHTML = "aa";
+                //把被拖拽的元素的id存进来
+                event.dataTransfer.setData("id",this.id);
+            };
+            document.getElementById("div02").ondragover = function () {
+                this.innerHTML = "bb";
+                return false;
+            };
+
+            document.getElementById("div02").ondrop = function()
+            {
+                this.innerHTML = "bbbb";
+                var draggedId = event.dataTransfer.getData("id");
+                var draggedElement = document.getElementById(draggedId);
+                this.appendChild(draggedElement);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div01" draggable="true">a</div>
+    <div id="div02">b</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        .draggable-div{
+            position: absolute;
+            width:300px;
+            height: 185px;
+            background-color: lightgray;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        var draggable = false;
+        var offsetX = 0; //按下鼠标按键的时候，当前鼠标的x坐标和div左上角定点的x坐标的差值
+        var offsetY = 0;
+        $(function () {
+            $("#draggableDiv").css("position","absolute").mousedown(function () {
+                draggable = true;
+                offsetX = event.clientX - this.offsetLeft;
+                offsetY = event.clientY - this.offsetTop;
+            }).mouseup(function () {
+                draggable = false;
+            }).mousemove(function () {
+                //如果draggable为true，改变div的位置
+                if(draggable)
+                {
+                    this.style.left = event.clientX - offsetX +"px";
+                    this.style.top = event.clientY - offsetY +"px";
+                }
+            }).mouseout(function () {
+                draggable = false;
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div id="draggableDiv" class="draggable-div"></div>
+</body>
+</html>

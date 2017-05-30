@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("input01").onchange = function () {
+                //如何拿到fileList对象
+                var fileList = this.files;
+                for (var i = 0; i < fileList.length; i++)
+                {
+                    var file = fileList.item(i);
+//                    alert(file.name);
+                    /*
+                    var pElement = document.createElement("p");
+                    pElement.innerHTML = file.name;
+                    document.getElementById("div01").appendChild(pElement);
+                    */
+
+                    //如何读取文件数据
+                    var fileReader = new FileReader();
+                    fileReader.onload = function () {
+                        var img = document.createElement("img");
+                        img.src = this.result; //这里使用this
+                        document.getElementById("div01").appendChild(img);
+                    };
+                    fileReader.readAsDataURL(file);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+        <input id="input01" type="file" name="xxx"
+               multiple="true"
+               accept="image/*"
+                />
+        <div id="div01"></div>
+
+</body>
+</html>

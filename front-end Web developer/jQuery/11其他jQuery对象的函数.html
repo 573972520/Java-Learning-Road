@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width: 200px;
+            height: 124px;
+            margin: 10px;
+        }
+    </style>
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+//            $("div").children().css("backgroundColor","lightgray");
+//            $("p").parent().css("backgroundColor","lightgray");
+//            $("p:eq(1)").prevAll().css("backgroundColor","lightgray");
+//            $("p:eq(3)").prevAll().css("backgroundColor","lightgray");//索引为3的p元素之前没有兄弟元素
+//            $("p:eq(3)").nextAll().css("backgroundColor","lightgray");//索引为3的p元素之前没有兄弟元素
+            $("p:eq(1)").siblings().css("backgroundColor","lightgray");//索引为3的p元素之前没有兄弟元素
+
+        })
+    </script>
+</head>
+<body>
+     <div>
+         <span>xxx</span>
+         <p>ppp</p>
+         <p>ppp</p>
+         <p>ppp</p>
+     </div>
+     <div>
+         <p>ppp</p>
+         <p>ppp</p>
+         <p>ppp</p>
+     </div>
+     <div>
+         <p>ppp</p>
+         <p>ppp</p>
+         <p>ppp</p>
+     </div>
+</body>
+</html>
