@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE users SYSTEM "users.dtd">
+<users>
+	<user id="u001" name="蛋蛋">
+		<email>dandan@163.com</email>
+		<phones>
+			<phone>182784895</phone>
+			<phone>183453495</phone>
+		</phones>
+	</user>
+	
+	<user id="u002" name="讲过">
+	<email>dand324an@163.com</email>
+		<phones>
+			<phone>183242784895</phone>
+			<phone>182343453495</phone>
+		</phones>
+	</user>
+</users>

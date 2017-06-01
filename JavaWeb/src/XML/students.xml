@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:schemaLocation="mystudents1 students1.xsd"
+			xmlns="mystudents1"
+			>
+	<student>
+		<name>dandan</name>
+	</student>
+	<student>
+		<name>carl</name>
+	</student>
+</students>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+	<student id="s001" name="dandan">
+		<email>  dandan@163.com</email>
+		<!-- <xx/> --><!-- 单标签也是可以的 -->
+		<commment>
+			<![CDATA[]]>
+			<![CDATA[  1  <  2  ]]>
+		</commment>
+		<Comment>1&lt;2</Comment>
+	</student>
+	<student></student>
+</students>

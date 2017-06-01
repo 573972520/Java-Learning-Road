@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!ELEMENT users (user*)>   <!-- 0个或者多个 -->
+	<!ELEMENT user (email?,phones)>   <!-- 0个或者1个 -->
+	<!ELEMENT email (#PCDATA)>
+	<!ELEMENT phones (phone*)>
+	<!ELEMENT phone (#PCDATA)>
+	<!ATTLIST user
+				  id ID #REQUIRED 
+				  name CDATA #IMPLIED	 
+							>
