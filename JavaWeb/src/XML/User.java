@@ -8,9 +8,18 @@ public class User {
 	private String email;
 	private List<String> phones;
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	private String phone;
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", phones=" + phones + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", phones=" + phones + ", phone=" + phone
+				+ "]";
 	}
 	public String getId() {
 		return id;
