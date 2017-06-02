@@ -10,6 +10,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,6 +71,7 @@ public class MyHttpServer3 {
 							
 						}
 					}
+					
 					else if(fileName.startsWith("/login?"))
 					{
 						//正则表达式的非贪婪模式
@@ -90,10 +93,28 @@ public class MyHttpServer3 {
 						}
 					}
 					
-					else if(fileName.startsWith("/login?")
+					else if(fileName.startsWith("/showallusers"))
+					{
+						osw.write("<html><head></head><body>\r\n");
+						osw.write("<table><thead><tr><td>Id</td><td>UserName</td><td>Password</td></tr></thead>\r\n");
+						osw.write("<tbody>\r\n");
+						try {
+							ResultSet rs = 
+									JdbcUtils.executeQuery("select * from T_Users");
+							while(rs.next())
 							{
-						
+								int id = rs.getInt("Id");
+								String username = rs.getString("UserName");
+								String password = rs.getString("Password");
+								osw.write("<tr><td>"+id+"</td><td>"+username+"</td><td>"+password+"</td></tr>\r\n");
 							}
+							} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						osw.write("</tbody></table>\r\n");
+						osw.write("</body>\r\n");
+					}
 							
 					
 					

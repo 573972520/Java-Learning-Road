@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<deployments>
+  <deployment context-root="/myweb1" deployment-path="Z:/JavaDay/JavaWeb/.metadata/.me_tcat/webapps/myweb1" project-name="myweb1" server-id="myeclipseTomcatServer" state="DEPLOYED" type="WEB"/>
+</deployments>
