@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="encode1" method="get">
+		<input type="text" name="txt1" />
+		<input type="submit" value="click" />
+		
+		<a href="" id="a1">click</a>
+		<input type="button" id="btn1" value="test" />
+	</form>
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var btn1 = document.getElementById("btn1");
+		var a1 = document.getElementById("a1");
+		btn1.onclick = function()
+		{
+		/*
+			var txt1 = "a&b=4";
+			alert(txt1)
+			alert(encodeURIComponent(txt1));
+			alert(encodeURI(txt1));
+			a1.href = "encode1?txt1="+encodeURIComponent(txt1);
+		 */
+		 
+		 /* var s = "http://rupeng.com/Login?username=瑞鹏&password=1 a23";
+		 alert(encodeURI(s));
+		 alert(encodeURIComponent(s)); */
+		 
+		 /* var s = "http://rupeng.com/Login?username=瑞鹏&password=1 a23";
+		 a1.href = encodeURI(s); */
+		 
+		 var txt1 = "http://www.rupeng.com";
+		 //a1.href = "encode1?txt1="+encodeURI(txt1);
+		 a1.href = "encode1?txt1="+encodeURIComponent(txt1);
+		 var s1 = encodeURIComponent(txt1);
+		 alert(s1);
+		 var s2 = decodeURIComponent(txt1);
+		 alert(s2);
+		 
+		 
+		}
+	}
+</script>
+</body>
+</html>

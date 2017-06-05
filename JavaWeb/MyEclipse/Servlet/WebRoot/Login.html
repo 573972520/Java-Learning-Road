@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	<form action="login" method="get">
+		<input type="radio" name="gender" id="radioMale" value="man" /><label for="radioMale">Man</label>
+		<input type="radio" name="gender" id="radioFemale" value="woman" /><label for="radioFemale">Woman</label>
+		<input type="radio" name="gender" id="radioUnknow" value="unknow" /><label for="radioUnknow">Unknow</label>
+		<br/>
+		UserName:<input type="text" name="username" />
+		Password:<input type="password" name="password" />
+		<select name="prov">  <!-- 这里必须指定一个name -->
+			<option value="bj">Beijing</option>
+			<option value="zz">Zhengzhou</option>
+			<option value="wh">Wuhan</option>
+		</select>
+		<input type="submit" name="Login1" value="denglu" />
+		<input type="submit" name="Login2" value="zhuce" />
+		<textarea rows="3" cols="3" name="txt1"></textarea>
+	</form>
+</body>
+</html>
