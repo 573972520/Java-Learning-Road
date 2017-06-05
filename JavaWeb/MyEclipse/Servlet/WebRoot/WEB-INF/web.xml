@@ -57,5 +57,22 @@
 		<url-pattern>/encode1</url-pattern>		
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>addPersonServlet</servlet-name>
+		<servlet-class>com.rupeng.test1.AddPersonServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addPersonServlet</servlet-name>
+		<url-pattern>/addPerson</url-pattern>		
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ShowPersonsServlet</servlet-name>
+		<servlet-class>com.rupeng.test1.ShowPersonsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowPersonsServlet</servlet-name>
+		<url-pattern>/showPersons</url-pattern>		
+	</servlet-mapping>
 
 </web-app>

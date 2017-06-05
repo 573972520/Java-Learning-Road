@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="addPerson" method="get">
+		姓名：<input type="text" name="name" /> <br/>
+		昵称：<input type="text" name="nickName" /> <br/>
+		年龄：<input type="text" name="age" /> <br/>
+		<input type="checkbox" name="isTuHao" id="isTuHao"/><label for="isTuHao">是否富二代</label> <br/>
+		专业：<select name="major">
+				<option value="jsj">计算机</option>
+				<option value="xxgl">信息管理</option>
+				<option value="jixie">机械</option>
+			</select><br/>
+		性取向：<input type="radio" name="xqx" value="male" id="male" /><label for="male">喜欢男的</label>
+			<input type="radio" name="xqx" value="female" id="female" /><label for="female">喜欢女的</label>
+			<input type="radio" name="xqx" value="both" id="both" /><label for="both">通吃</label>
+			<input type="submit" value="保存"/>
+	</form>
+</body>
+</html>

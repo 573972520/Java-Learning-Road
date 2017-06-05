@@ -2,26 +2,29 @@ package com.rupeng.test1;
 
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
-public class RuPengUtils
-{
+public class RuPengUtils extends HttpServlet {
 	/**
-	 * ä»reqä¸­å–å‡ºåå­—ä¸ºparamNameçš„å€¼ï¼Œè‡ªåŠ¨å¤„ç†å‚æ•°ä¹±å—çš„é—®é¢˜
+	 * ´ÓreqÖĞÈ¡³öÃû×ÖÎªparamNameµÄÖµ£¬×Ô¶¯´¦Àí²ÎÊıÂÒÂëµÄÎÊÌâ
 	 * @param req
 	 * @param paramName
-	 * @return ä¸ä¹±ç çš„å‚æ•°å€¼
+	 * @return ²»ÂÒÂëµÄ²ÎÊıÖµ
 	 */
-	public static String getParameter(HttpServletRequest req, String paramName)
+	public static String getParameter (HttpServletRequest req,String paramName)
 	{
 		try
 		{
-			String value = req.getParameter(paramName);// å…ˆå¾—åˆ°ä¹±ç çš„å­—ç¬¦ä¸²
+			String value = req.getParameter(paramName);//
 			byte[] bytes = value.getBytes("ISO-8859-1");
-			return new String(bytes, "UTF-8");
-		} catch (UnsupportedEncodingException ex)
+			return new String(bytes,"UTF-8");
+		}
+		catch(UnsupportedEncodingException ex)
 		{
 			throw new RuntimeException(ex);
 		}
+		
+		
 	}
 }
