@@ -74,5 +74,17 @@
 		<servlet-name>ShowPersonsServlet</servlet-name>
 		<url-pattern>/showPersons</url-pattern>		
 	</servlet-mapping>
-
+	<servlet-mapping>
+		<servlet-name>ShowPersonsServlet</servlet-name>
+		<url-pattern>/persons.html</url-pattern>		
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Test2Servlet</servlet-name>
+		<servlet-class>com.rupeng.test1.Test2Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Test2Servlet</servlet-name>
+		<url-pattern>/aa/test2</url-pattern>		
+	</servlet-mapping>
 </web-app>

@@ -14,6 +14,11 @@ public class ShowPersonsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		String s = null;
+		s.toString(); //导致服务器内部出现错误，返回500 Internal Server Error
+//		resp.sendRedirect("2.html");//重定向到2.html 服务器会向浏览器发送302 Moved Temporarily 告诉浏览器临时移动了，请到Location指定的页面去吧
+		//resp.sendRedirect("http://www.baidu.com");
 		resp.setContentType("text/html;charset=UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		PrintWriter writer = resp.getWriter();

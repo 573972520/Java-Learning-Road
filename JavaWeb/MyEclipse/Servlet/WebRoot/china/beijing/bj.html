@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p>Beijing</p>
+
+<a href="/Servlet/images/mv.jpg">mv1</a>
+<a href="../../images/mv.jpg" >mv2</a>
+<img src="bj.png" />
+<!-- <img src="/images/mv.jpg" />  这样写是不对的因为这样写没有表示从根目录开始 -->
+<img src="/Servlet/images/mv.jpg" />  <!-- /表示网站根目录下的文件夹  但在这里要注意网站根目录不包括Servlet，所以要加上这个Servlet-->
+<img src="../china.png" />   <!-- ..表示这一bj.html文件所在文件夹的上一级文件夹 -->
+</body>
+</html>
