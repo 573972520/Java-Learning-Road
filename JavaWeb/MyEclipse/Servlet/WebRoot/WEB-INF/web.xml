@@ -87,4 +87,31 @@
 		<servlet-name>Test2Servlet</servlet-name>
 		<url-pattern>/aa/test2</url-pattern>		
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Img1Servlet</servlet-name>
+		<servlet-class>com.rupeng.test1.Img1Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Img1Servlet</servlet-name>
+		<url-pattern>/img1</url-pattern>		
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>YZM1Servlet</servlet-name>
+		<servlet-class>com.rupeng.test1.YZM1Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>YZM1Servlet</servlet-name>
+		<url-pattern>/yzm1</url-pattern>		
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Person2Servlet</servlet-name>
+		<servlet-class>com.rupeng.test1.Person2Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Person2Servlet</servlet-name>
+		<url-pattern>/persons2</url-pattern>		
+	</servlet-mapping>
 </web-app>

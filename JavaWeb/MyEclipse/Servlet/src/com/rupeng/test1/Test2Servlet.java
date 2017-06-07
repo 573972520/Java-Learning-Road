@@ -1,6 +1,10 @@
 package com.rupeng.test1;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,9 +32,23 @@ public class Test2Servlet extends HttpServlet {
 	//如果Servlet即可能接收Post请求，又接收Get请求，并且Get和Post的处理一致
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		//resp.sendRedirect("http://www.rupeng.com"); //sendRedirect之后的代码仍然会执行
+		resp.setCharacterEncoding("UTF-8");
+		
 		String name = req.getParameter("name");
 		resp.setContentType("text/html");
-		resp.getWriter().println("name:"+name);
+		
+		/*
+		OutputStreamWriter osw = new OutputStreamWriter(resp.getOutputStream());
+		BufferedWriter buffWriter = new BufferedWriter(osw);
+		buffWriter.write("hello");
+		buffWriter.close();
+		osw.close();
+		*/
+		PrintWriter out = resp.getWriter();//最终也是对resp.getOutputStream的一个封装
+		out.println("ye hello");
+		
+		/*resp.getWriter().println("name:"+name);
 		String qs = req.getQueryString();
 		resp.getWriter().println("QueryString="+qs+"<br/>");
 		
@@ -48,7 +66,7 @@ public class Test2Servlet extends HttpServlet {
 		resp.getWriter().println("UserAgent="+req.getHeader("User-Agent")+"<br/>");
 		//
 		resp.getWriter().println("Connection="+req.getHeader("Connection")+"<br/>");
-		
+		*/
 		/*		输出结果：
 		 * 		name:null QueryString=null
 				ContextPath=/Servlet
