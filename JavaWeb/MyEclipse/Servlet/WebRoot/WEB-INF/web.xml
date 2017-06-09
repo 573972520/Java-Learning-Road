@@ -109,6 +109,14 @@
 	<servlet>
 		<servlet-name>Person2Servlet</servlet-name>
 		<servlet-class>com.rupeng.test1.Person2Servlet</servlet-class>
+		<init-param>
+			<param-name>xing</param-name>
+			<param-value>chen</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ming</param-name>
+			<param-value>can</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Person2Servlet</servlet-name>
