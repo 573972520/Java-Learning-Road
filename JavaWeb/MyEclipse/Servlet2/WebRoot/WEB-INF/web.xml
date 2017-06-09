@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Servlet2</display-name>
+  
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 
+  <error-page>
+  	<exception-type>java.lang.NullPointerException</exception-type>
+  	<location>/KongZhiZhenError.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<exception-type>org.apache.jasper.JasperException</exception-type>
+  	<location>/MySQLError.jsp</location>
+  </error-page> -->
+ <!--  所有的异常都由Error.jsp来进行处理 -->
+ 
+ <!-- 
+  <error-page>
+  	<exception-type>java.lang.Throwable</exception-type>
+  	<location>/Error.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/404.html</location>
+  </error-page>
+   -->
+  <servlet>
+  	<servlet-name>PersonServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.PersonServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>PersonServlet</servlet-name>
+  	<url-pattern>/person</url-pattern>
+  </servlet-mapping>
 </web-app>

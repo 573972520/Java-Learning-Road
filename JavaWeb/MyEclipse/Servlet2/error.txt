@@ -1,0 +1,36 @@
+org.apache.jasper.JasperException: Unable to compile class for JSP: 
+
+An error occurred at line: 17 in the jsp file: /PersonList2.jsp
+Person cannot be resolved to a type
+14: 	</thead>
+15: 	<tbody>
+16: 		<%
+17: 			/* List<Person> persons = (List<Person>)request.getAttribute("persons");
+18: 			for(Person person:persons)
+19: 			{
+20: 				
+
+
+An error occurred at line: 17 in the jsp file: /PersonList2.jsp
+Person cannot be resolved to a type
+14: 	</thead>
+15: 	<tbody>
+16: 		<%
+17: 			/* List<Person> persons = (List<Person>)request.getAttribute("persons");
+18: 			for(Person person:persons)
+19: 			{
+20: 				
+
+
+An error occurred at line: 23 in the jsp file: /PersonList2.jsp
+Person cannot be resolved to a type
+20: 				
+21: 			} */
+22: 			List<Person> persons = (List<Person>)request.getAttribute("persons");
+23: 			for(Person person : persons)
+24: 			{
+25: 			%>	
+26: 			<tr><td><%=person.getId() %></td><td><%=person.getName() %></td><td><%=person.getAge() %></td></tr>
+
+
+Stacktrace:
