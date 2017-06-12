@@ -9,4 +9,22 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>eltest1Servlet</servlet-name>
+  	<servlet-class>com.rupeng.test.ELTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>eltest1Servlet</servlet-name>  	
+	<url-pattern>/eltest1</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>eltest3Servlet</servlet-name>
+  	<servlet-class>com.rupeng.test.ELTest3Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>eltest3Servlet</servlet-name>  	
+	<url-pattern>/eltest3</url-pattern>
+  </servlet-mapping>
 </web-app>
