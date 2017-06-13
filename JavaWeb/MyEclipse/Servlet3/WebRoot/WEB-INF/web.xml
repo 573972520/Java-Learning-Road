@@ -27,4 +27,24 @@
 	<servlet-name>eltest3Servlet</servlet-name>  	
 	<url-pattern>/eltest3</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>teacherServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.TeacherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>teacherServlet</servlet-name>  	
+	<url-pattern>/teacher</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>studentServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.StudentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>studentServlet</servlet-name>  	
+	<url-pattern>/student</url-pattern>
+  </servlet-mapping>
 </web-app>

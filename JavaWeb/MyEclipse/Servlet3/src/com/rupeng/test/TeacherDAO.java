@@ -19,7 +19,7 @@ public class TeacherDAO {
 	 * 新增数据
 	 * @param teacher
 	 */
-	private void addnew(TeacherInfo teacher)
+	public void addnew(TeacherInfo teacher)
 	{
 		try {
 			JdbcUtils.executeUpdate("Insert into T_Teachers(Name,PhoneNum,BirthDay) values(?,?,?)", 
@@ -69,19 +69,19 @@ public class TeacherDAO {
 	 * @param id
 	 * @return 老师对象
 	 */
-	public  TeacherInfo getById (int id)
+	public TeacherInfo getById (int id)
 	{
 		ResultSet rs = null;
 		try {
 			rs = JdbcUtils.executeQuery("select * from T_Teachers where Id=?", id);
 			if(rs.next())
 			{
-				TeacherInfo info = new TeacherInfo();
+				/*TeacherInfo info = new TeacherInfo();
 				info.setId(rs.getInt("Id"));
 				info.setName(rs.getString("Name"));
 				info.setBirthDay(rs.getDate("BirthDay"));
-				info.setPhoneNum(rs.getString("PhoneNum"));
-				return info;
+				info.setPhoneNum(rs.getString("PhoneNum"));*/
+				return toModel(rs);
 			}
 			else
 			{
@@ -105,14 +105,12 @@ public class TeacherDAO {
 	 */
 	private TeacherInfo toModel(ResultSet rs) throws SQLException
 	{
-		/*TeacherInfo info = new TeacherInfo();
+		TeacherInfo info = new TeacherInfo();
 		info.setId(rs.getInt("Id"));
 		info.setName(rs.getString("Name"));
 		info.setBirthDay(rs.getDate("BirthDay"));
 		info.setPhoneNum(rs.getString("PhoneNum"));
-		return info;*/
-		
-		return toModel(rs);
+		return info;
 	}
 	
 	/**
