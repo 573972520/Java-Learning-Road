@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="login" method="post">
-		<input type="hidden" name="action" value="login" />
-		用户名：<input type="text" name="username" value="${requestScope.LoginUserName}"/>
+	<form action="session2" method="get">
+		<input type="hidden" name="action" value="loginSubmit" />
+		用户名：<input type="text" name="username" />
 		密码：<input type="password" name="password" />
-		<input type="submit" value="登录"/>
+		<input type="submit" value="登录" />
 	</form>
+	
 </body>
 </html>

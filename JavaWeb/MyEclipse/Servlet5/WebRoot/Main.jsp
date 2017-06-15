@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="login" method="post">
-		<input type="hidden" name="action" value="login" />
-		用户名：<input type="text" name="username" value="${requestScope.LoginUserName}"/>
-		密码：<input type="password" name="password" />
-		<input type="submit" value="登录"/>
-	</form>
+	这是一个登录之后才能访问的页面<br/>
+	欢迎你${sessionScope.UserName } 
 </body>
 </html>

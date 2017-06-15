@@ -47,6 +47,12 @@ public class Cookie1Servlet extends HttpServlet {
 			}
 			
 		}
+		else if(action.equals("del"))
+		{
+			Cookie cookie = new Cookie("n2", "");
+			cookie.setMaxAge(0);
+			resp.addCookie(cookie);
+		}
 	}
 	
 	@Override

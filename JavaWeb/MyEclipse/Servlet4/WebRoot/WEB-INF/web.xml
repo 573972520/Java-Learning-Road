@@ -26,4 +26,16 @@
   	<servlet-name>login</servlet-name>
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>session1</servlet-name>
+  	<servlet-class>com.rupeng.test.Session1Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>session1</servlet-name>
+  	<url-pattern>/session1</url-pattern>
+  </servlet-mapping>
+  <session-config>
+  	<session-timeout>40</session-timeout>
+  </session-config>
 </web-app>
