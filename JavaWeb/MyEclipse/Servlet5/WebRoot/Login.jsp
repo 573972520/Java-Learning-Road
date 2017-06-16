@@ -4,15 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>登录</title>
 </head>
 <body>
-	<form action="session2" method="get">
+	<form action="user" method="post">
 		<input type="hidden" name="action" value="loginSubmit" />
-		用户名：<input type="text" name="username" />
-		密码：<input type="password" name="password" />
-		<input type="submit" value="登录" />
+		<table>
+			<tr><td>用户名:</td><td><input type="text" name="username" /></td></tr>
+			<tr><td>密码:</td><td><input type="password" name="password" /></td></tr>
+			<tr><td>验证码:</td><td><input type="text" name="yzm"/><img src="yzm"/></td></tr>
+			<tr><td><input type="submit" value="登录" /></td><td><a href="user?action=register">注册</a></td></td></tr>
+		</table>
 	</form>
-	
 </body>
 </html>

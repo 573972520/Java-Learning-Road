@@ -19,4 +19,39 @@
   	<url-pattern>/session2</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>userServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userServlet</servlet-name>
+  	<url-pattern>/user</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>captchaServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.CaptchaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>captchaServlet</servlet-name>
+  	<url-pattern>/yzm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>mainServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.MainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>mainServlet</servlet-name>
+  	<url-pattern>/main</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>mySessionServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.MYSessionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>mySessionServlet</servlet-name>
+  	<url-pattern>/ms</url-pattern>
+  </servlet-mapping>
 </web-app>

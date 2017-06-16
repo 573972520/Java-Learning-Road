@@ -19,7 +19,7 @@ public class Session2Servlet extends HttpServlet {
 		String action = req.getParameter("action");
 		if(action.equals("login"))
 		{
-			req.getRequestDispatcher("Login.jsp").forward(req, resp);
+			req.getRequestDispatcher("Login0.jsp").forward(req, resp);
 		}
 		else if(action.equals("loginSubmit"))
 		{
