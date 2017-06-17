@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MySession {
 	
+	
+	//Session和Cookie的关系：Cookie中放着一个JSessionId，服务器端通过JSessionId对应服务器端的"存储空间"
+	
 	//以MySession为key,Session键值对为value的键值对
 	private static HashMap<String, HashMap<String,String>> map = new HashMap<String, HashMap<String,String>>();
 	
