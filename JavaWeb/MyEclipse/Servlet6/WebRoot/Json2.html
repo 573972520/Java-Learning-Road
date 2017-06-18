@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+	var s1 = "{name:'yzk',age:18}"; //普通的字符串
+	var p1 = {name:'yzk',age:18}; //键值对对象
+	//alert(s1);
+	//alert(p1);
+	
+	//alert(p1.name);
+	//alert(s1.name);
+	
+	
+	//eval("({name:'yzk',age:18})") 把Javascript对象格式的字符串解析为Javascript对象
+	var p2 = eval("("+s1+")");  //eval("({name:'yzk',age:18})")
+	//alert(p2);
+	//alert(p2.name);
+	
+	
+	var s2 = "[3,5,89]";
+	var a2 = eval("("+s2+")");
+	//alert(a2[2]);
+	
+	var arr1 = JSON.parse(s2); //比eval安全
+	alert(arr1[2]);
+	
+</script>
+</body>
+</html>

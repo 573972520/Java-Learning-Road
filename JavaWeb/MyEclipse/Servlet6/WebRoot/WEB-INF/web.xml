@@ -18,4 +18,22 @@
   	<servlet-name>ajax1Servlet</servlet-name>
   	<url-pattern>/ajax1</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>checkUserNameServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.CheckUserNameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>checkUserNameServlet</servlet-name>
+  	<url-pattern>/checkUserName</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>getUserInfoServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.GetUserInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>getUserInfoServlet</servlet-name>
+  	<url-pattern>/getUserInfo</url-pattern>
+  </servlet-mapping>
 </web-app>

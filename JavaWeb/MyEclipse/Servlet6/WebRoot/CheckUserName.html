@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var txtUserName = document.getElementById("txtUserName");
+		//焦点离开触发onblur事件
+		txtUserName.onblur = function()
+		{
+			//var username = txtUserName.value;
+			var username = this.value;
+			rpajax("checkUserName?username="+username,function(data){
+				var msg = document.getElementById("msg");
+				if(data=="OK")
+				{
+					msg.innerHTML = "用户名可以使用";
+					msg.style.color = "green";
+				}
+				else if(data=="error")
+				{
+					msg.innerHTML = "用户名已经被注册";
+					msg.style.color = "red";
+				}
+			}); 
+		};
+	};
+</script>
+</head>
+<body>
+	用户名：<input type="text" id="txtUserName" /><span id="msg"></span>
+</body>
+</html>
