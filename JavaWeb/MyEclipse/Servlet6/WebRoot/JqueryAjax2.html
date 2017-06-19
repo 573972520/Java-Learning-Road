@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btnAdd").click(function(){
+			var i1 = $("#i1").val();
+			var i2 = $("#i2").val();
+			$.ajax({type:"post",url:"ajax1",
+				data:{action:"add",i:i1,j:i2},
+				success:function(data){$("#result").html(data);},
+				error:function(){alert("Ajax请求失败!");}
+			});
+		});
+	});
+</script>
+<body>
+<input type="text" id="i1" />+<input type="text" id="i2" />
+<input type="button" id="btnAdd" value="=" />
+<span id="result"></span>
+</body>
+</html>

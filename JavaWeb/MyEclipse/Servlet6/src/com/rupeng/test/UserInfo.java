@@ -7,6 +7,14 @@ public class UserInfo {
 	private int age;
 	private String email;
 	private String phoneNum;
+	
+	private String haha;
+	
+	public UserInfo()
+	{
+		this.haha = "loloolo";
+	}
+	
 	public int getAge() {
 		return age;
 	}

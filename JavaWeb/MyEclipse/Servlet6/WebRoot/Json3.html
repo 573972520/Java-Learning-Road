@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var txtUserName = document.getElementById("txtUserName");
+		//焦点离开触发onblur事件
+		txtUserName.onblur = function()
+		{
+			var username = this.value;
+			rpajax("getUserInfo?username="+username,function(respText){
+				if(respText == "error")
+				{
+					alert("查无此用户名");
+				}
+				else
+				{
+					alert(respText);
+					//var p = JSON.parse(respText); 
+					var p = eval("("+respText+")");
+					document.getElementById("age").innerHTML = p.age;
+					document.getElementById("email").innerHTML = p.email;
+					document.getElementById("phoneNum").innerHTML = p.phoneNum;
+				}
+			});
+		};
+	};
+</script>
+</head>
+<body>
+	用户名：<input type="text" id="txtUserName" />
+	年龄: <span id="age"></span>
+	邮箱：<span id="email"></span>
+	电话：<span id="phoneNum"></span>
+</body>
+</html>

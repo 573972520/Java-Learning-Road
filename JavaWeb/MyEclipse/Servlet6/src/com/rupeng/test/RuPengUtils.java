@@ -39,4 +39,14 @@ public class RuPengUtils {
 	{
 		return s==null || s.length() <= 0;
 	}
+	
+	/**
+	 * 设置返回Ajax的响应的ContentType以及编码
+	 * @param resp
+	 */
+	public static void initAjaxResponse(HttpServletResponse resp)
+	{
+		resp.setContentType("application/json;charset=UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+	}
 }
