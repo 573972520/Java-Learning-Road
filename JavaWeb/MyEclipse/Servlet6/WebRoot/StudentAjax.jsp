@@ -172,16 +172,16 @@
 		
 		//页面中任何ajax请求发起之前，ajaxSend都会触发
 		$("body").bind("ajaxSend",function(){
-			//loading
 			$("#dialog").show();
-			//
 		});
 		
 		//页面中任何ajax请求处理完成之后，ajaxComplete都会触发
 		$("body").bind("ajaxComplete",function(){
-			//loading
 			$("#dialog").hide();
-			//
+		});
+		
+		$("body").bind("ajaxError",function(){
+			alert("服务器处理失败");
 		});
 		
 		

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Servlet7</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  
+   <servlet>
+  	<servlet-name>upload1Servlet</servlet-name>
+  	<servlet-class>com.rupeng.test.Upload1Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>upload1Servlet</servlet-name>
+  	<url-pattern>/upload1</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+  	<servlet-name>downloadServlet</servlet-name>
+  	<servlet-class>com.rupeng.test.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>downloadServlet</servlet-name>
+  	<url-pattern>/download1</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>test1Servlet</servlet-name>
+  	<servlet-class>com.rupeng.test.Test1Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test1Servlet</servlet-name>
+  	<url-pattern>/test1</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>test2Servlet</servlet-name>
+  	<servlet-class>com.rupeng.test.Test2Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test2Servlet</servlet-name>
+  	<url-pattern>/test2</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+  	<servlet-name>test2Servlet</servlet-name>
+  	<url-pattern>*.a</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
