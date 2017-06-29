@@ -87,4 +87,36 @@ version="2.0">
    		<rtexprvalue>true</rtexprvalue> 
   	</attribute>
   </tag>
+  
+    <tag>
+    <name>pager</name>
+    <tag-class>com.zsz.tools.PagerTag</tag-class>
+    <body-content>empty</body-content>
+   	<attribute>
+   		<name>totalCount</name>
+   		<required>true</required>  
+   		<rtexprvalue>true</rtexprvalue> 
+  	</attribute>
+	
+	<attribute>
+   		<name>pageSize</name>
+   		<required>true</required>  
+   		<rtexprvalue>true</rtexprvalue> 
+  	</attribute>
+
+	<attribute>
+   		<name>currentPageNum</name>
+   		<required>true</required>  
+   		<rtexprvalue>true</rtexprvalue> 
+  	</attribute>
+
+	<attribute>
+   		<name>urlFormat</name>
+   		<required>true</required>  
+   		<rtexprvalue>true</rtexprvalue> 
+  	</attribute>
+  	
+  	
+  </tag>
+  
 </taglib> 

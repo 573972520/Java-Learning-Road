@@ -20,7 +20,6 @@
 </style>
 </head>
 <body>
-
 	<c:out value="${fn:length(name) }"></c:out>
 	<br/>
 	<c:out value="${zf:add(2,8) }"></c:out>
@@ -29,12 +28,11 @@
 	<c:out value="${zf:contains(list,age) }"></c:out>
 	<br />
 	<input type="checkbox" id="cbVIP" name="vip" value="isVIP" /><label for="cbVIP">VIP会员</label>
-	
 	<br />
 	<z:checkbox id="cbGender" name="gender" value="${1 }" label="女" />
 	<br />
 	<z:select items="${persons }" name="stuId" textName="name" valueName="id" id="stuId" selectedValue="${stuId }" attributes="style='color:red;' class='aaa' " />
-	
-	
+	<br />
+	<z:pager pageSize="10" totalCount="105" currentPageNum="8" urlFormat="users?action=list&n={pageNum}" />
 </body>
 </html>
