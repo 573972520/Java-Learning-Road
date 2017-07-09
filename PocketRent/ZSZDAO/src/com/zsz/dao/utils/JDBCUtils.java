@@ -33,7 +33,7 @@ public class JDBCUtils {
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException();
+			throw new RuntimeException(e);
 		}
 		
 	}
@@ -63,7 +63,7 @@ public class JDBCUtils {
 		}
 		catch(SQLException ex)
 		{
-			throw new RuntimeException();
+			throw new RuntimeException(ex);
 		}
 	}
 	
