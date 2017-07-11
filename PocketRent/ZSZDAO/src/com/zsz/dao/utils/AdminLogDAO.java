@@ -9,7 +9,7 @@ public class AdminLogDAO {
 	public void addnew(long adminUserId,String message)
 	{
 		try {
-			JDBCUtils.executeInsert("Insert into t_adminlogs(AdminUserId,CreateDateTime,Message) values(?,new(),?) ",adminUserId,message);
+			JDBCUtils.executeInsert("Insert into t_adminlogs(AdminUserId,CreateDateTime,Message) values(?,now(),?) ",adminUserId,message);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
