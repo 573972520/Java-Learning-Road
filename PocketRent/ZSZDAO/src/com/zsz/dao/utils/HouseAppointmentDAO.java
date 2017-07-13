@@ -11,7 +11,7 @@ import com.zsz.dto.HouseDTO;
 
 public class HouseAppointmentDAO {
 		
-	
+/*	
 	//新增一个预约：userId用户id（可以为null）；name姓名、phoneNum手机号、houseId房间id、visiteDate预约看房时间
 	public long addnew(Long userId, String name, String phoneNum, long houseId, Date visitDate)
 	{
@@ -77,7 +77,7 @@ public class HouseAppointmentDAO {
 	{
 		
 	}
-	
+	*/
 	private static HouseAppointmentDTO toDTO(ResultSet rs) throws SQLException
 	{
 		HouseAppointmentDTO dto = new HouseAppointmentDTO();

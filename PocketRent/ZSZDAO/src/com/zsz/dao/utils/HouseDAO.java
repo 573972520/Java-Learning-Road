@@ -32,7 +32,7 @@ public class HouseDAO {
 			JDBCUtils.closeAll(rs);
 		}
 	}
-
+/*
 	//获取typeId这种房源类别下cityId这个城市中房源的总数量
 	public long getTotalCount(long cityId, long typeId)
 	{
@@ -51,7 +51,7 @@ public class HouseDAO {
 	public void markDeleted(long id)
 	{
 		
-	}
+	}*/
 	//得到房源的图片
 	public HousePicDTO[] getPics(long houseId)
 	{
@@ -76,7 +76,7 @@ public class HouseDAO {
 			JDBCUtils.closeAll(rs);
 		}
 	}
-	//添加房源图片
+/*	//添加房源图片
 	public long addnewHousePic(HousePicDTO housePic)
 	{
 		
@@ -88,7 +88,7 @@ public class HouseDAO {
 	//搜索，返回值包含：总条数和HouseDTO[] 两个属性
 	public HouseSearchResult Search(HouseSearchOptions options)
 
-	
+	*/
 	private static HouseDTO toDTO(ResultSet rs) throws SQLException
 	{
 		HouseDTO dto = new HouseDTO();

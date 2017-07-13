@@ -69,7 +69,7 @@ public class RoleDAO {
 		}
 	}
 	
-	public void addRoleIds(long adminUserId, long[] roleIds)//给用户adminuserId增加权限roleIds
+/*	public void addRoleIds(long adminUserId, long[] roleIds)//给用户adminuserId增加权限roleIds
 	{
 		
 	}
@@ -84,7 +84,7 @@ public class RoleDAO {
 		
 	}
 
-	
+	*/
 	private static RoleDTO toDTO(ResultSet rs) throws SQLException
 	{
 		RoleDTO dto = new RoleDTO();

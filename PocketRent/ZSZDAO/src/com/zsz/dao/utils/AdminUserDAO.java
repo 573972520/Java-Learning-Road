@@ -15,6 +15,44 @@ import com.zsz.dto.PermissionDTO;
 import com.zsz.tools.CommonUtils;
 
 public class AdminUserDAO {
+	
+	public static void main(String[] args) {
+		
+		//JUnit 简化单元测试案例的编写，简化断言，简化单元测试案例运行的这么一个框架
+		
+		/*
+		boolean b1 = new AdminUserDAO().hasPermission(1, "AdminUser.Query");
+		System.out.println(b1);
+		
+		boolean b2 = new AdminUserDAO().hasPermission(1, "AdminUser.aaa");
+		System.out.println(b2);
+		*/
+		
+		//Test Case : 测试案例 ———— 考虑所有具有典型性的可能的输入输出都考虑到，测试到， 检查输出的合法性
+		//单元测试 Unit Test
+		//回归测试 :检测是否由于修改A导致其他地方出问题
+		boolean b1 = new AdminUserDAO().hasPermission(1, "AdminUser.Query");
+		if(b1) //断言 Assert
+		{
+			System.out.println("OK");
+		}
+		else
+		{
+			System.err.println("ERROR");
+		}
+		
+		boolean b2 = new AdminUserDAO().hasPermission(1, "AdminUser.aaa");
+		if(b2)
+		{
+			System.err.println("ERROR");
+		}
+		else
+		{
+			System.out.println("OK");
+		}
+	}
+	
+	/*
 	public final static String calcMD5(String s)
 	{
 		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
@@ -65,6 +103,8 @@ public class AdminUserDAO {
 		return bigInt.toString(16);
 	}
 	
+	*/
+	
 	//加入一个用户，name用户姓名，phoneNum手机号，password密码，email，cityId城市id（null表示总部）
 	public long addAdminUser(String name,String phoneNum, String password, String email, Long cityId)
 	{
@@ -87,7 +127,7 @@ public class AdminUserDAO {
 		//用户传进来的密码是明文，所以需要计算散列值
 		String passwordHash = CommonUtils.calcMD5(password);
 		StringBuilder sb = new StringBuilder();
-		sb.append("update into t_adminusers set Name=?,PasswordHash=?,Email=?,CityId=?\n");
+		sb.append("update t_adminusers set Name=?,PasswordHash=?,Email=?,CityId=?\n");
 		sb.append("where Id=?");
 		try {
 			JDBCUtils.executeNonQuery(sb.toString(), name,password,email,cityId,id);
