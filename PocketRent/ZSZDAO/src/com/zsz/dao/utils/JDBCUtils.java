@@ -95,9 +95,27 @@ public class JDBCUtils {
 	}
 	
 	
+	public static Connection getConnection() throws SQLException
+	{
+		return ds.getConnection();
+	}
+	
+	
 	public static ResultSet executeQuery(String sql,Object...  params) throws SQLException
 	{
 		Connection conn = ds.getConnection();
+		try {
+			return executeQuery(conn, sql, params);
+		} 
+		catch(SQLException e)
+		{
+			closeQuietly(conn);
+			throw e;
+		}
+	}
+	
+	public static ResultSet executeQuery(Connection conn,String sql,Object...  params) throws SQLException
+	{
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -110,22 +128,13 @@ public class JDBCUtils {
 		catch(SQLException e)
 		{
 			closeQuietly(ps);
-			closeQuietly(conn);
 			throw e;
 		}
 	}
 	
 	
-	/**
-	 * 专门由于执行插入数据的方法，可以获得自增字段的值
-	 * @param sql
-	 * @param params
-	 * @return
-	 * @throws SQLException
-	 */
-	public static long executeInsert(String sql,Object...params) throws SQLException
+	public static long executeInsert(Connection conn,String sql,Object...params) throws SQLException
 	{
-		Connection conn = ds.getConnection();
 		PreparedStatement psInsert = null;
 		PreparedStatement psLastInsertId = null;
 		ResultSet rs = null;
@@ -153,23 +162,35 @@ public class JDBCUtils {
 			closeQuietly(rs);
 			closeQuietly(psLastInsertId);
 			closeQuietly(psInsert);
+		}
+	}
+	
+	/**
+	 * 专门由于执行插入数据的方法，可以获得自增字段的值
+	 * @param sql
+	 * @param params
+	 * @return
+	 * @throws SQLException
+	 */
+	public static long executeInsert(String sql,Object...params) throws SQLException
+	{
+		Connection conn = ds.getConnection();
+		try
+		{
+			return executeInsert(conn, sql, params);
+		}
+		finally
+		{
 			closeQuietly(conn);
 		}
 		
 	}
 	
 	
-	/**
-	 * 执行查询,并且返回结果集中第一行、第一例的值，如果没有值，则返回null
-	 * select count(*) from t
-	 * @param sql
-	 * @param params
-	 * @return
-	 * @throws SQLException
-	 */
-	public static Object querySingle(String sql,Object...params) throws SQLException
+	
+	
+	public static Object querySingle(Connection conn,String sql,Object...params) throws SQLException
 	{
-		Connection conn = ds.getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
@@ -192,31 +213,79 @@ public class JDBCUtils {
 		{
 			closeQuietly(rs);
 			closeQuietly(ps);
-			closeQuietly(conn);
 			throw e;
 		}
-		
 	}
+	
+	/**
+	 * 执行查询,并且返回结果集中第一行、第一例的值，如果没有值，则返回null
+	 * select count(*) from t
+	 * @param sql
+	 * @param params
+	 * @return
+	 * @throws SQLException
+	 */
+	public static Object querySingle(String sql,Object...params) throws SQLException
+	{
+		Connection conn = ds.getConnection();
+		
+		try
+		{
+			return querySingle(conn, sql, params);
+		}
+		finally
+		{
+			closeQuietly(conn);
+		}
+	}
+	
+	
+	//执行非查询代码
+		public static void executeNonQuery(Connection conn,String sql,Object...params) throws SQLException
+		{
+			PreparedStatement ps = null;
+			try {
+				ps = conn.prepareStatement(sql);
+				for(int i = 0;i < params.length;i++)
+				{
+					ps.setObject(i + 1, params[i]);
+				}
+				ps.execute();
+			} 
+			finally
+			{
+				closeQuietly(ps);
+			}
+			
+		}
 	
 	//执行非查询代码
 	public static void executeNonQuery(String sql,Object...params) throws SQLException
 	{
 		Connection conn = ds.getConnection();
-		PreparedStatement ps = null;
 		try {
-			ps = conn.prepareStatement(sql);
-			for(int i = 0;i < params.length;i++)
-			{
-				ps.setObject(i + 1, params[i]);
-			}
-			ps.execute();
+			executeNonQuery(conn, sql, params);
 		} 
 		finally
 		{
-			closeQuietly(ps);
 			closeQuietly(conn);
 		}
 		
+	}
+	
+	public static void rollback(Connection conn)
+	{
+		if(conn != null)
+		{
+			try
+			{
+				conn.rollback();
+			}
+			catch(SQLException e)
+			{
+				
+			}
+		}
 	}
 	
 }

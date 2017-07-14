@@ -29,15 +29,14 @@ public class AdminUserDAOTest {
 	@Test
 	public void testUpdateAdminUser() {
 		AdminUserDAO dao = new AdminUserDAO();
-		dao.updateAdminUser(1, "haha", "123", "123@163.com", 3L);
+		dao.updateAdminUser(1, "haha","123", "123@163.com", 3L);
 		AdminUserDTO u1 = dao.getById(1);
 		
 		assertEquals((long)u1.getCityId(), 3);
 		assertEquals(u1.getCityName(), "深圳");
 		assertEquals(u1.getEmail(), "123@163.com");
 		assertEquals(u1.getName(), "haha");
-		assertEquals(u1.getPasswordHash(), CommonUtils.calcMD5("123"));
-		
+		assertEquals(u1.getPasswordHash().toLowerCase(), CommonUtils.calcMD5("123").toLowerCase());
 	}
 	
 	@Test

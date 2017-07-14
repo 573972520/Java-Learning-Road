@@ -52,7 +52,7 @@ public class AdminUserDAO {
 		}
 	}
 	
-	/*
+	
 	public final static String calcMD5(String s)
 	{
 		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
@@ -103,7 +103,7 @@ public class AdminUserDAO {
 		return bigInt.toString(16);
 	}
 	
-	*/
+	
 	
 	//加入一个用户，name用户姓名，phoneNum手机号，password密码，email，cityId城市id（null表示总部）
 	public long addAdminUser(String name,String phoneNum, String password, String email, Long cityId)
@@ -130,7 +130,7 @@ public class AdminUserDAO {
 		sb.append("update t_adminusers set Name=?,PasswordHash=?,Email=?,CityId=?\n");
 		sb.append("where Id=?");
 		try {
-			JDBCUtils.executeNonQuery(sb.toString(), name,password,email,cityId,id);
+			JDBCUtils.executeNonQuery(sb.toString(), name,passwordHash,email,cityId,id);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

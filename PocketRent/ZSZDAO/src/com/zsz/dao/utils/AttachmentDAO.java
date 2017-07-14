@@ -16,7 +16,7 @@ public class AttachmentDAO {
 		List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
 		ResultSet rs = null;
 		try {
-			rs = JDBCUtils.executeQuery("select * from t_attachments");
+			rs = JDBCUtils.executeQuery("select * from t_attachments where IsDeleted=0");
 			while(rs.next())
 			{
 				AttachmentDTO dto = toDTO(rs);
@@ -38,7 +38,7 @@ public class AttachmentDAO {
 		List<AttachmentDTO> list = new ArrayList<AttachmentDTO>();
 		ResultSet rs = null;
 		try {
-			rs = JDBCUtils.executeQuery("select * from t_attachments where IsDeleted=0 and Id=?" , houseId);
+			rs = JDBCUtils.executeQuery("select * from t_attachments where Id in(select AttachmentId from t_houseattachment where HouseId = ?)" , houseId);
 			while(rs.next())
 			{
 				AttachmentDTO dto = toDTO(rs);
