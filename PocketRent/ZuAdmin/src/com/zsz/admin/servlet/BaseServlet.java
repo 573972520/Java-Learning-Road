@@ -37,12 +37,12 @@ public class BaseServlet extends HttpServlet {
 			methodAction.invoke(this, req,resp);
 		} catch (NoSuchMethodException | SecurityException e) {
 			AdminUtils.showError(req, resp, "cannot invoke action method"+action);
-			//resp.getWriter().print("cannot invoke action method"+action);
+			//resp.getWriter().print("cannot invoke action method "+action);
 			logger.warn("找不到名字为"+action+"的方法" , e);
 		} catch(IllegalAccessException | IllegalArgumentException |InvocationTargetException e)
 		{
 			AdminUtils.showError(req, resp, "invoke method"+action+"error");
-			//resp.getWriter().print("invoke method"+action+"error");
+			//resp.getWriter().print("invoke method"+ action +" error");
 			logger.warn("调用名字为"+action+"的方法失败" , e);
 		}
 		
