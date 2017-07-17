@@ -47,6 +47,42 @@ public class RoleServlet extends BaseServlet {
 		permService.addPermIds(roleId, CommonUtils.toLongArray(permIds));
 		writeJson(resp, new AjaxResult("ok"));
 	}
+	
+	public void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		long id = Long.parseLong(req.getParameter("id"));
+		RoleService service = new RoleService();
+		RoleDTO role = service.getById( id);
+		req.setAttribute("role", role);
+		
+		//获取所有的权限项
+		PermissionService permService = new PermissionService();
+		PermissionDTO[] perms = permService.getAll();
+		req.setAttribute("perms", perms);
+		
+		//获取这个角色拥有的权限项的id
+		PermissionDTO[] rolePerms = permService.getByRoleId(id);
+		long[] rolePermIds = new long[rolePerms.length];
+		for (int i = 0; i < rolePerms.length; i++) {
+			rolePermIds[i] = rolePerms[i].getId();
+		}
+		req.setAttribute("rolePermIds", rolePermIds);
+		
+		req.getRequestDispatcher("/WEB-INF/role/roleEdit.jsp").forward(req, resp);
+	}
+	
+	public void editSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		long id = Long.parseLong(req.getParameter("id"));
+		String rolename = req.getParameter("rolename");
+		String[] permIds = req.getParameterValues("permId");
+		
+		RoleService service = new RoleService();
+		service.update(id, rolename);
+		
+		PermissionService permService = new  PermissionService();
+		permService.updatePermIds(id, CommonUtils.toLongArray(permIds));
+		
+		writeJson(resp, new AjaxResult("ok"));
+	} 
 		
 	
 }

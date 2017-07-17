@@ -53,10 +53,11 @@
 	<input runat="server" id="divScrollValue" type="hidden" value="" />
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe616;</i> 权限管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="article-list.html" href="javascript:void(0)">资讯管理</a></li>
+					<li><a _href="<%=ctxPath %>/Role?action=list" href="javascript:void(0)">角色管理</a></li>
+					<li><a _href="<%=ctxPath %>/AdminUser?action=list" href="javascript:void(0)">管理员管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -64,7 +65,7 @@
 			<dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a _href="picture-list.html" href="javascript:void(0)">图片管理</a></li>
+					<li><a_href="picture-list.html" href="javascript:void(0)">图片管理</a></li>
 				</ul>
 			</dd>
 		</dl>
