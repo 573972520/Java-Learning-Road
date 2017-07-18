@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -28,12 +29,15 @@
 		</ul>
 	</nav>
 	<ul class="Hui-userbar">
-		<li>超级管理员</li>
-		<li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+		<li>${adminUser.phoneNum }(
+		<c:if test="${empty adminUser.cityName }">总部</c:if>
+		<c:if test="${not empty adminUser.cityName }">
+		${adminUser.cityName }
+		</c:if>
+		)</li>
+		<li class="dropDown dropDown_hover"><a href="#" class="dropDown_A">${adminUser.name } <i class="Hui-iconfont">&#xe6d5;</i></a>
 			<ul class="dropDown-menu radius box-shadow">
-				<li><a href="#">个人信息</a></li>
-				<li><a href="#">切换账户</a></li>
-				<li><a href="#">退出</a></li>
+				<li><a href="<%=ctxPath%>/Index?action=logout">退出</a></li>
 			</ul>
 		</li>
 		<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>

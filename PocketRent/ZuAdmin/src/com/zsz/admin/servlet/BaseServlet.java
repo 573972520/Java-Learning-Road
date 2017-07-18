@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.zsz.admin.utils.AdminUtils;
+import com.zsz.service.AdminUserService;
 import com.zsz.tools.AjaxResult;
 
 public class BaseServlet extends HttpServlet {
@@ -21,6 +22,7 @@ public class BaseServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String action = req.getParameter("action");
 		if(StringUtils.isEmpty(action))
 		{
@@ -33,8 +35,40 @@ public class BaseServlet extends HttpServlet {
 		//约定方法的名字就是 action的名字（req,resp）
 		try {
 			Method methodAction = clz.getMethod(action, HttpServletRequest.class,HttpServletResponse.class);
+			
+			//AOP思想
+			
+			//获得方法上标注的“是否允许匿名访问”
+			AllowAnonymous allowAnonymous = methodAction.getAnnotation(AllowAnonymous.class);
+			if(allowAnonymous == null) //如果为null，就说明方法没有标注AllowAnonymous。则需要检查登录状态
+			{
+				//统一检查用户是否有登录，如果没有登录，则直接不执行methodAction.invoke
+				Long userId = AdminUtils.getAdminUserId(req);
+				if(userId == null)
+				{
+					AdminUtils.showError(req, resp, "未登录");
+					return; //!!!一定要返回，不能往下走了！
+				}
+				//已经登录了
+				
+				//统一的权限控制，需要进行权限控制的方法标注HasPermission即可
+				//获得方法上标注的HasPermission
+				HasPermission hasPermission = methodAction.getAnnotation(HasPermission.class);
+				if(hasPermission!=null)//如果方法上标注了HasPermission，则要检查当前用户是否有相应权限
+				{
+					AdminUserService adminUserService = new AdminUserService();
+					boolean isOK = adminUserService.hasPermission(userId, hasPermission.value());
+					if(!isOK)
+					{
+						AdminUtils.showError(req, resp, "无权访问！");
+						return;//!!!!!
+					}
+				}
+			}
+			
 			//拿到了 	public void index(HttpServletRequest req,HttpServletResponse resp) 的方法
-			methodAction.invoke(this, req,resp);
+			methodAction.invoke(this, req,resp);//调用方法
+			
 		} catch (NoSuchMethodException | SecurityException e) {
 			AdminUtils.showError(req, resp, "cannot invoke action method"+action);
 			//resp.getWriter().print("cannot invoke action method "+action);

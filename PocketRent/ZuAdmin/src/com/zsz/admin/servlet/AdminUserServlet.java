@@ -21,6 +21,7 @@ import com.zsz.tools.CommonUtils;
 @WebServlet("/AdminUser")
 public class AdminUserServlet extends BaseServlet {
 
+	@HasPermission("AdminUser.Query")
 	public void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		AdminUserService service = new AdminUserService();
 		AdminUserDTO[] adminUsers =  service.getAll();
@@ -28,14 +29,14 @@ public class AdminUserServlet extends BaseServlet {
 		req.getRequestDispatcher("/WEB-INF/adminUser/adminUserList.jsp").forward(req, resp);
 		
 	}
-	
+	@HasPermission("AdminUser.Delete")
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		AdminUserService service = new AdminUserService();
 		service.markDeleted(id);
 		writeJson(resp, new AjaxResult("ok"));
 	}
-	
+	@HasPermission("AdminUser.AddNew")
 	public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CityService cityService = new CityService();
 		CityDTO[] cities = cityService.getAll();
@@ -47,7 +48,7 @@ public class AdminUserServlet extends BaseServlet {
 		
 		req.getRequestDispatcher("/WEB-INF/adminUser/adminUserAdd.jsp").forward(req, resp);
 	}
-	
+	@HasPermission("AdminUser.AddNew")
 	public void addSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String phoneNum = req.getParameter("phoneNum");
 		String name = req.getParameter("name");
@@ -76,7 +77,7 @@ public class AdminUserServlet extends BaseServlet {
 		
 		writeJson(resp, new AjaxResult("ok"));
 	}
-	
+	@HasPermission("AdminUser.Edit")
 	public void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		AdminUserService adminUserService = new AdminUserService();
@@ -101,7 +102,7 @@ public class AdminUserServlet extends BaseServlet {
 		
 		req.getRequestDispatcher("/WEB-INF/adminUser/adminUserEdit.jsp").forward(req, resp);
 	}
-	
+	@HasPermission("AdminUser.Edit")
 	public void editSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		

@@ -17,12 +17,14 @@ import com.zsz.tools.CommonUtils;
 
 @WebServlet("/Role")
 public class RoleServlet extends BaseServlet {
+	@HasPermission("Role.Query")
 	public void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RoleService roleServlet = new RoleService();
 		RoleDTO[] roles = roleServlet.getAll();
 		req.setAttribute("roles", roles);
 		req.getRequestDispatcher("/WEB-INF/role/roleList.jsp").forward(req, resp);		
 	}
+	@HasPermission("Role.Delete")
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		RoleService service = new RoleService();
@@ -30,12 +32,14 @@ public class RoleServlet extends BaseServlet {
 		this.writeJson(resp, new AjaxResult("ok"));
 		
 	}
+	@HasPermission("Role.AddNew")
 	public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PermissionDAO permDAO = new PermissionDAO();
 		PermissionDTO[] perms =permDAO.getAll();
 		req.setAttribute("perms", perms);
 		req.getRequestDispatcher("/WEB-INF/role/roleAdd.jsp").forward(req, resp);
 	}
+	@HasPermission("Role.AddNew")
 	public void addSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String rolename = req.getParameter("rolename");
 		String[] permIds = req.getParameterValues("permId");
@@ -47,7 +51,7 @@ public class RoleServlet extends BaseServlet {
 		permService.addPermIds(roleId, CommonUtils.toLongArray(permIds));
 		writeJson(resp, new AjaxResult("ok"));
 	}
-	
+	@HasPermission("Role.Edit")
 	public void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		RoleService service = new RoleService();
@@ -69,7 +73,7 @@ public class RoleServlet extends BaseServlet {
 		
 		req.getRequestDispatcher("/WEB-INF/role/roleEdit.jsp").forward(req, resp);
 	}
-	
+	@HasPermission("Role.Edit")
 	public void editSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		String rolename = req.getParameter("rolename");

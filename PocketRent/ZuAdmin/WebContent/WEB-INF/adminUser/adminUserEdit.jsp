@@ -54,10 +54,10 @@
       <select id="cityId" name="cityId" datatype="*">
       
       <c:if test="${empty adminUser.cityId }">
-      	<option selected="selected">总部</option>
+      	<option value="-1" selected="selected">总部</option>
       </c:if>
       <c:if test="${not empty adminUser.cityId }">
-      	<option>总部</option>
+      	<option value="-1">总部</option>
       </c:if>
       
       <c:forEach items="${cities }" var="city">
