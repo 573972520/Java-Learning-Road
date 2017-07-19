@@ -3,4 +3,4 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1>出错啦！！！</h1>
-<c:out value="${errorMag }"></c:out>
+<c:out escapeXml="false" value="${errorMag }"></c:out>

@@ -66,10 +66,13 @@
 			</dd>
 		</dl>
 		<dl id="menu-picture">
-			<dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe613;</i> 房源管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a_href="picture-list.html" href="javascript:void(0)">图片管理</a></li>
+					<li><a _href="<%=ctxPath %>/House?action=list&typeId=11&pageIndex=1" href="javascript:void(0)">短租管理</a></li>
+					<li><a _href="<%=ctxPath %>/House?action=list&typeId=12&pageIndex=1" href="javascript:void(0)">写字楼管理</a></li>
+					<li><a _href="<%=ctxPath %>/House?action=list&typeId=13&pageIndex=1" href="javascript:void(0)">合租管理</a></li>
+					<li><a _href="<%=ctxPath %>/House?action=list&typeId=14&pageIndex=1" href="javascript:void(0)">整租管理</a></li>
 				</ul>
 			</dd>
 		</dl>

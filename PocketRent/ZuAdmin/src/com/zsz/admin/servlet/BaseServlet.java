@@ -46,7 +46,8 @@ public class BaseServlet extends HttpServlet {
 				Long userId = AdminUtils.getAdminUserId(req);
 				if(userId == null)
 				{
-					AdminUtils.showError(req, resp, "未登录");
+					String ctxPath = req.getContextPath();
+					AdminUtils.showError(req, resp, "未登录<a href='"+ctxPath+"/Index?action=login'>点此登录</a>");
 					return; //!!!一定要返回，不能往下走了！
 				}
 				//已经登录了
