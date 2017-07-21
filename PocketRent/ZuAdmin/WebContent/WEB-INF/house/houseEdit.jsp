@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="z" uri="http://www.zu.com/core" %>
+<%@taglib prefix="zf" uri="http://www.zsz.com/functions" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -24,8 +25,9 @@
 					/* 清空之前生成的子元素 */
 					$("#communityId").empty();
 					for (var i = 0; i < result.data.length; i++) {
-						var item = result.data[i];					
-						$("<option value='"+item.id+"'>"+item.name+"</option>").appendTo($("#communityId"));
+						var item = result.data[i];		
+						var xiangdeng = (item.id == ${house.communityId});//如果当前遍历的小区的id等于被编辑房源的小区id，则设定这个optoin为selected
+						$("<option value='"+item.id+"'"+(xiangdeng?" selected":"")+">"+item.name+"</option>").appendTo($("#communityId"));
 					}
 				},
 				error:function(){
@@ -33,19 +35,22 @@
 				}
 			});
 		});
+		
+		$("#regionId").change();//在html中如果直接设定某个option选中，则页面加载的时候change不会被触发，因此ajax无法加载这个区下的小区，所以这里主动触发一次
 	});
 </script>
-<title>添加房源</title>
+<title>修改房源</title>
 </head>
 <body>
 <div class="pd-20">
   <form action="" method="post" class="form form-horizontal" id="form-add">
-  	<input type="hidden" id="" name="typeId" value="${typeId }"/>
-  	<input type="hidden" name="action" value="addSubmit"/>
+  	<input type="hidden" id="" name="id" value="${house.id }"/>
+  	<input type="hidden" name="action" value="editSubmit"/>
+  	<input type="hidden" name="typeId" value="${house.typeId }"/>
     <div class="row cl">
       <label class="form-label col-2"><span class="c-red">*</span>区域：</label>
       <div class="formControls col-2">
-       	  <z:select items="${regions }" name="regionId" textName="name" valueName="id" id="regionId"/>
+       	  <z:select items="${regions }" selectedValue="${house.regionId }" name="regionId" textName="name" valueName="id" id="regionId"/>
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>小区：</label>
       <div class="formControls col-2">
@@ -53,75 +58,76 @@
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>房型：</label>
       <div class="formControls col-2">
-        <z:select items="${roomTypes }" name="roomTypeId" textName="name" valueName="id" id="roomTypeId"/>
+        <z:select items="${roomTypes }" selectedValue="${house.roomTypeId }" name="roomTypeId" textName="name" valueName="id" id="roomTypeId"/>
       </div>  
     </div>
     <div class="row cl">
       <label class="form-label col-2"><span class="c-red">*</span>地址：</label>
       <div class="formControls col-6">
-        <input type="text" class="input-text" value="" placeholder="这里输入几号楼，几单元，哪个房间" id="address" name="address" datatype="*" nullmsg="地址必填">
+        <input type="text" class="input-text" value="${house.address }" placeholder="这里输入几号楼，几单元，哪个房间" id="address" name="address" datatype="*" nullmsg="地址必填">
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>月租：</label>
       <div class="formControls col-2">
-        <input type="text" class="input-text" value="" placeholder="" id="monthRent" name="monthRent" datatype="n" nullmsg="月租不能为空">
+        <input type="text" class="input-text" value="${house.monthRent }" placeholder="" id="monthRent" name="monthRent" datatype="n" nullmsg="月租不能为空">
       </div>
     </div>    
     <div class="row cl">
       <label class="form-label col-2"><span class="c-red">*</span>状态：</label>
       <div class="formControls col-2">
-        <z:select items="${statuses }" name="statusId" textName="name" valueName="id" id="statusId"/>
+        <z:select items="${statuses }" name="statusId" selectedValue="${house.statusId }" textName="name" valueName="id" id="statusId"/>
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>面积：</label>
       <div class="formControls col-2">
-        <input type="text" class="input-text" value="" placeholder="" id="area" name="area" datatype="*" nullmsg="面积不能为空">
+        <input type="text" class="input-text" value="${house.area }" placeholder="" id="area" name="area" datatype="*" nullmsg="面积不能为空">
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>装修：</label>
       <div class="formControls col-2">
-        <z:select items="${decorateStatus }" name="decorateStatusId" textName="name" valueName="id" id="decorateStatusId"/>
+        <z:select items="${decorateStatus }" selectedValue="${house.decorateStatusId }" name="decorateStatusId" textName="name" valueName="id" id="decorateStatusId"/>
       </div>  
     </div>    
     <div class="row cl">
       <label class="form-label col-2"><span class="c-red">*</span>楼层：</label>
       <div class="formControls col-1">
-        <input type="text" class="input-text" value="" placeholder="第几层" id="floorIndex" name="floorIndex" datatype="n" nullmsg="层数不能为空">
+        <input type="text" class="input-text" value="${house.floorIndex }" placeholder="第几层" id="floorIndex" name="floorIndex" datatype="n" nullmsg="层数不能为空">
       </div>
       <div class="formControls col-1">
-        <input type="text" class="input-text" value="" placeholder="总层数" id="totalFloorCount" name="totalFloorCount" datatype="n" nullmsg="总层数不能为空">
+        <input type="text" class="input-text" value="${house.totalFloorCount }" placeholder="总层数" id="totalFloorCount" name="totalFloorCount" datatype="n" nullmsg="总层数不能为空">
       </div>      
       <label class="form-label col-2"><span class="c-red">*</span>朝向：</label>
       <div class="formControls col-2">
-        <input type="text" class="input-text" value="" placeholder="" id="direction" name="direction" datatype="*" nullmsg="朝向不能为空">
+        <input type="text" class="input-text" value="${house.direction }" placeholder="" id="direction" name="direction" datatype="*" nullmsg="朝向不能为空">
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>可看房时间：</label>
       <div class="formControls col-2">
-        <input type="text" class="input-text" value="" placeholder="" onfocus="WdatePicker({minDate: '${now}'})" id="lookableDateTime" name="lookableDateTime"  nullmsg="可看房时间不能为空">
+        <input type="text" class="input-text" value="${house.lookableDateTime }" placeholder="" onfocus="WdatePicker({minDate: '${now}'})" id="lookableDateTime" name="lookableDateTime"  nullmsg="可看房时间不能为空">
       </div>  
     </div>   
     <div class="row cl">
       <label class="form-label col-2"><span class="c-red">*</span>入住时间：</label>
       <div class="formControls col-2">
-        <input type="text" class="input-text" value="" onfocus="WdatePicker({minDate: '${now}'})" placeholder="" id="checkInDateTime" name="checkInDateTime" nullmsg="手机号不能为空">
+        <input type="text" class="input-text" value="${house.checkInDateTime }" onfocus="WdatePicker({minDate: '${now}'})" placeholder="" id="checkInDateTime" name="checkInDateTime" nullmsg="手机号不能为空">
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>业主姓名：</label>
       <div class="formControls col-2">
-        <input type="text" class="input-text" value="" placeholder="" id="ownerName" name="ownerName" datatype="*" nullmsg="业主姓名不能为空">
+        <input type="text" class="input-text" value="${house.ownerName }" placeholder="" id="ownerName" name="ownerName" datatype="*" nullmsg="业主姓名不能为空">
       </div>
       <label class="form-label col-2"><span class="c-red">*</span>业主电话：</label>
       <div class="formControls col-2">
-        <input type="text" class="input-text" value="" placeholder="" id="ownerPhoneNum" name="ownerPhoneNum" datatype="m" nullmsg="业主电话不能为空">
+        <input type="text" class="input-text" value="${house.ownerPhoneNum }" placeholder="" id="ownerPhoneNum" name="ownerPhoneNum" datatype="m" nullmsg="业主电话不能为空">
       </div>  
     </div>  
     <div class="row cl">
       <label class="form-label col-2"><span class="c-red">*</span>房源描述：</label>
       <div class="formControls col-10">
-        <textarea class="input-text" style="height: 100px" id="description" name="description"></textarea>
+        <textarea class="input-text" style="height: 100px" id="description" name="description"><c:out value="${house.description }"/></textarea>
       </div>
     </div>  
     <div class="row cl">
       <label class="form-label col-2"><span class="c-red">*</span>配套设施：</label>
       <div class="formControls col-10">
         <c:forEach items="${attachments }" var="att">
-        	<z:checkbox label="${att.name }" name="attachmentId" value="${att.id }" id="attachmentId-${att.id }"/>
+        	
+        	<z:checkbox checked="${zf:contains(houseAttachmentIds,att.id) }" label="${att.name }" name="attachmentId" value="${att.id }" id="attachmentId-${att.id }"/>
         </c:forEach>
       </div>
     </div>               

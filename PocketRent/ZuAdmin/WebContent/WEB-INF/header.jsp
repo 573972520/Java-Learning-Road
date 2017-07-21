@@ -21,6 +21,7 @@
 <link href="<%=ctxPath %>/skin/default/skin.css" rel="stylesheet" type="text/css" id="skin" />
 <link href="<%=ctxPath %>/lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
 <link href="<%=ctxPath %>/css/style.css" rel="stylesheet" type="text/css" />
+<link href="<%=ctxPath %>/lib/lightbox2/2.8.1/css/lightbox.css" rel="stylesheet" type="text/css" >
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -33,5 +34,6 @@
 <script type="text/javascript" src="<%=ctxPath %>/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript" src="<%=ctxPath %>/lib/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=ctxPath %>/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>   
+<script type="text/javascript" src="<%=ctxPath %>/lib/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 <script type="text/javascript" src="<%=ctxPath %>/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=ctxPath %>/js/H-ui.admin.js"></script> 

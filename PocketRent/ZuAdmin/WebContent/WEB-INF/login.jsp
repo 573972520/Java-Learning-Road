@@ -52,13 +52,13 @@
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60d;</i></label>
         <div class="formControls col-8">
-          <input id="" name="phoneNum" type="text" placeholder="手机号" class="input-text size-L">
+          <input id="" name="phoneNum" type="text" placeholder="手机号" value="18911111111" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">
         <label class="form-label col-3"><i class="Hui-iconfont">&#xe60e;</i></label>
         <div class="formControls col-8">
-          <input id="" name="password" type="password" placeholder="密码" class="input-text size-L">
+          <input id="" name="password" type="password" placeholder="密码" value="123456" class="input-text size-L">
         </div>
       </div>
       <div class="row cl">

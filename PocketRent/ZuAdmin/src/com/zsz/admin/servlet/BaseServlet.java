@@ -47,7 +47,8 @@ public class BaseServlet extends HttpServlet {
 				if(userId == null)
 				{
 					String ctxPath = req.getContextPath();
-					AdminUtils.showError(req, resp, "未登录<a href='"+ctxPath+"/Index?action=login'>点此登录</a>");
+					//targer='_top'避免链接在iframe中打开，而是再顶层浏览器窗口中打开
+					AdminUtils.showError(req, resp, "未登录<a targer='_top' href='"+ctxPath+"/Index?action=login'>点此登录</a>");
 					return; //!!!一定要返回，不能往下走了！
 				}
 				//已经登录了
