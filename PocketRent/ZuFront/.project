@@ -3,6 +3,10 @@
 	<name>ZuFront</name>
 	<comment></comment>
 	<projects>
+		<project>ZSZService</project>
+		<project>ZSZDTO</project>
+		<project>ZSZDAO</project>
+		<project>ZSZTools</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
