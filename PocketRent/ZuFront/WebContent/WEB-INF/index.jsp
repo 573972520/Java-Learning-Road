@@ -202,7 +202,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="sign.html">
+					<a href="<%=ctxPath%>/User?action=login">
 						<i class="iconfont icon-gerenzhongxin"></i>
 						<p>个人中心</p>
 					</a>

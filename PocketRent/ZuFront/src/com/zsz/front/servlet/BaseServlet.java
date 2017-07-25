@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.zsz.front.Utils.FrontUtils;
+import com.zsz.tools.AjaxResult;
 
 
 	public class BaseServlet extends HttpServlet {
@@ -48,5 +49,11 @@ import com.zsz.front.Utils.FrontUtils;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.doGet(req, resp);
+	}
+	
+	protected void writeJson(HttpServletResponse resp,AjaxResult ajaxResult) throws IOException
+	{
+		resp.setContentType("application/json");
+		resp.getWriter().print(ajaxResult.toJson());
 	}
 }
