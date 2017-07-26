@@ -1,13 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <%@include file="/WEB-INF/header.jsp" %>
     <title>首页</title>
+    <script type="text/javascript">
+    	$(function () {
+			$.ajax({
+				type:"post",
+				url:"<%=ctxPath%>/Index",
+				data:{action:"queryCurrentCity"},
+				success:function(result){
+					if(result.status == "ok")
+					{
+						$("#cityName").text(result.data);
+					}
+					else
+					{
+						alert(result.msg);
+					}
+				},
+				error:function(){
+					alert("获取当前城市网络请求失败！");	
+				}
+			});
+		});
+    </script>
 </head>
     <%@include file="/WEB-INF/loading.jsp" %>
 	<body>
+	
+		<div>
+			<ul>
+					<c:forEach items="${cities }" var="city">
+						<li cityId="${city.id }">$(city.name)</li>
+					</c:forEach>
+			</ul>
+		</div>
 		<!--header star-->
 		<div class="header clearfloat">
 			<div class="tu clearfloat">
@@ -15,7 +46,7 @@
 			</div>
 			<header class="mui-bar mui-bar-nav">
 				<a class="btn" href="#">		            
-		            <p>北京<i class="iconfont icon-iconfontarrowdown-copy"></i></p>
+		            <p><span id="cityName"></span><i class="iconfont icon-iconfontarrowdown-copy"></i></p>
 		        </a>
 		        <div class="top-sch-box flex-col">
 		            <div class="centerflex">
