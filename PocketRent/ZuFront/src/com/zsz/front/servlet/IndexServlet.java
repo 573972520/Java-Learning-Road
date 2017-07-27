@@ -51,7 +51,12 @@ public class IndexServlet extends BaseServlet {
 		writeJson(resp, new AjaxResult("ok","",cityName));
 		
 	}	
-	
+	public void getAllCities(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		CityService cityService = new CityService();
+		CityDTO[] cities = cityService.getAll();
+		writeJson(resp, new AjaxResult("ok","",cities));
+	}
+		
 	
 		
 }

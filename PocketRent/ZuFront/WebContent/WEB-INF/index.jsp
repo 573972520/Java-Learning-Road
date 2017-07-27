@@ -26,16 +26,22 @@
 					alert("获取当前城市网络请求失败！");	
 				}
 			});
+			
+			$("#btnChangeCity").click(function(){
+				var left = $(this).offset().left; //这里的left的属性，不是方法，所以不加()
+				var top = $(this).offset().top;
+				var height = $(this).height();
+				$("#citiesList").toggle("fast").css("left",left).css("top",top+height);
+			});
 		});
     </script>
 </head>
     <%@include file="/WEB-INF/loading.jsp" %>
 	<body>
-	
-		<div>
+		<div style="display:none;position:absolute" id="citiesList">
 			<ul>
 					<c:forEach items="${cities }" var="city">
-						<li cityId="${city.id }">$(city.name)</li>
+						<li cityId="${city.id }">${city.name }</li>
 					</c:forEach>
 			</ul>
 		</div>
@@ -45,8 +51,8 @@
 				<img src="img/index-banner.jpg"/>
 			</div>
 			<header class="mui-bar mui-bar-nav">
-				<a class="btn" href="#">		            
-		            <p><span id="cityName"></span><i class="iconfont icon-iconfontarrowdown-copy"></i></p>
+				<a class="btn" href="#" id="btnChangeCity">		            
+		            <p>><b id="cityName"></b><i class="iconfont icon-iconfontarrowdown-copy"></i></p>
 		        </a>
 		        <div class="top-sch-box flex-col">
 		            <div class="centerflex">
@@ -241,12 +247,12 @@
 			</ul>
 		</footer>
 	</body>
-	<script src="js/fastclick.js"></script>
-	<script src="js/mui.min.js"></script>
-	<script type="text/javascript" src="js/hmt.js" ></script>
+	<script src="<%=ctxPath %>/js/fastclick.js"></script>
+	<script src="<%=ctxPath %>/js/mui.min.js"></script>
+	<script type="text/javascript" src="<%=ctxPath %>/js/hmt.js" ></script>
 	<!--插件-->
 	<link rel="stylesheet" href="css/swiper.min.css">
-	<script src="js/swiper.jquery.min.js"></script>
+	<script src="<%=ctxPath %>/js/swiper.jquery.min.js"></script>
 	<!--插件-->
 
 	<!--搜索点击效果-->
