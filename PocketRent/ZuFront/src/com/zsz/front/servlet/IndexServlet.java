@@ -28,35 +28,22 @@ public class IndexServlet extends BaseServlet {
 	
 	//获取当前用户的城市信息
 	public void queryCurrentCity(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Long userId = FrontUtils.getCurrentUserId(req);
-		Long cityId=null;
-		if(userId != null)
-		{
-			UserDTO user = new UserService().getById(userId);
-			cityId = user.getCityId();
-		}
-		
-		//如果当前没有用户登录或者登录用户的cityId为null，则cityId都会为null
-		CityService cityService = new CityService();
-		String cityName;
-		if(cityId == null)
-		{
-			cityName = cityService.getAll()[0].getName();//如果没有当前城市。则认为第一个城市是当前城市
-		}
-		else
-		{
-			cityName = cityService.getById(cityId).getName();
-			
-		}
+		long cityId = FrontUtils.getCurrentCityId(req);
+		String cityName = new CityService().getById(cityId).getName();
 		writeJson(resp, new AjaxResult("ok","",cityName));
 		
 	}	
-	public void getAllCities(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+/*	public void getAllCities(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CityService cityService = new CityService();
 		CityDTO[] cities = cityService.getAll();
 		writeJson(resp, new AjaxResult("ok","",cities));
 	}
+		*/
+	public void changeCity(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		long cityId = Long.parseLong(req.getParameter("cityId"));
+		FrontUtils.setCurrentCityId(req, cityId);
+		writeJson(resp, new AjaxResult("ok"));
+	}
 		
-	
 		
 }

@@ -7,14 +7,15 @@
      <%@include file="/WEB-INF/header.jsp" %>
      <script type="text/javascript">
     	$(function () {
-			var password = $("#password").val();
-			var password2 = $("#password2").val();
-    		if(password != password2)
-   			{
-    			alert("两次输入的密码不一致")	;
-    			return;
-   			}
 			$("#next").click(function () {
+				/* 如果将这段判断两次密码是否相同的代码放到ajax请求外面的话，那么只要页码一打开这段判断的代码就会立马执行，那么此时的password的值就会被赋为空字符串 ，所以必须放到click里面来*/
+				var password = $("#password").val(); 
+				var password2 = $("#password2").val();
+	    		if(password != password2)
+	   			{
+	    			alert("两次输入的密码不一致")	;
+	    			return;
+	   			};
 				$.ajax({
 					type:"post",
 					url:"<%=ctxPath%>/User",

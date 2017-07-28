@@ -47,7 +47,7 @@
 				</li>
 				<li class="clearfloat">
 					<i class="iconfont icon-lock fl"></i>
-					<input type="text" id="password" value="" placeholder="请输入密码" class="fl phone" />
+					<input type="password" id="password" value="" placeholder="请输入密码" class="fl phone" />
 				</li>
 			</ul>
 			<a href="javascript:void(0)" id="btnLogin" class="pay-btn clearfloat">

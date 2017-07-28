@@ -33,16 +33,38 @@
 				var height = $(this).height();
 				$("#citiesList").toggle("fast").css("left",left).css("top",top+height);
 			});
+			
+			$("#citiesList li").click(function(){
+				var cityId = $(this).attr("cityId");
+				$.ajax({
+					type:"post",
+					url:"<%=ctxPath%>/Index",
+					data:{action:"changeCity",cityId:cityId},
+					success:function(result){
+						if(result.status == "ok")
+						{
+							location.reload();//刷新页面
+						}
+						else
+						{
+							alert(result.msg);
+						}
+					},
+					error:function(){
+						alert("切换城市网络请求失败！");	
+					}
+				});
+			});
 		});
     </script>
 </head>
     <%@include file="/WEB-INF/loading.jsp" %>
 	<body>
-		<div style="display:none;position:absolute" id="citiesList">
+		<div style="display:none;z-index:99;position:absolute;background:blue;cursor:pointer;" id="citiesList">
 			<ul>
-					<c:forEach items="${cities }" var="city">
-						<li cityId="${city.id }">${city.name }</li>
-					</c:forEach>
+				<c:forEach items="${cities }" var="city">
+					<li cityId="${city.id }">${city.name }</li>
+				</c:forEach>
 			</ul>
 		</div>
 		<!--header star-->
@@ -52,7 +74,7 @@
 			</div>
 			<header class="mui-bar mui-bar-nav">
 				<a class="btn" href="#" id="btnChangeCity">		            
-		            <p>><b id="cityName"></b><i class="iconfont icon-iconfontarrowdown-copy"></i></p>
+		            <p><b id="cityName"></b><i class="iconfont icon-iconfontarrowdown-copy"></i></p>
 		        </a>
 		        <div class="top-sch-box flex-col">
 		            <div class="centerflex">
