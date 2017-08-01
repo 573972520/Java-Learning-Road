@@ -6,24 +6,54 @@
 <head>
 <%@include file="/WEB-INF/header.jsp" %>
 <link href="<%=ctxPath %>/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+	$(function () {
+		$("#btnDeletd").click(function () {
+			var data = $("#form1").serializeArray();
+			$.ajax({
+				type:"post",
+				url:"<%=ctxPath%>/House",
+				data:data,
+				success:function(result)
+				{
+					if(result.status == "ok")
+					{
+						location.reload()		;
+					}
+					else
+					{
+						alert(result.msg);
+					}
+				},
+				error:function()
+				{
+					alert("删除网络通讯失败")
+				}
+			});
+		});
+	});	
+</script>
 <title>房源图片管理</title>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 房源管理 <span class="c-gray en">&gt;</span> 房源图片管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a href="javascript:;" onclick="edit()" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe6df;</i> 编辑</a> <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> </span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"> <a href="javascript:;" id="btnDeletd" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> </span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
 	<div class="portfolio-content">
+		<form id="form1">
+		<input type="hidden" name="action" value="deletePics" />
 		<ul class="cl portfolio-area">
 			<c:forEach items="${pics }" var="pic">
 			<li class="item">
 				<div class="portfoliobox">
-					<input class="checkbox" name="" type="checkbox" value="">
+					<input class="checkbox" name="picIds" type="checkbox" value="${pic.id }">
 					<div class="picbox"><a href="${pic.url }" data-lightbox="gallery" data-title="客厅1"><img src="${pic.thumbUrl }"></a></div>
 					<div class="textbox">客厅 </div>
 				</div>
 			</li>			
 			</c:forEach>
 		</ul>
+		</form>
 	</div>
 	<div class="row cl">
 			<label class="form-label col-2">图片上传：</label>
@@ -56,107 +86,6 @@ $(function(){
 </script>
 
 <script type="text/javascript">
-$(function(){
-	$list = $("#fileList"),
-	$btn = $("#btn-star"),
-	state = "pending",
-	uploader;
-
-	var uploader = WebUploader.create({
-		auto: true,
-		swf: 'lib/webuploader/0.1.5/Uploader.swf',
-	
-		// 文件接收服务端。
-		server: 'http://lib.h-ui.net/webuploader/0.1.5/server/fileupload.php',
-	
-		// 选择文件的按钮。可选。
-		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
-		pick: '#filePicker',
-	
-		// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
-		resize: false,
-		// 只允许选择图片文件。
-		accept: {
-			title: 'Images',
-			extensions: 'gif,jpg,jpeg,bmp,png',
-			mimeTypes: 'image/*'
-		}
-	});
-	uploader.on( 'fileQueued', function( file ) {
-		var $li = $(
-			'<div id="' + file.id + '" class="item">' +
-				'<div class="pic-box"><img></div>'+
-				'<div class="info">' + file.name + '</div>' +
-				'<p class="state">等待上传...</p>'+
-			'</div>'
-		),
-		$img = $li.find('img');
-		$list.append( $li );
-	
-		// 创建缩略图
-		// 如果为非图片文件，可以不用调用此方法。
-		// thumbnailWidth x thumbnailHeight 为 100 x 100
-		uploader.makeThumb( file, function( error, src ) {
-			if ( error ) {
-				$img.replaceWith('<span>不能预览</span>');
-				return;
-			}
-	
-			$img.attr( 'src', src );
-		}, thumbnailWidth, thumbnailHeight );
-	});
-	// 文件上传过程中创建进度条实时显示。
-	uploader.on( 'uploadProgress', function( file, percentage ) {
-		var $li = $( '#'+file.id ),
-			$percent = $li.find('.progress-box .sr-only');
-	
-		// 避免重复创建
-		if ( !$percent.length ) {
-			$percent = $('<div class="progress-box"><span class="progress-bar radius"><span class="sr-only" style="width:0%"></span></span></div>').appendTo( $li ).find('.sr-only');
-		}
-		$li.find(".state").text("上传中");
-		$percent.css( 'width', percentage * 100 + '%' );
-	});
-	
-	// 文件上传成功，给item添加成功class, 用样式标记上传成功。
-	uploader.on( 'uploadSuccess', function( file ) {
-		$( '#'+file.id ).addClass('upload-state-success').find(".state").text("已上传");
-	});
-	
-	// 文件上传失败，显示上传出错。
-	uploader.on( 'uploadError', function( file ) {
-		$( '#'+file.id ).addClass('upload-state-error').find(".state").text("上传出错");
-	});
-	
-	// 完成上传完了，成功或者失败，先删除进度条。
-	uploader.on( 'uploadComplete', function( file ) {
-		$( '#'+file.id ).find('.progress-box').fadeOut();
-	});
-	uploader.on('all', function (type) {
-        if (type === 'startUpload') {
-            state = 'uploading';
-        } else if (type === 'stopUpload') {
-            state = 'paused';
-        } else if (type === 'uploadFinished') {
-            state = 'done';
-        }
-
-        if (state === 'uploading') {
-            $btn.text('暂停上传');
-        } else {
-            $btn.text('开始上传');
-        }
-    });
-
-    $btn.on('click', function () {
-        if (state === 'uploading') {
-            uploader.stop();
-        } else {
-            uploader.upload();
-        }
-    });
-
-});
 
 (function( $ ){
     // 当domReady的时候开始初始化
@@ -308,10 +237,10 @@ $(function(){
             },
             dnd: '#dndArea',
             paste: '#uploader',
-            swf: 'lib/webuploader/0.1.5/Uploader.swf',
+            swf: '<%=ctxPath%>/lib/webuploader/0.1.5/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: 'http://lib.h-ui.net/webuploader/0.1.5/server/fileupload.php',
+            server: '<%=ctxPath%>/House?action=uploadImage1&houseId=${id}',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -634,7 +563,8 @@ $(function(){
                 case 'finish':
                     stats = uploader.getStats();
                     if ( stats.successNum ) {
-                        alert( '上传成功' );
+                    	location.reload();//图片上传完成，页面刷新
+                        //alert( '上传成功' );
                     } else {
                         // 没有成功的图片，重设
                         state = 'done';

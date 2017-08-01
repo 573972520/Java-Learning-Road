@@ -1,15 +1,32 @@
 package com.zsz.admin.servlet;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageProducer;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import javax.swing.ImageIcon;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.xml.sax.InputSource;
 
 import com.zsz.admin.utils.AdminUtils;
 import com.zsz.dao.utils.IdNameDAO;
@@ -27,9 +44,17 @@ import com.zsz.service.RegionService;
 import com.zsz.tools.AjaxResult;
 import com.zsz.tools.CommonUtils;
 
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Position;
+import net.coobird.thumbnailator.geometry.Positions;
+import net.coobird.thumbnailator.geometry.Size;
+
 @WebServlet("/House")
+@MultipartConfig
 public class HouseServlet extends BaseServlet
 {
+	
+	@HasPermission("House.Query")
 	public void list(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		Long adminUserCityId = AdminUtils.getAdminUserCityId(req);//获取用户所在的城市
@@ -56,19 +81,22 @@ public class HouseServlet extends BaseServlet
 		req.getRequestDispatcher("/WEB-INF/house/houseList.jsp").forward(req, resp);
 		 
 	}
+	@HasPermission("House.Delete")
 	public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		HouseService service = new HouseService();
 		service.markDeleted(id);
 		writeJson(resp, new AjaxResult("ok"));
 	}
-		
 	
+	//加载区域下的所有小区
 	public void loadCommunities(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long regionId = Long.parseLong(req.getParameter("regionId"));
 		CommunityDTO[] communities = new CommunityService().getByRegionId(regionId);
 		writeJson(resp, new AjaxResult("ok","",communities));
 	}
+	
+	@HasPermission("House.AddNew")
 	public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		long typeId = Long.parseLong(req.getParameter("typeId"));
@@ -84,6 +112,7 @@ public class HouseServlet extends BaseServlet
 		req.getRequestDispatcher("/WEB-INF/house/houseAdd.jsp").forward(req, resp);
 		
 	}
+	@HasPermission("House.AddNew")
 	public void addSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Long cityId = AdminUtils.getAdminUserCityId(req);
 		
@@ -131,7 +160,7 @@ public class HouseServlet extends BaseServlet
 		writeJson(resp, new AjaxResult("ok"));
 	}
 
-	
+	@HasPermission("House.Edit")
 	public void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		Long cityId = AdminUtils.getAdminUserCityId(req);
@@ -163,6 +192,7 @@ public class HouseServlet extends BaseServlet
 		
 		
 	}
+	
 	private void fillEditAddRequest(HttpServletRequest req, Long cityId) {
 		RegionService regionService = new RegionService();
 		RegionDTO[] regions = regionService.getAll(cityId); //取得城市中的区域
@@ -183,7 +213,7 @@ public class HouseServlet extends BaseServlet
 		Date now = new Date();
 		req.setAttribute("now",DateFormatUtils.format(now, "yyyy-MM-dd"));
 	}
-	
+	@HasPermission("House.Edit")
 	public void editSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		long typeId = Long.parseLong(req.getParameter("typeId"));
@@ -229,7 +259,7 @@ public class HouseServlet extends BaseServlet
 		new HouseService().update(house);
 		writeJson(resp, new AjaxResult("ok"));
 	}
-			
+	@HasPermission("House.Pic")
 	public void picsList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
 		HousePicDTO[] pics = new HouseService().getPics(id);// 获取房子的配图
@@ -237,4 +267,183 @@ public class HouseServlet extends BaseServlet
 		req.setAttribute("id", id);
 		req.getRequestDispatcher("/WEB-INF/house/picsList.jsp").forward(req, resp);
 	}
+	@HasPermission("House.Pic")
+	public void uploadImage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		long houseId = Long.parseLong(req.getParameter("houseId"));
+		
+		Part part = req.getPart("file");//用户上传的文件    由于webupload是每个文件一次请求，而且每个上传文件的表单名字都是file
+		String filename = part.getSubmittedFileName();//用户提交的文件名  如果在IE6/7/8上传文件名会带者着路径
+		//FileUtils.copyInputStreamToFile(part.getInputStream(), new File("d:/"+fn));
+		String fileExt = FilenameUtils.getExtension(filename); //不带.的后缀名
+		if(!fileExt.equalsIgnoreCase("jpg") && !fileExt.equalsIgnoreCase("png") && !fileExt.equalsIgnoreCase("jpeg"))
+		{
+			return;
+		}
+		
+		/*
+		//InputStream inStream = part.getInputStream(); //每次调用.getInputStream()都会返回一个新的对象
+		
+		BufferedInputStream inStream = new BufferedInputStream(part.getInputStream());
+		
+		//inStream.mark(Integer.MAX_VALUE); //把当前流的读取指针的位置做一个标记 ，但不是所有的InputStream都支持mark和reset,为了使之支持这些方法，用BufferedInputStream包裹起来
+		//inStream.reset();//把指针移动回上一次mark的位置
+		
+		inStream.mark(Integer.MAX_VALUE); 
+		String uploadDir = req.getServletContext().getRealPath("/upload"); //获得上传文件夹的物理路径  c:/1/upload
+		uploadDir = FilenameUtils.separatorsToUnix(uploadDir); //把路径中的\改成/
+		Calendar calendar = Calendar.getInstance();
+		String fileDir = uploadDir+"/"+calendar.get(Calendar.YEAR)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.DAY_OF_MONTH);//文件的文件夹全路径
+		String filePath = fileDir+"/"+CommonUtils.calcMD5(inStream)+"."+fileExt;  //这里的calcMD5方法会使流指针指到结尾，使文件无法读取，所以使用inStream.reset()使指针重新指回原始位置
+		inStream.reset(); //流的 读取指针重新指回原始位置
+		
+		new File(fileDir).mkdirs();//如果fileDir这个文件夹或者父文件夹不存在，则一路创建出所有的文件夹
+		FileOutputStream fos = new FileOutputStream(filePath); //如果文件夹不存在，则报错
+		byte[] bytes = new byte[1024*1024];
+		int len;
+		while ((len = inStream.read(bytes)) > 0) {   //part.getInputStream().read(bytes)  如果if条件中这么写，那么每一个都会创建一个新的对象，使程序一直在读写，导致上传的图片文件越来越大
+			fos.write(bytes,0,len);
+		}
+		fos.close();
+		*/
+		
+		
+		/*String uploadDir = req.getServletContext().getRealPath("/upload"); //获得上传文件夹的物理路径  c:/1/upload
+		uploadDir = FilenameUtils.separatorsToUnix(uploadDir); //把路径中的\改成/
+		Calendar calendar = Calendar.getInstance();
+		InputStream inStream1 = null;
+		InputStream inStream2 = null;
+		try
+		{
+			inStream1 = part.getInputStream();
+			String fileDir = uploadDir+"/"+calendar.get(Calendar.YEAR)+"/"+(calendar.get(Calendar.MONTH)+1)+"/"+calendar.get(Calendar.DAY_OF_MONTH);//文件的文件夹全路径
+			String filePath = fileDir+"/"+CommonUtils.calcMD5(part.getInputStream())+"."+fileExt;  //这里的calcMD5方法会使流指针指到结尾，使文件无法读取，所以使用inStream.reset()使指针重新指回原始位置
+			inStream2 = part.getInputStream();
+			FileUtils.copyInputStreamToFile(part.getInputStream(), new File(filePath));//第一个：帮助我们创建不存在的文件夹、会自动把InputStream的流归位
+		}*/
+		
+		String rootDir = req.getServletContext().getRealPath("/");// 网站根目录的物理路径
+		// c:/1/upload
+		rootDir = FilenameUtils.separatorsToUnix(rootDir);// 把路径中的\改成/
+		
+		Calendar calendar = Calendar.getInstance();
+		String fileRelativePath;
+		
+		InputStream inStream1 = null;
+		InputStream inStream2 = null;
+		
+		try {
+		inStream1 = part.getInputStream();
+		
+		fileRelativePath = "upload/" + calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) + "/"
+		+ calendar.get(Calendar.DAY_OF_MONTH) + "/" + CommonUtils.calcMD5(inStream1) + "." + fileExt;
+		String filePath = rootDir + fileRelativePath;// 文件的文件夹全路径
+		
+		inStream2 = part.getInputStream();
+		FileUtils.copyInputStreamToFile(inStream2, new File(filePath));// 第一个：帮助我们创建不存在的文件夹、会自动把InputStream的流归位
+		}
+		finally
+		{
+			IOUtils.closeQuietly(inStream1);
+			IOUtils.closeQuietly(inStream2);
+		}
+		
+		HousePicDTO housePic = new HousePicDTO();
+		housePic.setHouseId(houseId);;
+		housePic.setThumbUrl("http://localhost:8080/ZuAdmin/" + fileRelativePath);
+		housePic.setUrl("http://localhost:8080/ZuAdmin/" + fileRelativePath);
+		HouseService houseService = new HouseService();
+		houseService.addnewHousePic(housePic);
+		
+		// 1、文件的路径用“年/月/日/”，避免一个文件夹下文件过多
+		// 2、文件的文件名用文件内容的md5值，避免文件重名的问题
+		// 3、上传的文件是在网站部署目录下，不是在源代码的目录下，通过getRealPath拿到物理路径
+		// 4、part.getInputStream()每次调用都会返回一个新的InputStream对象
+		// 5、如果计算md5值和保存文件用的是同一个InputStream，就会有计算md5值把文件流的指针指到最后，那么写入文件就写入0字节
+		// 因此需要使用mark、reset来让读取指针返回原始位置。不是所有的流都支持reset，因此最好用BufferedInputStream包装一下
+		// 因为part.getInputStream()每次调用都会返回一个新的InputStream对象，这样最简单的方法就是计算md5值和拷贝文件的时候用两个part.getInputStream()
+		// 6、最简单的方法就是用FileUtils.copyInputStreamToFile，他会帮我们处理文件夹不存在的问题
+	}
+	@HasPermission("House.Pic")
+	public void uploadImage1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		long houseId = Long.parseLong(req.getParameter("houseId"));
+		
+		Part part = req.getPart("file");//用户上传的文件    由于webupload是每个文件一次请求，而且每个上传文件的表单名字都是file
+		String filename = part.getSubmittedFileName();//用户提交的文件名  如果在IE6/7/8上传文件名会带者着路径
+		//FileUtils.copyInputStreamToFile(part.getInputStream(), new File("d:/"+fn));
+		String fileExt = FilenameUtils.getExtension(filename); //不带.的后缀名
+		if(!fileExt.equalsIgnoreCase("jpg") && !fileExt.equalsIgnoreCase("png") && !fileExt.equalsIgnoreCase("jpeg"))
+		{
+			return;
+		}
+		
+		
+		String rootDir = req.getServletContext().getRealPath("/");// 网站根目录的物理路径
+		// c:/1/upload
+		rootDir = FilenameUtils.separatorsToUnix(rootDir);// 把路径中的\改成/
+		
+		Calendar calendar = Calendar.getInstance();
+		String fileRelativePath; //大图相对路径
+		String thumbFileRelativePath;//缩略图相对路径
+		
+		InputStream inStream1 = null;
+		InputStream inStream2 = null;
+		
+		try {
+			inStream1 = part.getInputStream();
+			
+			String fileMd5 = CommonUtils.calcMD5(inStream1);//为了避免第二次计算MD5值时指针指向结尾，所以只算一次，重复使用
+			fileRelativePath = "upload/" + calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) + "/"
+					+ calendar.get(Calendar.DAY_OF_MONTH) + "/" + fileMd5 + "." + fileExt;
+			
+			//缩略图路径
+			thumbFileRelativePath = "upload/" + calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) + "/"
+					+ calendar.get(Calendar.DAY_OF_MONTH) + "/" + fileMd5 + ".thumb." + fileExt;
+			
+			//String filePath = rootDir + fileRelativePath;// 文件的文件夹全路径
+			
+			inStream2 = new BufferedInputStream(part.getInputStream());
+			inStream2.mark(Integer.MAX_VALUE);
+			
+			File fileThumb = new File(rootDir,thumbFileRelativePath);
+			fileThumb.getParentFile().mkdirs();//创建父文件夹
+			//生成缩略图
+			Thumbnails.of(inStream2).size(150, 150).toFile(fileThumb);
+			inStream2.reset();//指针归位
+			
+			
+			File fileWaterMark = new File(rootDir,fileRelativePath);
+			fileWaterMark.getParentFile().mkdirs();//创建父文件夹
+			//生成水印图片保存
+			BufferedImage imgWaterMark = ImageIO.read(new File(req.getServletContext().getRealPath("/images/watermark.png")));
+			Thumbnails.of(inStream2).size(500, 500).watermark(Positions.BOTTOM_RIGHT,imgWaterMark,0.5f).toFile(fileWaterMark);;
+			
+			HousePicDTO housePic = new HousePicDTO();
+			housePic.setHouseId(houseId);;
+			housePic.setThumbUrl("http://localhost:8080/ZuAdmin/" + thumbFileRelativePath);
+			housePic.setUrl("http://localhost:8080/ZuAdmin/" + fileRelativePath);
+			housePic.setHeight(500);
+			housePic.setWidth(500);
+			HouseService houseService = new HouseService();
+			houseService.addnewHousePic(housePic);
+			
+			//FileUtils.copyInputStreamToFile(inStream2, new File(rootDir,fileRelativePath));// 第一个：帮助我们创建不存在的文件夹、会自动把InputStream的流归位
+		}
+		finally
+		{
+			IOUtils.closeQuietly(inStream1);
+			IOUtils.closeQuietly(inStream2);
+		}
+		
+	}
+	@HasPermission("House.Pic")
+	public void deletePics(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String[] picIds = req.getParameterValues("picIds");
+		HouseService houseService = new HouseService();
+		for (String picId:picIds) {
+			houseService.deleteHousePic(Long.parseLong(picId));
+		}
+		writeJson(resp, new AjaxResult("ok"));
+	}
+		
+		
 }

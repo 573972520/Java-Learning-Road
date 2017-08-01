@@ -28,12 +28,12 @@
 <![endif]-->
 
 <script type="text/javascript" src="<%=ctxPath %>/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="<%=ctxPath %>/lib/icheck/jquery.icheck.min.js"></script> 
 <script type="text/javascript" src="<%=ctxPath %>/lib/Validform/5.3.2/Validform.min.js"></script> 
+
 <script type="text/javascript" src="<%=ctxPath %>/lib/layer/1.9.3/layer.js"></script> 
-<script type="text/javascript" src="<%=ctxPath %>/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript" src="<%=ctxPath %>/lib/My97DatePicker/WdatePicker.js"></script>
+
+<script type="text/javascript" src="<%=ctxPath %>/lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript" src="<%=ctxPath %>/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>   
-<script type="text/javascript" src="<%=ctxPath %>/lib/lightbox2/2.8.1/js/lightbox-plus-jquery.min.js"></script>
 <script type="text/javascript" src="<%=ctxPath %>/js/H-ui.js"></script> 
 <script type="text/javascript" src="<%=ctxPath %>/js/H-ui.admin.js"></script> 

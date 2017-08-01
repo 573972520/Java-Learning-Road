@@ -10,6 +10,7 @@ public class AdminUtils {
 	public static void showError(HttpServletRequest req,HttpServletResponse resp,String errorMag) 
 		   throws ServletException, IOException
 	{
+		resp.setStatus(500);//设置服务器响应状态码为500
 		req.setAttribute("errorMag", errorMag);
 		req.getRequestDispatcher("/WEB-INF/error.jsp").forward(req, resp);
 	}
