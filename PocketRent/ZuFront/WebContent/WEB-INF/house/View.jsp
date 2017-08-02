@@ -6,6 +6,38 @@
 <head>
     <title>房源详情</title>
     <%@include file="/WEB-INF/header.jsp" %>
+    <link rel="stylesheet" href="<%=ctxPath %>/css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="<%=ctxPath %>/css/app.css" />
+	<link rel="stylesheet" type="text/css" href="<%=ctxPath %>/css/mui.picker.min.css" />
+	<script type="text/javascript">
+		$(function(){
+			$("#btnSubmitApp").click(function(){
+				var name = $("#appName").val();
+				var phoneNum = $("#appPhoneNum").val();
+				var visitDate = $("#txtKFSJ").val();
+				$.ajax({
+					type:"post",
+					url:"<%=ctxPath%>/House",
+					data:{action:"makeAppointment",name:name,phoneNum:phoneNum,visitDate:visitDate,houseId:${house.id}},
+					success:function(result){
+						if(result.status == "ok")
+						{
+							alert("预约成功");
+							$("#loginbtn").click();//点击关闭按钮
+						}
+						else
+						{
+							alert(result.msg);
+						}
+					},
+					error:function(){
+						alert("网络请求失败");
+					}
+				});
+			});
+		});
+	</script>
+	
 </head>
 	<%@include file="/WEB-INF/loading.jsp" %>
 	<body>
@@ -173,28 +205,42 @@
 				<ul>
 					<li class="clearfloat">
 						<i class="iconfont icon-user"></i>
-						<input type="text" name="" id="" value="" placeholder="您的姓名" />
+						<input type="text" name="" id="appName" value="" placeholder="您的姓名" />
 					</li>
 					<li class="clearfloat">
 						<i class="iconfont icon-phone"></i>
-						<input type="text" name="" id="" value="" placeholder="您的手机号码" />
+						<input type="text" name="" id="appPhoneNum" value="" placeholder="您的手机号码" />
 					</li>
 					<li class="clearfloat">
 						<i class="iconfont icon-calendar"></i>
-						<input type="text" name="" id="" value="" placeholder="请选择看房时间" />
+						<input type="text" name="appVisitDate" id="txtKFSJ" value="" placeholder="请选择看房时间" />
 					</li>
 				</ul>
-				<input type="button" name="" id="" value="立即预约" class="btn" />
+				<input type="button" name="" id="btnSubmitApp" value="立即预约" class="btn" />
 			</div>
 		</div>
 	    <!--弹窗内容 end-->
 		
 	</body>
-	<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
-	<script type="text/javascript" src="slick/slick.min.js" ></script>
-	<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
-	<script type="text/javascript" src="js/tchuang.js" ></script>
-	<script type="text/javascript" src="js/hmt.js" ></script>
+	<script type="text/javascript" src="<%=ctxPath %>/slick/slick.min.js" ></script>
+	<script type="text/javascript" src="<%=ctxPath %>/js/jquery.leanModal.min.js"></script>
+	<script type="text/javascript" src="<%=ctxPath %>/js/tchuang.js" ></script>
+	<script type="text/javascript" src="<%=ctxPath %>/js/hmt.js" ></script>
+	<script src="<%=ctxPath %>/js/mui.min.js"></script>
+	<script src="<%=ctxPath %>/js/mui.picker.min.js"></script>
+	
+	<script type="text/javascript">
+		$("#txtKFSJ").click(function(){
+			mui.init();//不能少
+			var options = {"type":"date"};
+			var picker = new mui.DtPicker(options); //必须new mui的DtPicker
+			picker.show(function(rs){
+				$("#txtKFSJ").val(rs.text);
+				//$(this).val(rs.text); //不能使用this
+				picker.dispose();
+			});
+		});
+	</script>
 	<script type="text/javascript">
 		$('.one-time').slick({
 		  dots: true,

@@ -55,6 +55,12 @@
 					}
 				});
 			});
+			$("#txtSearch").keydown(function(e){
+				if(e.keyCode == 13) //按了回车
+				{
+					location.href="<%=ctxPath%>/House?action=search&keywords="+encodeURI($(this).val());
+				}
+			});
 		});
     </script>
 </head>
@@ -98,7 +104,7 @@
 			                <div class="top-sch-box flex-col">
 			                    <div class="centerflex">
 			                    	<i class="fdj iconfont icon-sousuo"></i>
-			                        <input class="sch-input mui-input-clear" type="text" name="" id="" placeholder="请输入您要搜索的内容" />
+			                        <input class="sch-input mui-input-clear" type="text" name="" id="txtSearch" placeholder="请输入您要搜索的内容" />
 			                    </div>
 			                </div>			                
 			            </div>
