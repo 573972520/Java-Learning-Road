@@ -73,6 +73,8 @@
 					<li><a _href="<%=ctxPath %>/House?action=list&typeId=12&pageIndex=1" href="javascript:void(0)">写字楼管理</a></li>
 					<li><a _href="<%=ctxPath %>/House?action=list&typeId=13&pageIndex=1" href="javascript:void(0)">合租管理</a></li>
 					<li><a _href="<%=ctxPath %>/House?action=list&typeId=14&pageIndex=1" href="javascript:void(0)">整租管理</a></li>
+					<li><a _href="<%=ctxPath %>/House?action=appList&pageNum=1&status=新建" href="javascript:void(0)">待处理看房订单</a></li>
+					<li><a _href="<%=ctxPath %>/House?action=appList&pageNum=1&status=在跟进" href="javascript:void(0)">已跟进看房订单</a></li>
 				</ul>
 			</dd>
 		</dl>

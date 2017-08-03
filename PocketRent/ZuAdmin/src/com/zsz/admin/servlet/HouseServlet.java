@@ -32,12 +32,14 @@ import com.zsz.admin.utils.AdminUtils;
 import com.zsz.dao.utils.IdNameDAO;
 import com.zsz.dto.AttachmentDTO;
 import com.zsz.dto.CommunityDTO;
+import com.zsz.dto.HouseAppointmentDTO;
 import com.zsz.dto.HouseDTO;
 import com.zsz.dto.HousePicDTO;
 import com.zsz.dto.IdNameDTO;
 import com.zsz.dto.RegionDTO;
 import com.zsz.service.AttachmentService;
 import com.zsz.service.CommunityService;
+import com.zsz.service.HouseAppointmentService;
 import com.zsz.service.HouseService;
 import com.zsz.service.IdNameService;
 import com.zsz.service.RegionService;
@@ -443,6 +445,51 @@ public class HouseServlet extends BaseServlet
 			houseService.deleteHousePic(Long.parseLong(picId));
 		}
 		writeJson(resp, new AjaxResult("ok"));
+	}
+	
+	
+	public void appList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Long cityId = AdminUtils.getAdminUserCityId(req);
+		if (cityId == null) {
+			AdminUtils.showError(req, resp, "总部的人不能进行预约管理！");
+			return;
+		}
+		long pageNum = Long.parseLong(req.getParameter("pageNum"));
+		String status = req.getParameter("status");
+
+		HouseAppointmentService appService = new HouseAppointmentService();
+		HouseAppointmentDTO[] apps = appService.getPagedData(cityId, status, 10, pageNum);
+		long totalCount = appService.getTotalCount(cityId, status);
+		req.setAttribute("apps", apps);
+		req.setAttribute("totalCount", totalCount);
+		req.setAttribute("status", status);
+		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("ctxPath", req.getContextPath());
+		req.getRequestDispatcher("/WEB-INF/house/houseAppList.jsp").forward(req, resp);
+	}
+	
+	//抢单
+	public void follow(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		long adminUserId = AdminUtils.getAdminUserId(req);
+		long appId = Long.parseLong(req.getParameter("id"));//预约的ID
+		HouseAppointmentService service = new HouseAppointmentService();
+		boolean isOK = service.follow(adminUserId, appId);
+		if(isOK)
+		{
+			writeJson(resp, new AjaxResult("ok"));
+		}
+		else
+		{
+			HouseAppointmentDTO appDto = service.getById(appId);
+			if(appDto.getFollowAdminUserId() == adminUserId)
+			{
+				writeJson(resp, new AjaxResult("error","此单你已经抢下来了， 不要再重复抢单!"));
+			}
+			else
+			{
+				writeJson(resp, new AjaxResult("error","抢单失败，已经被别人抢走了"));
+			}
+		}
 	}
 		
 		
