@@ -10,7 +10,17 @@ import com.zsz.dto.UserDTO;
 import com.zsz.service.CityService;
 import com.zsz.service.UserService;
 
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 public class FrontUtils {
+	
+	private static final JedisPool jedisPool = new JedisPool("127.0.0.1");//共享同一个JedisPool
+	public static Jedis createJedis()
+	{
+		return jedisPool.getResource();
+	}
+	
 	public static void showError(HttpServletRequest req,HttpServletResponse resp,String errorMsg) throws ServletException, IOException
 	{
 		resp.setStatus(500);

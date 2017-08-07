@@ -59,7 +59,8 @@
 		    	<div class="content clearfloat box-s">
 		    		<c:forEach items="${houses }" var="house">
 			    		<div class="list clearfloat fl box-s">
-			    			<a href="house-details.html">
+			    			<a href="<%=ctxPath %>/houses/${house.id}.html"> 
+			    			<%-- <a href="<%=ctxPath%>/House?action=view&id=${house.id}"> --%>
 				    			<div class="tu clearfloat">
 				    				<span></span>
 				    				<img src="upload/list-tu.jpg"/>
@@ -83,7 +84,7 @@
 		    </div>
 	    </div>
 	    <div style="z-index:999">
-	    	<z:pager urlFormat="${pagerUrlFormat }" pageSize="3" totalCount="${totalCount }" currentPageNum="${pageIndex }"/>
+	    	<z:pager urlFormat="${pagerUrlFormat }" pageSize="${pageSize }" totalCount="${totalCount }" currentPageNum="${pageIndex }"/>
 	    </div>
 	    <div style="height:50px"></div>
 	    

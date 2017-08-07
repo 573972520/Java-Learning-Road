@@ -6,13 +6,32 @@
 <html>
 <head>
 <%@include file="/WEB-INF/header.jsp"%>
+<script type="text/javascript">
+	$(function(){
+		$("#btnBuildAllStaticPages").click(function(){
+			$.ajax({
+				type:"post",
+				url:"<%=ctxPath %>/House",
+				data:{action:"reBuildAllStaticPages"},
+				success:function(result){
+					alert(result);
+				},
+				error:function(){
+					alert("error");
+				}
+			});
+		});
+	});
+</script>
 <title>房源管理</title>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 用户中心 <span class="c-gray en">&gt;</span> 用户管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="pd-20">
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
-	<span class="l"><a href="javascript:;" onclick="layer_show('添加房源','<%=ctxPath %>/House?action=add&typeId=${typeId }','800','600')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加房源</a></span> <span class="r">共有数据：<strong>88</strong> 条</span> </div>
+	<span class="l">
+	<input type="button" value="全部静态化" id="btnBuildAllStaticPages" />
+	<a href="javascript:;" onclick="layer_show('添加房源','<%=ctxPath %>/House?action=add&typeId=${typeId }','800','600')" class="btn btn-primary radius"><i class="Hui-iconfont">&#xe600;</i> 添加房源</a></span> <span class="r">共有数据：<strong>88</strong> 条</span> </div>
 	<div class="mt-20">
 	<table class="table table-border table-bordered table-hover table-bg table-sort">
 		<thead>

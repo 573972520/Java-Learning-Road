@@ -90,7 +90,7 @@
 		        </div>
 		    </header>
 		    <div class="header-tit clearfloat">
-		    	<p class="header-num">掌上租已为<span>53789</span>用户成功租房！</p>
+		    	<p class="header-num">掌上租已为<span>${houseAppTotalCount }</span>用户成功租房！</p>
 		    	<p class="header-da">轻松租房  乐享生活</p>
 		    </div>
 		</div>

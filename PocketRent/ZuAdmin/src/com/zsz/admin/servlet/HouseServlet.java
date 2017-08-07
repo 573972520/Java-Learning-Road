@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +28,9 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.common.SolrInputDocument;
 import org.xml.sax.InputSource;
 
 import com.zsz.admin.utils.AdminUtils;
@@ -88,6 +93,13 @@ public class HouseServlet extends BaseServlet
 		long id = Long.parseLong(req.getParameter("id"));
 		HouseService service = new HouseService();
 		service.markDeleted(id);
+		
+		try {
+			deleteFromSolr(id);//从solr中删除
+		} catch (SolrServerException e) {
+			throw new RuntimeException(e);
+		}
+		
 		writeJson(resp, new AjaxResult("ok"));
 	}
 	
@@ -114,6 +126,12 @@ public class HouseServlet extends BaseServlet
 		req.getRequestDispatcher("/WEB-INF/house/houseAdd.jsp").forward(req, resp);
 		
 	}
+	/**
+	 * @param req
+	 * @param resp
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@HasPermission("House.AddNew")
 	public void addSubmit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Long cityId = AdminUtils.getAdminUserCityId(req);
@@ -158,8 +176,88 @@ public class HouseServlet extends BaseServlet
 		house.setTotalFloorCount(totalFloorCount);
 		house.setTypeId(typeId);
 		
-		new HouseService().addnew(house);
+		long id = new HouseService().addnew(house);
+		
+		//把房源信息插入solr服务器
+		house = new HouseService().getById(id);
+		try {
+			insertIntoSolr(house);
+		} catch (SolrServerException e) {
+			throw new RuntimeException(e);
+		}
+		
+		createStaticPage(id);
+		
 		writeJson(resp, new AjaxResult("ok"));
+	}
+	
+	//生成房源的静态页面(判断是否可以静态化的标准：是否对于所有的访问者，看到的内容都是一样的)
+	public void createStaticPage(long houseId)
+	{
+		URL url;
+		try {
+			url = new URL("http://localhost:8080/ZuFront/House?action=view&id="+houseId);
+			String html = IOUtils.toString(url,"UTF-8");//向web服务器发送get请求获得id为houseId的房源的查看页面的html
+			FileUtils.write(new File("F:/Programming/Code/JavaDay/PocketRent/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ZuFront/houses/"+houseId+".html"), html,"UTF-8");
+			
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	//重建所有房源的静态页面
+	public void reBuildAllStaticPages(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HouseService houseService = new HouseService();
+		HouseDTO[] houses = houseService.getAll();
+		for(HouseDTO house:houses)
+		{
+			createStaticPage(house.getId());
+		}
+		writeJson(resp, new AjaxResult("ok"));
+	}
+		
+	
+	private void insertIntoSolr(HouseDTO house) throws SolrServerException, IOException
+	{
+		HttpSolrClient.Builder builder = new HttpSolrClient.Builder("http://127.0.0.1:8983/solr/houses");
+		HttpSolrClient solrClient =builder.build();
+		try
+		{
+			SolrInputDocument doc = new SolrInputDocument();
+			doc.setField("id", house.getId());
+			doc.setField("cityId", house.getCityId());
+			doc.setField("address", house.getAddress());
+			doc.setField("area", house.getArea());
+			doc.setField("checkInDateTime", house.getCheckInDateTime());
+			doc.setField("communityBuiltYear", house.getCommunityBuiltYear());
+			doc.setField("communityId", house.getCommunityId());
+			doc.setField("communityLocation", house.getCommunityLocation());
+			doc.setField("communityName", house.getCommunityName());
+			doc.setField("communityTraffic", house.getCommunityTraffic());
+			doc.setField("decorateStatusId", house.getDecorateStatusId());
+			doc.setField("decorateStatusName", house.getDecorateStatusName());
+			doc.setField("description", house.getDescription());
+			doc.setField("direction", house.getDirection());
+			doc.setField("floorIndex", house.getFloorIndex());
+			doc.setField("lookableDateTime", house.getLookableDateTime());
+			doc.setField("monthRent", house.getMonthRent());
+			doc.setField("regionId", house.getRegionId());
+			doc.setField("regionName", house.getRegionName());
+			doc.setField("roomTypeId", house.getRoomTypeId());
+			doc.setField("statusId", house.getStatusId());
+			doc.setField("statusName", house.getStatusName());
+			doc.setField("totalFloorCount", house.getTotalFloorCount());
+			doc.setField("typeId", house.getTypeId());
+			doc.setField("typeName", house.getTypeName());
+			solrClient.add(doc);//insert
+			solrClient.commit();//！！！
+		}
+		finally
+		{
+			solrClient.close();
+		}
 	}
 
 	@HasPermission("House.Edit")
@@ -259,8 +357,33 @@ public class HouseServlet extends BaseServlet
 		house.setTypeId(typeId);
 		
 		new HouseService().update(house);
+		
+		//修改房源的时候先删除solr中对应的数据，再添加
+		try {
+			deleteFromSolr(house.getId());
+			insertIntoSolr(new HouseService().getById(id));
+		} catch (SolrServerException e) {
+			throw new RuntimeException(e);
+		}
+		createStaticPage(id);
 		writeJson(resp, new AjaxResult("ok"));
 	}
+	
+	private void deleteFromSolr(long houseId) throws SolrServerException, IOException
+	{
+		HttpSolrClient.Builder builder = new HttpSolrClient.Builder("http://127.0.0.1:8983/solr/houses");
+		HttpSolrClient solrClient =builder.build();
+		try
+		{
+			solrClient.deleteById(String.valueOf(houseId));
+			solrClient.commit();
+		}
+		finally
+		{
+			solrClient.close();
+		}
+	}
+	
 	@HasPermission("House.Pic")
 	public void picsList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long id = Long.parseLong(req.getParameter("id"));
