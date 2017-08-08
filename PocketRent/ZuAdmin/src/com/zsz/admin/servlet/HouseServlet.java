@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageProducer;
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,6 +34,10 @@ import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.common.SolrInputDocument;
 import org.xml.sax.InputSource;
 
+import com.qiniu.common.QiniuException;
+import com.qiniu.http.Response;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.util.Auth;
 import com.zsz.admin.utils.AdminUtils;
 import com.zsz.dao.utils.IdNameDAO;
 import com.zsz.dto.AttachmentDTO;
@@ -48,6 +53,7 @@ import com.zsz.service.HouseAppointmentService;
 import com.zsz.service.HouseService;
 import com.zsz.service.IdNameService;
 import com.zsz.service.RegionService;
+import com.zsz.service.SettingService;
 import com.zsz.tools.AjaxResult;
 import com.zsz.tools.CommonUtils;
 
@@ -393,7 +399,7 @@ public class HouseServlet extends BaseServlet
 		req.getRequestDispatcher("/WEB-INF/house/picsList.jsp").forward(req, resp);
 	}
 	@HasPermission("House.Pic")
-	public void uploadImage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void uploadImage2(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long houseId = Long.parseLong(req.getParameter("houseId"));
 		
 		Part part = req.getPart("file");//用户上传的文件    由于webupload是每个文件一次请求，而且每个上传文件的表单名字都是file
@@ -546,6 +552,112 @@ public class HouseServlet extends BaseServlet
 			housePic.setHouseId(houseId);;
 			housePic.setThumbUrl("http://localhost:8080/ZuAdmin/" + thumbFileRelativePath);
 			housePic.setUrl("http://localhost:8080/ZuAdmin/" + fileRelativePath);
+			housePic.setHeight(500);
+			housePic.setWidth(500);
+			HouseService houseService = new HouseService();
+			houseService.addnewHousePic(housePic);
+			
+			//FileUtils.copyInputStreamToFile(inStream2, new File(rootDir,fileRelativePath));// 第一个：帮助我们创建不存在的文件夹、会自动把InputStream的流归位
+		}
+		finally
+		{
+			IOUtils.closeQuietly(inStream1);
+			IOUtils.closeQuietly(inStream2);
+		}
+		
+	}
+	
+	private void uploadToQiniu(byte[] bytes,String fileName)
+	{
+		
+		SettingService settingService = new SettingService();
+		String ak = settingService.getValue("QiNiu.Ak");
+		String sk = settingService.getValue("QiNiu.Sk");
+		String bucketName = settingService.getValue("QiNiu.BucketName");
+		
+		 UploadManager uploadManager = new UploadManager();
+		    Auth auth = Auth.create(ak,sk);
+		    String token = auth.uploadToken(bucketName);
+		    try {
+				Response r = uploadManager.put(bytes, fileName, token);
+			} catch (QiniuException e) {
+				throw new RuntimeException(e);
+			}
+	}
+	
+	@HasPermission("House.Pic")
+	public void uploadImage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		long houseId = Long.parseLong(req.getParameter("houseId"));
+		
+		Part part = req.getPart("file");//用户上传的文件    由于webupload是每个文件一次请求，而且每个上传文件的表单名字都是file
+		String filename = part.getSubmittedFileName();//用户提交的文件名  如果在IE6/7/8上传文件名会带者着路径
+		//FileUtils.copyInputStreamToFile(part.getInputStream(), new File("d:/"+fn));
+		String fileExt = FilenameUtils.getExtension(filename); //不带.的后缀名
+		if(!fileExt.equalsIgnoreCase("jpg") && !fileExt.equalsIgnoreCase("png") && !fileExt.equalsIgnoreCase("jpeg"))
+		{
+			return;
+		}
+		
+		
+		Calendar calendar = Calendar.getInstance();
+		String fileRelativePath; //大图相对路径
+		String thumbFileRelativePath;//缩略图相对路径
+		
+		InputStream inStream1 = null;
+		InputStream inStream2 = null;
+		
+		try {
+			inStream1 = part.getInputStream();
+			
+			String fileMd5 = CommonUtils.calcMD5(inStream1);//为了避免第二次计算MD5值时指针指向结尾，所以只算一次，重复使用
+			
+			//水印图路径
+			fileRelativePath = "upload/" + calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) + "/"
+					+ calendar.get(Calendar.DAY_OF_MONTH) + "/" + fileMd5 + "." + fileExt;
+			
+			//缩略图路径
+			thumbFileRelativePath = "upload/" + calendar.get(Calendar.YEAR) + "/" + calendar.get(Calendar.MONTH) + "/"
+					+ calendar.get(Calendar.DAY_OF_MONTH) + "/" + fileMd5 + ".thumb." + fileExt;
+			
+			//String filePath = rootDir + fileRelativePath;// 文件的文件夹全路径
+			
+			inStream2 = new BufferedInputStream(part.getInputStream());
+			inStream2.mark(Integer.MAX_VALUE);
+			
+			ByteArrayOutputStream thumnailOS = new ByteArrayOutputStream();
+			try
+			{
+				//生成缩略图
+				Thumbnails.of(inStream2).size(150, 150).toOutputStream(thumnailOS); //把缩略图写入内存输出流ByteArrayOutputStream
+				uploadToQiniu(thumnailOS.toByteArray(), thumbFileRelativePath);
+			
+			}
+			finally
+			{
+				IOUtils.closeQuietly(thumnailOS);
+			}
+			
+			inStream2.reset();//指针归位
+			
+			ByteArrayOutputStream waterMarkOS = new ByteArrayOutputStream();
+			
+			try
+			{
+				//生成水印图片保存
+				BufferedImage imgWaterMark = ImageIO.read(new File(req.getServletContext().getRealPath("/images/watermark.png")));
+				Thumbnails.of(inStream2).size(500, 500).watermark(Positions.BOTTOM_RIGHT,imgWaterMark,0.5f).toOutputStream(waterMarkOS);;
+				uploadToQiniu(waterMarkOS.toByteArray(), fileRelativePath);
+			}
+			finally
+			{
+				IOUtils.closeQuietly(waterMarkOS);
+			}
+			SettingService settingService = new SettingService();
+			String quniuDomain = settingService.getValue("QiNiu.Domain");
+			HousePicDTO housePic = new HousePicDTO();
+			housePic.setHouseId(houseId);;
+			housePic.setThumbUrl(quniuDomain+"/" + thumbFileRelativePath);
+			housePic.setUrl(quniuDomain+"/" + fileRelativePath);
 			housePic.setHeight(500);
 			housePic.setWidth(500);
 			HouseService houseService = new HouseService();
