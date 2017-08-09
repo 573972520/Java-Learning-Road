@@ -43,7 +43,7 @@ public class FrontUtils {
 	 * @param req
 	 * @return
 	 */
-	public static long getCurrentUserId(HttpServletRequest req)
+	public static Long getCurrentUserId(HttpServletRequest req)
 	{
 		Long id = (Long)req.getSession().getAttribute("CurrentUserId");
 		return id;
@@ -53,25 +53,21 @@ public class FrontUtils {
 	public static long getCurrentCityId(HttpServletRequest req)
 	{
 		Long userId = FrontUtils.getCurrentUserId(req);
-		Long cityId=null;
-		if(userId != null) 
-		{
+		Long cityId = null;
+		if (userId != null) {
 			UserDTO user = new UserService().getById(userId);
 			cityId = user.getCityId();
-			if(cityId != null)
-			{
+			if (cityId != null) {
 				return cityId;
 			}
 		}
-		
-		//如果当前没有用户登录或者登录用户的cityId为null，则cityId都会为null
-		cityId = (Long)req.getSession().getAttribute("CurrentCityId");
-		if(cityId != null)
-		{
+		// 如果当前没有用户登录或者登陆用户的cityId为null，则cityId都会为null
+		cityId = (Long) req.getSession().getAttribute("CurrentCityId");
+		if (cityId != null) {
 			return cityId;
 		}
-		
-		//如果没人登录，而且session也没有CityId，则用第一个城市做当前城市
+
+		//如果没人登录、而且session也没有CityId，则用第一个城市做当前城市
 		CityService cityService = new CityService();
 		return cityService.getAll()[0].getId();
 	}

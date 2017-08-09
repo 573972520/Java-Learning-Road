@@ -55,7 +55,7 @@
 		<footer class="page-footer fixed-footer" id="footer">
 			<ul>
 				<li>
-					<a href="index.html">
+					<a href="<%=ctxPath %>/Index?action=index">
 						<i class="iconfont icon-shouyev1"></i>
 						<p>首页</p>
 					</a>
@@ -73,7 +73,7 @@
 					</a>
 				</li>
 				<li class="active">
-					<a href="sign.html">
+					<a href="<%=ctxPath %>/User?action=center">
 						<i class="iconfont icon-gerenzhongxin"></i>
 						<p>个人中心</p>
 					</a>

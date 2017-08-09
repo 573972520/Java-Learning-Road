@@ -98,6 +98,12 @@ public class UserServlet extends BaseServlet {
 	
 	
 	public void center(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Long userId = FrontUtils.getCurrentUserId(req);
+		if(userId==null)//如果没登录，则重定向到登录页面
+		{
+			resp.sendRedirect(req.getContextPath()+"/User?action=login");
+			return;
+		}
 		req.getRequestDispatcher("/WEB-INF/user/Center.jsp").forward(req, resp);
 	}
 	public void findPassword(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

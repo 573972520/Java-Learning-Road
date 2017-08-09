@@ -130,25 +130,25 @@
 		    <div class="cation clearfloat">
 		    	<ul class="clearfloat">
 		    		<li>
-		    			<a href="entire.html">
+		    			<a href="<%=ctxPath %>/House?action=search&typeId=14">
 			    			<img src="img/fang.png" />
 			    			<p>整租</p>
 		    			</a>
 		    		</li>
 		    		<li>
-		    			<a href="entire.html">
+		    			<a href="<%=ctxPath %>/House?action=search&typeId=13">
 			    			<img src="img/chuang.png" />
 			    			<p>合租</p>
 		    			</a>
 		    		</li>
 		    		<li>
-		    			<a href="entire.html">
+		    			<a href="<%=ctxPath %>/House?action=search&typeId=11">
 			    			<img src="img/bao.png" />
 			    			<p>短租</p>
 		    			</a>
 		    		</li>
 		    		<li>
-		    			<a href="entire.html">
+		    			<a href="<%=ctxPath %>/House?action=search&typeId=12">
 			    			<img src="img/lou.png" />
 			    			<p>写字楼</p>
 		    			</a>
@@ -249,7 +249,7 @@
 	   <footer class="page-footer fixed-footer" id="footer">
 			<ul>
 				<li class="active">
-					<a href="index.html">
+					<a href="<%=ctxPath %>/Index?action=index">
 						<i class="iconfont icon-shouyev1"></i>
 						<p>首页</p>
 					</a>
@@ -267,7 +267,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<%=ctxPath%>/User?action=login">
+					<a href="<%=ctxPath %>/User?action=center">
 						<i class="iconfont icon-gerenzhongxin"></i>
 						<p>个人中心</p>
 					</a>

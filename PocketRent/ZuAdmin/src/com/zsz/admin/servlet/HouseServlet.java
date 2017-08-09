@@ -495,7 +495,7 @@ public class HouseServlet extends BaseServlet
 		// 6、最简单的方法就是用FileUtils.copyInputStreamToFile，他会帮我们处理文件夹不存在的问题
 	}
 	@HasPermission("House.Pic")
-	public void uploadImage1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void uploadImage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long houseId = Long.parseLong(req.getParameter("houseId"));
 		
 		Part part = req.getPart("file");//用户上传的文件    由于webupload是每个文件一次请求，而且每个上传文件的表单名字都是file
@@ -586,7 +586,7 @@ public class HouseServlet extends BaseServlet
 	}
 	
 	@HasPermission("House.Pic")
-	public void uploadImage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public void uploadImage1(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		long houseId = Long.parseLong(req.getParameter("houseId"));
 		
 		Part part = req.getPart("file");//用户上传的文件    由于webupload是每个文件一次请求，而且每个上传文件的表单名字都是file
@@ -624,13 +624,12 @@ public class HouseServlet extends BaseServlet
 			inStream2 = new BufferedInputStream(part.getInputStream());
 			inStream2.mark(Integer.MAX_VALUE);
 			
-			ByteArrayOutputStream thumnailOS = new ByteArrayOutputStream();
+			ByteArrayOutputStream thumnailOS = new ByteArrayOutputStream(); //ByteArrayOutputStream就是一个可以接受数据写入的OutputStream，它的数据存在内存中，并且可以通过toByteArray拿到内存中的数据。ByteArrayOutputStream不适应于存放太大的数据
 			try
 			{
 				//生成缩略图
 				Thumbnails.of(inStream2).size(150, 150).toOutputStream(thumnailOS); //把缩略图写入内存输出流ByteArrayOutputStream
 				uploadToQiniu(thumnailOS.toByteArray(), thumbFileRelativePath);
-			
 			}
 			finally
 			{
@@ -645,7 +644,7 @@ public class HouseServlet extends BaseServlet
 			{
 				//生成水印图片保存
 				BufferedImage imgWaterMark = ImageIO.read(new File(req.getServletContext().getRealPath("/images/watermark.png")));
-				Thumbnails.of(inStream2).size(500, 500).watermark(Positions.BOTTOM_RIGHT,imgWaterMark,0.5f).toOutputStream(waterMarkOS);;
+				Thumbnails.of(inStream2).size(500, 500).watermark(Positions.BOTTOM_RIGHT,imgWaterMark,0.5f).toOutputStream(waterMarkOS);
 				uploadToQiniu(waterMarkOS.toByteArray(), fileRelativePath);
 			}
 			finally
@@ -654,6 +653,7 @@ public class HouseServlet extends BaseServlet
 			}
 			SettingService settingService = new SettingService();
 			String quniuDomain = settingService.getValue("QiNiu.Domain");
+			
 			HousePicDTO housePic = new HousePicDTO();
 			housePic.setHouseId(houseId);;
 			housePic.setThumbUrl(quniuDomain+"/" + thumbFileRelativePath);
